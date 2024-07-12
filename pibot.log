@@ -1,0 +1,35 @@
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 8b3600f9945adcfa5201a8ab62eb3e97).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 6addb41f28ee653643fac06201456c77).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 133c620caa6570f1ad2fda956567d55f).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: e0a970acdf8609c57b7bcc1799278f43).
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e0a970acdf8609c57b7bcc1799278f43.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: cbe13524b5d0799fa109f5ec1a060f1f).
