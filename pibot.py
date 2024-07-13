@@ -201,6 +201,18 @@ async def clearaudio(ctx):
     """Interrumpimos audio en reproduccion (Ex: ?clearaudio)"""
     voice_client = ctx.guild.voice_client
     voice_client.stop()
+
+
+
+
+
+
+
+
+
+
+
+
     
 # Define un comando de barra (slash command)
 @bot.tree.command(name="add", description="Suma dos numeros (Ex: /add 5 11)")
@@ -224,12 +236,21 @@ async def roll(interaction: discord.Interaction, dice: str):
 @bot.tree.command(name="choose",description='Elige al azar entre varias opciones (Ex: /choose Pizza Pasta Hamburguesa)')
 async def choose(interaction: discord.Interaction, choices: str):
     chosen = random.choice(choices.split())
-    await ctx.send(chosen)
+    await interaction.response.send_message(chosen)
+
+# @bot.tree.command(name="repeat", description="Repite lo mismo muchas veces (Ex: /repeat 5 Feo)")
+# async def repeat(interaction: discord.Interaction, times: int, content: str = 'repeating...'):
+#     for i in range(times):
+#         await interaction.response.send_message(content)
+#         await interaction.followup.send(content)
 
 @bot.tree.command(name="repeat", description="Repite lo mismo muchas veces (Ex: /repeat 5 Feo)")
-async def repeat(interaction: discord.Interaction, times: int, content: str = 'repeating...'):
-    for i in range(times):
-        await interaction.response.send_message(content)
+async def repeat(interaction: discord.Interaction, times: int, content: str):
+    # Respondemos con la primera instancia del contenido para cumplir con las reglas de interacción
+    await interaction.response.send_message(content)
+    
+    # Luego usamos followup para enviar las repeticiones restantes
+    for _ in range(times - 1):  # Ya hemos enviado el primer mensaje, por lo que restamos 1
         await interaction.followup.send(content)
 
 @bot.tree.command(name="joined", description="Fecha de inclusion de un miembro (Ex: /joined juanmingla)")
@@ -244,8 +265,8 @@ async def _bot(interaction: discord.Interaction):
 
 @bot.tree.command(name="join", description="Agrega el bot al chat (Ex: /join)")
 async def join(interaction: discord.Interaction):
-    if interaction.author.voice:
-        channel = interaction.author.voice.channel
+    if interaction.user.voice:
+        channel = interaction.user.voice.channel
         await channel.connect()
         await interaction.response.send_message("Bot spawneando pa molestar a AiramariA")
     else:
@@ -260,14 +281,24 @@ async def leave(interaction: discord.Interaction):
     else:
         await interaction.response.send_message("Bot no esta en el canal")
 
+async def join_audio_channel(interaction: discord.Interaction): #   TEMPORALMENTE!!
+    if interaction.user.voice:
+        channel = interaction.user.voice.channel
+        await channel.connect()
+        return True
+    else:
+        await interaction.response.send_message("Bot no se puede unir, métete en un canal de audio!")
+        return False
 
 @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
 async def audios(interaction: discord.Interaction):
     voice_client = interaction.guild.voice_client
     if not voice_client:
-        await join(interaction)  # Llama a la funcion join si no esta conectado
+        connected = await join_audio_channel(interaction)  # Llama a la función join_audio_channel si no está conectado
+        if not connected:
+            return
         voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
-    
+
     audio_player = AudioPlayer(voice_client) 
     system_functions = SystemFunctions()  
     view = AudioView(audio_player, system_functions)  

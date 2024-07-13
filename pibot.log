@@ -77,3 +77,293 @@ DEBUG:discord.client:on_command_error has successfully been registered as an eve
 DEBUG:asyncio:Using selector: EpollSelector
 INFO:discord.client:logging in using static token
 INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 44c801f004b5fc7fad3c4b58444e59db).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 14085f48fa71885a573423e25437fa52).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'join'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 247, in join
+    if interaction.author.voice:
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Interaction' object has no attribute 'author'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'join' raised an exception: AttributeError: 'Interaction' object has no attribute 'author'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 326440cab8ff826ed9f36bdf68586ed1).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'join'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 248, in join
+    if interaction.author.voice:
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Interaction' object has no attribute 'author'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'join' raised an exception: AttributeError: 'Interaction' object has no attribute 'author'
+ERROR:discord.app_commands.tree:Ignoring exception in command 'join'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 248, in join
+    if interaction.author.voice:
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Interaction' object has no attribute 'author'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'join' raised an exception: AttributeError: 'Interaction' object has no attribute 'author'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 952597b9c980046392178dce3e66336e).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'join'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 248, in join
+    if interaction.author.voice:
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Interaction' object has no attribute 'author'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'join' raised an exception: AttributeError: 'Interaction' object has no attribute 'author'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 7ac4ed63d178e8de186fe0a2cb167474).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'join'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 249, in join
+    channel = interaction.author.voice.channel
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Interaction' object has no attribute 'author'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'join' raised an exception: AttributeError: 'Interaction' object has no attribute 'author'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 95b7466255f3a0c724c69ce1ee815581).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid2843.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+ERROR:discord.app_commands.tree:Ignoring exception in command 'choose'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 227, in choose
+    await ctx.send(chosen)
+          ^^^
+NameError: name 'ctx' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'choose' raised an exception: NameError: name 'ctx' is not defined
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 2f9134dd6fe201cc5bc18926a4d0ebd7).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'repeat'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 244, in repeat
+    await interaction.response.send_message(content)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/interactions.py", line 827, in send_message
+    raise InteractionResponded(self._parent)
+discord.errors.InteractionResponded: This interaction has already been responded to before
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'repeat' raised an exception: InteractionResponded: This interaction has already been responded to before
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: d29115d7729ce671fa32ee570919bab0).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'audios'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 289, in audios
+    await join(interaction)  # Llama a la funcion join si no esta conectado
+          ^^^^^^^^^^^^^^^^^
+TypeError: 'Command' object is not callable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 872, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'audios' raised an exception: TypeError: 'Command' object is not callable
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 3d5830cc64bb2a5f78ed370669ac7858).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid2843.discord.media
+INFO:discord.voice_state:Voice connection complete.
+ERROR:discord.app_commands.tree:Ignoring exception in command 'audios'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 300, in audios
+    system_functions = SystemFunctions()
+                     ^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 75, in __init__
+    self.list_audios()
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 78, in list_audios
+    archivos = os.listdir("./Audios")
+               ^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './Audios'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'audios' raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './Audios'
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: f764a1a168c678af5c14482b9e3ea0f4).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid2843.discord.media
+INFO:discord.voice_state:Voice connection complete.
+ERROR:discord.app_commands.tree:Ignoring exception in command 'audios'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 302, in audios
+    await interaction.response.send_message("Elige una opcion del menu:", view=view)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/interactions.py", line 827, in send_message
+    raise InteractionResponded(self._parent)
+discord.errors.InteractionResponded: This interaction has already been responded to before
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'audios' raised an exception: InteractionResponded: This interaction has already been responded to before
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: e20ed913940f1d515f6fe8edc16d8998).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid2843.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.player:ffmpeg process 1376351 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1376361 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1376368 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1376381 successfully terminated with return code of 0.
