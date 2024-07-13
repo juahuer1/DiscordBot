@@ -33,3 +33,47 @@ DEBUG:discord.client:on_command_error has successfully been registered as an eve
 DEBUG:asyncio:Using selector: EpollSelector
 INFO:discord.client:logging in using static token
 INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: cbe13524b5d0799fa109f5ec1a060f1f).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 5fdae15632090a651f1d6673aa324997).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b8a99922151fb7d4e19a47505a587648).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 2cbc5d9eb9a32af4e2b3fb484f68f146).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 44c801f004b5fc7fad3c4b58444e59db).
