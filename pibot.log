@@ -367,3 +367,5 @@ INFO:discord.player:ffmpeg process 1376351 successfully terminated with return c
 INFO:discord.player:ffmpeg process 1376361 successfully terminated with return code of 0.
 INFO:discord.player:ffmpeg process 1376368 successfully terminated with return code of 0.
 INFO:discord.player:ffmpeg process 1376381 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1377108 successfully terminated with return code of 0.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session e20ed913940f1d515f6fe8edc16d8998.
