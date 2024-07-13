@@ -369,3 +369,115 @@ INFO:discord.player:ffmpeg process 1376368 successfully terminated with return c
 INFO:discord.player:ffmpeg process 1376381 successfully terminated with return code of 0.
 INFO:discord.player:ffmpeg process 1377108 successfully terminated with return code of 0.
 INFO:discord.gateway:Shard ID None has successfully RESUMED session e20ed913940f1d515f6fe8edc16d8998.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: a8d16ffb61733853c6cacfa77e301e53).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 950f40a407beab246ee2f19f35a00bdb).
+ERROR:discord.app_commands.tree:Ignoring exception in command 'add'
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 221, in add
+    channel = interaction.user.voice.channel
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/interactions.py", line 855, in send_message
+    await adapter.create_interaction_response(
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/webhook/async_.py", line 221, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'add' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 9607c46e1fa931ed758cbb8a4c947916).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 3c7787dcec5b7c115cc98db2fa118946).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid2843.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.player:ffmpeg process 1393819 successfully terminated with return code of 0.
+INFO:discord.voice_state:Timed out connecting to voice
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+ERROR:discord.app_commands.tree:Ignoring exception in command 'audios'
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 490, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/voice_state.py", line 407, in _inner_connect
+    await self._wait_for_state(ConnectionFlowState.got_both_voice_updates)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/voice_state.py", line 559, in _wait_for_state
+    await sane_wait_for([self._state_event.wait()], timeout=timeout)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/utils.py", line 714, in sane_wait_for
+    done, pending = await asyncio.wait(ensured, timeout=timeout, return_when=asyncio.ALL_COMPLETED)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 418, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 525, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 251, in audios
+    return
+           
+  File "/harddrive/Raspberry/PiBot_v2/pibot.py", line 241, in join_audio_channel
+    else:
+        ^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/abc.py", line 1966, in connect
+    await voice.connect(timeout=timeout, reconnect=reconnect, self_deaf=self_deaf, self_mute=self_mute)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/voice_client.py", line 305, in connect
+    await self._connection.connect(
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/voice_state.py", line 380, in connect
+    await self._connector
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/voice_state.py", line 384, in _wrap_connect
+    await self._connect(*args)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/voice_state.py", line 429, in _connect
+    await asyncio.wait_for(
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 492, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/juan/scripts/python/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'audios' raised an exception: TimeoutError: 
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
