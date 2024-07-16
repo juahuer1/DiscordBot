@@ -5,6 +5,17 @@ from discord import FFmpegPCMAudio
 # CLASES
 
 # Crear una vista personalizada con un menu de seleccion
+class AudioPlayer:
+    def __init__(self, voice_client):
+        self.voice_client = voice_client
+        
+    async def play_audio(self, audio_selected):
+        if not self.voice_client or not self.voice_client.is_connected():
+            raise RuntimeError("El bot no esta conectado a ningun canal de voz.")
+
+        source = FFmpegPCMAudio('./Audios/'+audio_selected)
+        self.voice_client.play(source)
+
 class AudioSelect(discord.ui.Select):
     def __init__(self, audio_player, system_functions):
         self.audio_player = audio_player
@@ -32,18 +43,7 @@ class AudioView(discord.ui.View):
     def __init__(self, audio_player, system_functions):
         super().__init__()
         self.add_item(AudioSelect(audio_player, system_functions))
-        
-class AudioPlayer:
-    def __init__(self, voice_client):
-        self.voice_client = voice_client
-        
-    async def play_audio(self, audio_selected):
-        if not self.voice_client or not self.voice_client.is_connected():
-            raise RuntimeError("El bot no esta conectado a ningun canal de voz.")
 
-        source = FFmpegPCMAudio('./Audios/'+audio_selected)
-        self.voice_client.play(source)
-      
 class SystemFunctions:
     def __init__(self):
         self.list_audios()

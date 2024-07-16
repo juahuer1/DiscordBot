@@ -1,0 +1,58 @@
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 6e1aa1404f14012d5bf30a4845f7ec7f).
+ERROR:__main__:Command raised an exception: TypeError: Commands.add() missing 1 required positional argument: 'right'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 75178ed6d396418a79c3642b2b114042).
+ERROR:__main__:Command raised an exception: TypeError: Commands.add() missing 1 required positional argument: 'right'
+ERROR:__main__:Command raised an exception: TypeError: Commands.add() missing 1 required positional argument: 'right'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 40f49981db03668530befc2368cf2b9c).
+ERROR:__main__:Command raised an exception: TypeError: Commands.add() missing 1 required positional argument: 'right'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: ad4b60c1c4c43bd6791296410d92bbef).
+ERROR:__main__:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 54ee490fcb98e3b27c6071e8a340dea7).
+ERROR:__main__:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 124401b003dc01d4b597d82e2dca639a).
+ERROR:__main__:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 6e37d2c396d77f27af7d1f4f451f0c57).
+ERROR:__main__:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ERROR:__main__:Command "add" is not found

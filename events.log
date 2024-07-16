@@ -1,0 +1,894 @@
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: c1e0ab553ba7962c2772d250f3055f57).
+ERROR:src.events:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: fddf2f6d72211cae9ef90dd08bdbc76f).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+ERROR:src.commands:TESTTTTTT
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 2b3759c5618ab8c44cb6178ea504a8e4).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 95110d67fae6375590825d273f4b3479).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:src.commands:TESTTTTTT
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 931ffe024f80c4e7fa4381af16c1ad1e).
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+ERROR:__main__:Error al cargar el cog "Commands": Extension 'commands' could not be loaded.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: aab5bdb56b81434718d77da467a395c5).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 399a2ae2334ea193518eefd51b6952e1).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: fdf01723efba3bfecf3a21e41d589653).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 229cf15c9f36e7ff4fc64bd9cb404f27).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 2b67234bab23014ccb071d6b4ae139d2).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 508151f896b8a64bdeff177fb9b8004a).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 20ff00c434d2139f3bf1f6fcfdd96712).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 870dab311d44fbf4b22cb074014ce76b).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 197877d939da8233e96db8d3d92c5d84).
+ERROR:src.events:Command "add" is not found
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: fc96c2cc3ae92b06e19b38f0aafab91f).
+ERROR:src.events:Command raised an exception: TypeError: Commands.add() missing 1 required positional argument: 'right'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b708c85b20e36ae7bad3c76e3104aa63).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 74728b48a1115544af43a7d66dd98d47).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: ab2c8a1b682d0e0071a48eac56a47a78).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: febbd3d4d3d952fe48d3b48ce1e6223f).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: f04b2cb7a785b1ee02c9b33eedc7e17d).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+INFO:__main__:Cog "Commands" cargado correctamente.
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 9acd7f4743c8d7384f6cea12dcf14fe0).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 167bc97eb05422789ec04545465619b3).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: a2defef8f37b89ee074d87151f7ee9bf).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 78959c51a4e3299738c8e92e66afccc9).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: a8da75a089dd83552a862cb77d1684af).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.player:ffmpeg process 1746581 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1746592 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1746599 successfully terminated with return code of 0.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 111cbc4eed95fdf5fcd16ad5b3db3e4e).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 06be17a14d5b57b6f049e4c72e6b5751).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.player:ffmpeg process 1746938 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1746971 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1746979 successfully terminated with return code of 0.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 01de965aa2e51fe75037858f168ade0b).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: cebf54283379a799faf6ec8fb9b216c4).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid1944.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.player:ffmpeg process 1747700 successfully terminated with return code of 0.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 9875ae5c62756e1ec3ad92d0e4c2eb5a).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 0ce78d9d211ed654f797fbabdf086382).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: e53cf4816da8fa5b8cd2f643a77a581e).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 15ebb5aad78431a8af73cdbc86601263).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 83adc3e360f02c3f757956e22893c230).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 73ef4b592943972d5688f5edc9ccb5cf).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 4ecf0d42b2248a12fe09c86d602ae898).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: f897135715db1ddc5cea1cc7395f97e7).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 719959269cb428bc817c448a3f53f33d).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 7198a2ac8ac24c945f7cc48f4bb4d831).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: d3da1c6a272d637e4abec293294c3760).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 67f9aa52424eb9b365cf8dec117d790e).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 647593e09a0eebda071ab29433d17e0a).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 8140b65f2fa7240c2f3938a39e7962b3).
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 66a614bac7cd6911bc7720278732c161).
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 8fd9628adf023507832e5ab4f91f5a69).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 4081e034de666d689012225c07a64e12).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b8af5b44e1110a174f27039fafa6832f).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 44bd0413b57013f81e9f2b02f5387615).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 8b5901bae51ff3a39eddd6518f446391).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 9a0d08a921e1fbb365d0560c96dc419d).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: aa3bd9b59b32216e103517fbcef51e16).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: c7f3a7b0058eff28365031673b4d5756).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 1305cd05195130541a6835cce4fa601e).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 47a5c11cceb3fe61574494c2c6f52cf9).
+ERROR:discord.client:Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/harddrive/Raspberry/PiBot_v2/venv/lib/python3.11/site-packages/discord/client.py", line 449, in _run_event
+    await coro(*args, **kwargs)
+  File "/harddrive/Raspberry/PiBot_v2/src/events.py", line 28, in on_ready
+    commands = await self.bot.tree.sync(guild=guild)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/harddrive/Raspberry/PiBot_v2/venv/lib/python3.11/site-packages/discord/http.py", line 752, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: f34eb6e80fb1a322c179a3d6cffae289).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: a932a5b4fe442d656543cff3028aca7b).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 082f818699ce3a81c80fa5d6a567d94b).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 516a2837dd746527799aae8b5842a9af).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 3bb487f17f20460e8df9d3096aad2ebf).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 3f66edf09ac977abff527495e27b1be9).
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid4296.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+INFO:discord.voice_state:Connecting to voice...
+INFO:discord.voice_state:Starting voice handshake... (connection attempt 1)
+INFO:discord.voice_state:Voice handshake complete. Endpoint found: madrid4296.discord.media
+INFO:discord.voice_state:Voice connection complete.
+INFO:discord.player:ffmpeg process 1764316 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1764324 successfully terminated with return code of 0.
+INFO:discord.player:ffmpeg process 1764355 successfully terminated with return code of 0.
+ERROR:src.events:Command "cool" is not found
