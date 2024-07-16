@@ -10,6 +10,7 @@ from discord import FFmpegPCMAudio
 import random
 import logging
 
+from src.events import Events
 from src.utils import *
 
 description = '''Bot de Juan (con ayuda esporadica de Sergio), pa poder meter audios y lo que nos salga de ahi.
@@ -33,26 +34,7 @@ logging.basicConfig(filename='pibot.log', encoding='utf-8', level=logging.DEBUG)
 
 # EVENTOS
     
-@bot.event
-async def on_ready():
-    print(f'Bot conectado como {bot.user}')
-    try:
-        # Sincroniza los comandos de barra en un servidor especico
-        guild = discord.Object(id=serverid)  # Reemplaza YOUR_GUILD_ID con el ID de tu servidor
-        commands = await bot.tree.sync(guild=None)
-        print("Comandos de barra sincronizados en el servidor:")
-    except Exception as e:
-        print(f"Error al sincronizar comandos de barra: {e}")
-    
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("Faltan argumentos requeridos para este comando.")
-    elif isinstance(error, commands.BadArgument):
-        await ctx.send("Se proporciono un argumento invalido.")
-    else:
-        logger.error(f'{error}')
-        await ctx.send("Ha ocurrido un error al ejecutar el comando.")
+events = Events(bot, serverid, logger)
 
 # GRUPOS Y SUBCOMANDOS
 @bot.group()
