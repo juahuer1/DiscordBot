@@ -35,14 +35,12 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(filename='pibot.log', encoding='utf-8', level=logging.DEBUG)
 
 
-# EVENTOS  
-# bot = SetupSlashCommands.setup_commands(bot)
+# EVENTOS y SLASH COMMANDS
+SetupSlashCommands.setup_commands(bot)
+
 Events(bot, serverid)
 
 # ? COMMANDS
 SetupCommands.setup_commands(bot)
-
-# / COMMANDS
-
 
 bot.run(bottoken)

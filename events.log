@@ -892,3 +892,144 @@ INFO:discord.player:ffmpeg process 1764316 successfully terminated with return c
 INFO:discord.player:ffmpeg process 1764324 successfully terminated with return code of 0.
 INFO:discord.player:ffmpeg process 1764355 successfully terminated with return code of 0.
 ERROR:src.events:Command "cool" is not found
+INFO:discord.voice_state:The voice handshake is being terminated for Channel ID 705374640658317326 (Guild ID 705374640658317322)
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 43206b17c06c4893f7357ec0bf73cc72).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b337b338f85d0ea1efe6b64a8da49cd1).
+ERROR:src.events:user is a required argument that is missing.
+ERROR:src.events:user is a required argument that is missing.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 5b0cf1aab5fdfdfb8e344b3e6868c396).
+ERROR:src.events:Command raised an exception: TypeError: unsupported operand type(s) for +: 'Counter' and 'int'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 56905960ff82a19b948675aad7882bc0).
+ERROR:src.events:Command raised an exception: TypeError: unsupported operand type(s) for +: 'Counter' and 'int'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 157c2663778b47a6641df307be808eed).
+ERROR:src.events:Command raised an exception: TypeError: list indices must be integers or slices, not str
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: f5bdc3a38dc920a3c3305c8aff78461c).
+ERROR:src.events:Command raised an exception: TypeError: list indices must be integers or slices, not str
+ERROR:src.events:Command raised an exception: TypeError: list indices must be integers or slices, not str
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 745441a297718cdfeb63a484a42c53c6).
+ERROR:src.events:Command raised an exception: IndexError: list index out of range
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 740ec46d3ba1219bc44c565a94d5971d).
+ERROR:src.events:user is a required argument that is missing.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 1ae9277b18bf7a14e9b00748d859c5bb).
+ERROR:src.events:Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: 'lisa_molona.jpg'
+ERROR:src.events:Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: 'tu_antes_molabas.jpg'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 2037f64117bfc161172c879f17095a84).
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+INFO:discord.gateway:Shard ID None has successfully RESUMED session 2037f64117bfc161172c879f17095a84.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 0b9deff8d2684f759b02323eef74899b).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 7dc96bd2cbdb43dbcbd48d6dbdc786a7).
+ERROR:src.events:Member "K" not found.
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: acecce653fbf78c8ee95bd71c449c2a0).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 8afdafbc9000d9e8398cd28893a5f25b).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: bc8510edfa4c93a5dd5f0c58ee92b251).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 566f3824438bc82ac5da1ceb00084321).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: ac23eadd1a459491f864a2711c4a7932).
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 9c30a53337131127005cf427571764f9).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 6b71619c9ca0e9dd227bc070423ba109).
+ERROR:discord.client:Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/harddrive/Raspberry/PiBot_v2/venv/lib/python3.11/site-packages/discord/client.py", line 449, in _run_event
+    await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+TypeError: on_ready() missing 1 required positional argument: 'self'
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 7e9e7aed65703f947bba545a8ee6c3f7).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 094d911badd7e08ae1c4ff71a0b5faee).
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 20be49d078a1035b5793ae761a000f86).
+DEBUG:discord.client:on_ready has successfully been registered as an event
+DEBUG:discord.client:on_command_error has successfully been registered as an event
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 2a998432f3f4b15821efe61c26baa304).

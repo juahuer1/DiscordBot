@@ -95,6 +95,13 @@ class SetupSlashCommands():
             view = AudioView(audio_player, system_functions)  
             await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
+        @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
+        async def cool(interaction: discord.Interaction, member: discord.Member):
+            path = "./Imagenes"
+            archivos = os.listdir(path=path)
+            limit = len(archivos)
+            result = archivos[random.randint(0, limit-1)]
+            await interaction.response.send_message(file=discord.File(path+"/"+result))
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
@@ -105,3 +112,5 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("No hay audio reproduciendose") 
         return bot
+    
+        

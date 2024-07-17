@@ -3,6 +3,7 @@ from discord import FFmpegPCMAudio
 from discord.ui import Select, View
 from discord import FFmpegPCMAudio
 from discord.ext import commands
+from collections import Counter
 import random
 import os
 
@@ -96,3 +97,11 @@ class SetupCommands():
             else:
                 await ctx.send("No hay audio reproduciéndose.")
 
+        @bot.command(name='cool')
+        async def cool(ctx, member: commands.MemberConverter):
+            """Dice si alguien chola (Ex: ?cool Khrisleo)"""
+            path = "./Imagenes"
+            archivos = os.listdir(path=path)
+            limit = len(archivos)
+            result = archivos[random.randint(0, limit-1)]
+            await ctx.send(file=discord.File(path+"/"+result))

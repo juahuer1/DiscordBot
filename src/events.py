@@ -22,12 +22,10 @@ class Events:
         print(f'Bot conectado como {self.bot.user}')
         try:
             # Obtener el objeto del servidor usando su ID
-            guild = discord.Object(id=self.serverid)
+            # guild = discord.Object(id=self.serverid)
             
             # Sincronizar los comandos en el servidor
-            SetupSlashCommands.setup_commands(self.bot)
-            # YA NO ES NECESARIO EL SYNC DEL TREE QUIZAS.........
-            # commands = await self.bot.tree.sync(guild=guild)
+            commands = await self.bot.tree.sync()
             print("Comandos de barra sincronizados en el servidor:")
         
         except Exception as e:
