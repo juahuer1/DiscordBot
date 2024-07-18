@@ -1,7 +1,6 @@
 import discord
 from discord import FFmpegPCMAudio
 from discord.ui import Select, View
-from discord import FFmpegPCMAudio
 from discord.ext import commands
 from collections import Counter
 import random
@@ -57,6 +56,10 @@ class SetupCommands():
                 channel = ctx.message.author.voice.channel
                 await channel.connect()
                 await ctx.send("Bot conectado al canal de voz.")
+                voice_client = ctx.guild.voice_client
+                audio_player = AudioPlayer(voice_client)
+                audio_selected = "./Saludos/ned_flanders_hola_holita_vecinito.mp3"
+                await audio_player.play_audio(audio_selected)
                 connected = True
             else:
                 await ctx.send("No estás en un canal de voz.")
@@ -84,8 +87,8 @@ class SetupCommands():
             voice_client = ctx.guild.voice_client
             
             audio_player = AudioPlayer(voice_client)
-            system_functions = SystemFunctions()
-            view = AudioView(audio_player,system_functions)
+            path = "./Audios"
+            view = AudioView(audio_player,path)
             await ctx.send("Elige una opcion del menu:", view=view)
 
         @bot.command(name='clearaudio')

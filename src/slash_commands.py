@@ -1,10 +1,11 @@
 import discord
 from discord import FFmpegPCMAudio
 from discord.ui import Select, View
-from discord import FFmpegPCMAudio
 from discord.ext import commands
 import random
 import os
+
+
 
 from src.utils import *
 
@@ -44,6 +45,7 @@ class SetupSlashCommands():
             for _ in range(times - 1):  # Ya hemos enviado el primer mensaje, por lo que restamos 1
                 await interaction.followup.send(content)
 
+
         @bot.tree.command(name="joined", description="Fecha de inclusion de un miembro (Ex: /joined juanmingla)")
         async def joined(interaction: discord.Interaction, member: discord.Member):
             await interaction.response.send_message(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
@@ -57,9 +59,12 @@ class SetupSlashCommands():
         @bot.tree.command(name="join", description="Agrega el bot al chat (Ex: /join)")
         async def join(interaction: discord.Interaction):
             if interaction.user.voice:
-                channel = interaction.user.voice.channel
-                await channel.connect()
-                await interaction.response.send_message("Bot spawneando pa molestar a AiramariA")
+                await join_audio_channel(interaction)
+                await interaction.response.send_message("Bot conectado al canal de voz.")
+                voice_client = interaction.guild.voice_client
+                audio_player = AudioPlayer(voice_client)
+                audio_selected = "./Saludos/ned_flanders_hola_holita_vecinito.mp3"
+                await audio_player.play_audio(audio_selected)
             else:
                 await interaction.response.send_message("Bot no se puede unir, metete en un canal de audio!")
 
@@ -72,6 +77,7 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("Bot no esta en el canal")
 
+
         async def join_audio_channel(interaction: discord.Interaction): #   TEMPORALMENTE!!
             if interaction.user.voice:
                 channel = interaction.user.voice.channel
@@ -80,6 +86,7 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("Bot no se puede unir, métete en un canal de audio!")
                 return False
+
 
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
@@ -91,8 +98,8 @@ class SetupSlashCommands():
                 voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
 
             audio_player = AudioPlayer(voice_client) 
-            system_functions = SystemFunctions()  
-            view = AudioView(audio_player, system_functions)  
+            path = "./Audios" 
+            view = AudioView(audio_player, path)  
             await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
         @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
@@ -112,5 +119,8 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("No hay audio reproduciendose") 
         return bot
+    
+
+
     
         

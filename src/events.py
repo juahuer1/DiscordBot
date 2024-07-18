@@ -1,10 +1,10 @@
 # events.py
 
-import discord
 from discord.ext import commands
 import logging
 from src.slash_commands import SetupSlashCommands
 
+import os
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='events.log', encoding='utf-8', level=logging.DEBUG)
@@ -40,6 +40,5 @@ class Events:
         elif isinstance(error, commands.BadArgument):
             await ctx.send("Se proporcionó un argumento inválido.")
         else:
-            await ctx.send("Ha ocurrido un error al ejecutar el comando.")
-        
+            await ctx.send("Ha ocurrido un error al ejecutar el comando.")       
         logger.error(f'{error}')

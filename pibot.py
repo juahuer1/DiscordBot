@@ -6,7 +6,6 @@ import os
 from discord import FFmpegPCMAudio
 from discord.ext import commands
 from discord.ui import Select, View
-from discord import FFmpegPCMAudio
 import random
 import logging
 
@@ -29,6 +28,9 @@ bottoken = os.getenv('BOTTOKEN')
 applicationid = os.getenv('APPLICATIONID')
 serverid = os.getenv('SERVERID')
 
+#AQUI TAMBIEN HE ENSUCIADO EL CODIGO
+os.environ["ROOTPATH"]=__file__
+
 bot = commands.Bot(command_prefix='?', description=description, intents=intents, application_id=applicationid)
 
 logger = logging.getLogger(__name__)
@@ -42,5 +44,6 @@ Events(bot, serverid)
 
 # ? COMMANDS
 SetupCommands.setup_commands(bot)
+
 
 bot.run(bottoken)
