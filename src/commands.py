@@ -70,7 +70,7 @@ class SetupCommands():
             """Saca el bot del canal de voz"""
             if ctx.voice_client:
                 await ctx.guild.voice_client.disconnect()
-                await ctx.send("Bot desconectado del canal de voz.")
+                await ctx.send("Maria exluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
             else:
                 await ctx.send("El bot no está en un canal de voz.")
 

@@ -1,8 +1,5 @@
-# events.py
-
 from discord.ext import commands
 import logging
-from src.slash_commands import SetupSlashCommands
 import discord
 
 import os

@@ -1,13 +1,7 @@
 import discord
 import os
 from discord import FFmpegPCMAudio
-from dotenv import load_dotenv, find_dotenv
-import json
-
-#list_audios = os.system("find ./Audios -type f") #esto ejecuta el comando en la terminal, pero "no" en el script
-#file = os.path.basename(list_audios[1])
-#print(type(list_audios))
-#print(file)
+from dotenv import load_dotenv
 
 # CLASES
 # Crear una vista personalizada con un menu de seleccion
@@ -42,7 +36,6 @@ class AudioSelect(discord.ui.Select):
         load_dotenv()
         #root_path = os.getenv("ROOTPATH")
         audio_selected = self.values[0]
-        print(self.values)
         audio_path = self.path+"/"+audio_selected
         await interaction.response.defer()
         await self.audio_player.play_audio(audio_path)
@@ -69,7 +62,7 @@ class AudioView(discord.ui.View):
         super().__init__()
         self.add_item(AudioSelect(audio_player, path))
 
-class JoinBot():
+class JoinBot:
     async def join_audio_channel(interaction: discord.Interaction, bot):
         if interaction.user.voice:
             channel = interaction.user.voice.channel
@@ -79,9 +72,23 @@ class JoinBot():
             
             voice_client = interaction.guild.voice_client
             audio_player = AudioPlayer(voice_client)
-            audio_selected = "./Saludos/ned_flanders_hola_holita_vecinito.mp3"
+            audio_selected = "./Audios/Saludos/ned_flanders_hola_holita_vecinito.mp3"
             await audio_player.play_audio(audio_selected)
             return True
         else:
             await interaction.response.send_message("Bot no se puede unir, metete en un canal de audio!")
             return False
+        
+class AudioBot:
+    async def play_audio(interaction: discord.Interaction, path, bot):
+        print(path)
+        voice_client = interaction.guild.voice_client
+        if not voice_client:
+            connected = await JoinBot.join_audio_channel(interaction,bot)
+            if not connected:
+                return
+            voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
+
+        audio_player = AudioPlayer(voice_client) 
+        view = AudioView(audio_player, path)  
+        await interaction.response.send_message("Elige una opcion del menu:", view=view)

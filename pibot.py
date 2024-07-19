@@ -3,10 +3,7 @@
 import discord
 from dotenv import load_dotenv
 import os
-from discord import FFmpegPCMAudio
 from discord.ext import commands
-from discord.ui import Select, View
-import random
 import logging
 
 from src.events import Events

@@ -1,14 +1,13 @@
 import discord
-from discord import FFmpegPCMAudio
-from discord.ui import Select, View
-from discord.ext import commands
 import random
 import os
 
 from src.utils import *
+from src.audio_panel import *
 
 class SetupSlashCommands():
     def setup_commands(bot):
+
         # Define un comando de barra (slash command)
         @bot.tree.command(name="add", description="Suma dos numeros (Ex: /add 5 11)")
         async def add(interaction: discord.Interaction, left: int, right: int):
@@ -69,24 +68,16 @@ class SetupSlashCommands():
             if interaction.guild.voice_client:
                 await interaction.guild.voice_client.disconnect()
                 await bot.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
-                await interaction.response.send_message("El putisimo Bot se pira")
+                await interaction.response.send_message("Maria exluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
             else:
                 await interaction.response.send_message("Bot no esta en el canal")
 
 
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
-            voice_client = interaction.guild.voice_client
-            if not voice_client:
-                connected = await JoinBot.join_audio_channel(interaction,bot)
-                if not connected:
-                    return
-                voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
+            path = "./Audios"
+            await AudioBot.play_audio(interaction, path, bot)
 
-            audio_player = AudioPlayer(voice_client) 
-            path = "./Audios" 
-            view = AudioView(audio_player, path)  
-            await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
 
         @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
@@ -97,6 +88,13 @@ class SetupSlashCommands():
             result = archivos[random.randint(0, limit-1)]
             await interaction.response.send_message(file=discord.File(path+"/"+result))
     
+
+        @bot.tree.command(name='audiopanel', description="Inserta el panel de audios (Ex: /audiopanel)")
+        async def audiopanel(interaction: discord.Interaction):
+            view = AudioPanel(bot)
+            await interaction.response.send_message("Prueba el boton", view=view)
+            await view.wait()
+
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
