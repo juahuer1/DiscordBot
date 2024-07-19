@@ -1,4 +1,5 @@
 venv/
 .env
 Audios/
-pibot.log
+error.log
+src/__pycache__/

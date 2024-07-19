@@ -68,3 +68,20 @@ class AudioView(discord.ui.View):
     def __init__(self, audio_player, path):
         super().__init__()
         self.add_item(AudioSelect(audio_player, path))
+
+class JoinBot():
+    async def join_audio_channel(interaction: discord.Interaction, bot):
+        if interaction.user.voice:
+            channel = interaction.user.voice.channel
+            await channel.connect()
+
+            await bot.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))
+            
+            voice_client = interaction.guild.voice_client
+            audio_player = AudioPlayer(voice_client)
+            audio_selected = "./Saludos/ned_flanders_hola_holita_vecinito.mp3"
+            await audio_player.play_audio(audio_selected)
+            return True
+        else:
+            await interaction.response.send_message("Bot no se puede unir, metete en un canal de audio!")
+            return False

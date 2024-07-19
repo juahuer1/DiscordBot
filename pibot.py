@@ -28,14 +28,10 @@ bottoken = os.getenv('BOTTOKEN')
 applicationid = os.getenv('APPLICATIONID')
 serverid = os.getenv('SERVERID')
 
-#AQUI TAMBIEN HE ENSUCIADO EL CODIGO
-os.environ["ROOTPATH"]=__file__
-
 bot = commands.Bot(command_prefix='?', description=description, intents=intents, application_id=applicationid)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='pibot.log', encoding='utf-8', level=logging.DEBUG)
-
 
 # EVENTOS y SLASH COMMANDS
 SetupSlashCommands.setup_commands(bot)
