@@ -21,13 +21,19 @@ class AudioSelect(discord.ui.Select):
     def __init__(self, audio_player, path):
         self.audio_player = audio_player
         self.path = path
+        print(path)
         archivos = os.listdir(path)
         archivos_filtered = self.filter_directories(archivos, path)
         options = []
         
         for archivo in archivos_filtered:
-            option = discord.SelectOption(label=f"{archivo}", description="")
-            options.append(option)
+            nombre = NiceNames(archivo)
+
+            #Este if es necesario porque, por algun motivo, existe un primer nombre.name vacio
+            #investigar si el problema reside en la clase NiceNames o filter_directories
+            if nombre.name != "":
+                option = discord.SelectOption(label = nombre.name, value = archivo)
+                options.append(option)
         # print(options)
         
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
@@ -81,7 +87,6 @@ class JoinBot:
         
 class AudioBot:
     async def play_audio(interaction: discord.Interaction, path, bot):
-        print(path)
         voice_client = interaction.guild.voice_client
         if not voice_client:
             connected = await JoinBot.join_audio_channel(interaction,bot)
@@ -92,3 +97,19 @@ class AudioBot:
         audio_player = AudioPlayer(voice_client) 
         view = AudioView(audio_player, path)  
         await interaction.response.send_message("Elige una opcion del menu:", view=view)
+
+    def get_channel_by_name(guild, channel_name):
+        for channel in guild.channels:
+            if channel.name == channel_name:
+                return channel
+        return None
+
+class NiceNames:
+    def __init__(self, file):
+        self.file = file
+        os.path.basename(file)
+        file_name = file.removesuffix(".mp3")
+        nice_file = file_name.split("-")
+        self.folder = nice_file [0]
+        nice_file.pop(0)
+        self.name = ' '.join(nice_file)

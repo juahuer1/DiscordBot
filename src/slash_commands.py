@@ -68,7 +68,7 @@ class SetupSlashCommands():
             if interaction.guild.voice_client:
                 await interaction.guild.voice_client.disconnect()
                 await bot.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
-                await interaction.response.send_message("Maria exluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
+                await interaction.response.send_message("Maria excluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
             else:
                 await interaction.response.send_message("Bot no esta en el canal")
 
@@ -77,7 +77,6 @@ class SetupSlashCommands():
         async def audios(interaction: discord.Interaction):
             path = "./Audios"
             await AudioBot.play_audio(interaction, path, bot)
-
 
 
         @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
@@ -91,9 +90,14 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='audiopanel', description="Inserta el panel de audios (Ex: /audiopanel)")
         async def audiopanel(interaction: discord.Interaction):
-            view = AudioPanel(bot)
-            await interaction.response.send_message("Prueba el boton", view=view)
-            await view.wait()
+            guild = interaction.guild
+            channel_name = "audio-panel"
+            channel = AudioBot.get_channel_by_name(guild, channel_name)
+
+            embed, view = await AudioPanel.send_fixed_message(channel)
+            await interaction.response.send_message(embed=embed,view=view)
+
+
 
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")

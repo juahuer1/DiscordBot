@@ -4,6 +4,11 @@ import discord
 
 import os
 
+from src.utils import NiceNames
+from src.utils import AudioBot
+import ast
+
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='error.log', encoding='utf-8', level=logging.DEBUG)
 
@@ -15,6 +20,7 @@ class Events:
         # Registrar los eventos en el bot
         self.bot.event(self.on_ready)
         self.bot.event(self.on_command_error)
+        self.bot.event(self.on_interaction)
 
     async def on_ready(self):
         print(f'Bot conectado como {self.bot.user}')
@@ -26,6 +32,7 @@ class Events:
 
             # Sincronizar los comandos en el servidor
             commands = await self.bot.tree.sync()
+
             print("Comandos de barra sincronizados en el servidor:")
         
         except Exception as e:
@@ -42,3 +49,13 @@ class Events:
         else:
             await ctx.send("Ha ocurrido un error al ejecutar el comando.")       
         logger.error(f'{error}')
+
+
+    async def on_interaction(self, interaction):
+
+        if interaction.type == discord.InteractionType.component:
+            data = interaction.data['custom_id']
+            if "audio_panel_interaction" in data:
+                data_array = ast.literal_eval(data)
+                path = data_array[0] 
+                await AudioBot.play_audio(interaction, path, self.bot)
