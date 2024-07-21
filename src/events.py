@@ -2,9 +2,10 @@ from discord.ext import commands
 import logging
 import discord
 
-from src.utils import AudioBot
+from src.utils import AudioBot, JoinBot
 import ast
 from src.audio_panel import AudioPanel2
+from src.creator import Creator
 
 
 logger = logging.getLogger(__name__)
@@ -18,7 +19,7 @@ class Events:
         # Registrar los eventos en el bot
         self.bot.event(self.on_ready)
         self.bot.event(self.on_command_error)
-        self.bot.event(self.on_interaction)
+        #self.bot.event(self.on_interaction)
 
     async def on_ready(self):
         print(f'Bot conectado como {self.bot.user}')
@@ -27,13 +28,13 @@ class Events:
         await self.bot.change_presence(status = discord.Status.idle, activity = discord.Activity(type = discord.ActivityType.watching, name = "Los Simpson"))
 
         # Sincronizar los comandos en el servidor
-        await self.bot.tree.sync()
-
-        panel = AudioPanel2()
+        await self.bot.tree.sync()   
+        
         guild = self.bot.get_guild(705374640658317322)
         chanel = discord.utils.get(guild.channels, name = "audio-panel")
+        panel = AudioPanel2()
         deleted = await chanel.purge()
-        await chanel.send(view = panel)
+        await chanel.send(view = panel.viewer, embed = panel.embed)
 
         print("Comandos de barra sincronizados en el servidor:")
 
@@ -50,11 +51,10 @@ class Events:
         logger.error(f'{error}')
 
 
-    async def on_interaction(self, interaction):
-
-        if interaction.type == discord.InteractionType.component:
-            data = interaction.data['custom_id']
-            if "audio_panel_interaction" in data:
-                data_array = ast.literal_eval(data)
-                path = data_array[0] 
-                await AudioBot.play_audio(interaction, path, self.bot)
+    # async def on_interaction(self, interaction):
+    #     if interaction.type == discord.InteractionType.component:
+    #         data = interaction.data['custom_id']
+    #         if "audio_panel_interaction" in data:
+    #             data_array = ast.literal_eval(data)
+    #             path = data_array[0] 
+    #             await AudioBot.play_audio(interaction, path, self.bot)

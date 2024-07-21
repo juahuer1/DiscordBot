@@ -4,6 +4,7 @@ import os
 
 from src.utils import *
 from src.audio_panel import *
+from src.creator import Creator
 
 class SetupSlashCommands():
     def setup_commands(bot):
@@ -76,7 +77,7 @@ class SetupSlashCommands():
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
             path = "./Audios"
-            await AudioBot.play_audio(interaction, path, bot)
+            await AudioBot.display_select_audios(interaction, path, bot)
 
 
         @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
@@ -109,3 +110,8 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("No hay audio reproduciendose") 
         return bot
+
+        @bot.tree.command (name = "create")
+        async def create ():
+            audio = "./Audios/Saludos/Saludos-Hola-Holita-Vecinito.mp3"
+            Creator.play(audio)

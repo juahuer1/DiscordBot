@@ -60,9 +60,16 @@ class AudioSelect(discord.ui.Select):
         return output
          
 class AudioView(discord.ui.View):
-    def __init__(self, audio_player, path):
-        super().__init__()
+    def __init__(self, timeout = 180):
+        super().__init__(timeout = timeout)
+
+    def select(self, audio_player, path):
         self.add_item(AudioSelect(audio_player, path))
+
+    def button(self, path):
+        carpetas = os.listdir(path)
+        for carpeta in carpetas:
+            self.add_item(AudioButton(label=f"{carpeta}"))
 
 class JoinBot:
     async def join_audio_channel(interaction: discord.Interaction, bot):
@@ -74,7 +81,7 @@ class JoinBot:
             
             voice_client = interaction.guild.voice_client
             audio_player = AudioPlayer(voice_client)
-            audio_selected = "./Audios/Saludos/ned_flanders_hola_holita_vecinito.mp3"
+            audio_selected = "./Audios/Saludos/Saludos-Hola-Holita-Vecinito.mp3"
             await audio_player.play_audio(audio_selected)
             return True
         else:
@@ -82,7 +89,7 @@ class JoinBot:
             return False
         
 class AudioBot:
-    async def play_audio(interaction: discord.Interaction, path, bot):
+    async def display_select_audios(interaction: discord.Interaction, path, bot):
         voice_client = interaction.guild.voice_client
         if not voice_client:
             connected = await JoinBot.join_audio_channel(interaction,bot)
@@ -91,14 +98,19 @@ class AudioBot:
             voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
 
         audio_player = AudioPlayer(voice_client) 
-        view = AudioView(audio_player, path)  
+        view = AudioView() 
+        view.select(audio_player=audio_player, path=path)
         await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
+
+#Esta funcion es lo mismo que hacer discord.utils.get(guild.channels, name = channel_name)
     def get_channel_by_name(guild, channel_name):
         for channel in guild.channels:
             if channel.name == channel_name:
                 return channel
         return None
+
+
 
 class NiceNames:
     def __init__(self, file):
@@ -109,3 +121,10 @@ class NiceNames:
         self.folder = nice_file [0]
         nice_file.pop(0)
         self.name = ' '.join(nice_file)
+
+class AudioButton(discord.ui.Button):
+    def __init__(self, label):
+        super().__init__(label=label, style=discord.ButtonStyle.primary)
+
+    async def callback(self, interaction: discord.Interaction):
+        await interaction.response.send_message(f'Has presionado el botón: {self.label}', ephemeral=True)

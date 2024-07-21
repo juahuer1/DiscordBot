@@ -88,7 +88,7 @@ class SetupCommands():
             
             audio_player = AudioPlayer(voice_client)
             path = "./Audios"
-            view = AudioView(audio_player,path)
+            view = AudioView.select(audio_player,path)
             await ctx.send("Elige una opcion del menu:", view=view)
 
         @bot.command(name='clearaudio')

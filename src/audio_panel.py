@@ -1,5 +1,5 @@
 import discord
-from src.utils import AudioBot
+from src.utils import *
 
 # purple, green, gray
 
@@ -18,9 +18,18 @@ class AudioPanel(discord.ui.View):
 
         return embed, view
 
-class AudioPanel2(discord.ui.View):
+class AudioPanel2():
     def __init__(self):
-        #if discord.Guild.get_channel() == None
-        super().__init__(timeout = None)
-        buttons = discord.ui.Button(label = "A1", style = discord.ButtonStyle.primary)
-        self.add_item(buttons)
+        #self.viewer = discord.ui.View(timeout = None)
+        # buttoner = AudioButtons("./Audios")
+        # for button in buttoner.buttons:
+        #     self.viewer.add_item(button)
+        self.viewer = AudioView(timeout=None)
+        self.viewer.button(path="./Audios")
+        self.embed = discord.Embed(title="Panel de Control", description="Pulsa un botón para interactuar.", color=0x00ff00)
+
+        # data = eval(self.custom_id)  # Evaluar el ID personalizado para obtener los datos originales
+        # path, interaction_type = data
+
+        # if interaction_type == "audio_panel_interaction":
+        #    await interaction.response.send_message(f"Reproduciendo audio desde: {path}")
