@@ -1,7 +1,6 @@
 import discord
 import os
 from discord import FFmpegPCMAudio
-from dotenv import load_dotenv
 
 # CLASES
 # Crear una vista personalizada con un menu de seleccion
@@ -21,7 +20,6 @@ class AudioSelect(discord.ui.Select):
     def __init__(self, audio_player, path):
         self.audio_player = audio_player
         self.path = path
-        print(path)
         archivos = os.listdir(path)
         archivos_filtered = self.filter_directories(archivos, path)
         options = []
@@ -39,8 +37,6 @@ class AudioSelect(discord.ui.Select):
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
-        load_dotenv()
-        #root_path = os.getenv("ROOTPATH")
         audio_selected = self.values[0]
         audio_path = self.path+"/"+audio_selected
         await interaction.response.defer()

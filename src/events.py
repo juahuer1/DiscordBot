@@ -2,11 +2,9 @@ from discord.ext import commands
 import logging
 import discord
 
-import os
-
-from src.utils import NiceNames
 from src.utils import AudioBot
 import ast
+from src.audio_panel import AudioPanel2
 
 
 logger = logging.getLogger(__name__)
@@ -24,20 +22,21 @@ class Events:
 
     async def on_ready(self):
         print(f'Bot conectado como {self.bot.user}')
-        try:
-            # Obtener el objeto del servidor usando su ID
-            # guild = discord.Object(id=self.serverid)
-            
-            await self.bot.change_presence(status = discord.Status.idle, activity = discord.Activity(type = discord.ActivityType.watching, name = "Los Simpson"))
-
-            # Sincronizar los comandos en el servidor
-            commands = await self.bot.tree.sync()
-
-            print("Comandos de barra sincronizados en el servidor:")
+        # Obtener el objeto del servidor usando su ID
         
-        except Exception as e:
-            pass
-            print(f"Error al sincronizar comandos de barra: {e}")
+        await self.bot.change_presence(status = discord.Status.idle, activity = discord.Activity(type = discord.ActivityType.watching, name = "Los Simpson"))
+
+        # Sincronizar los comandos en el servidor
+        await self.bot.tree.sync()
+
+        panel = AudioPanel2()
+        guild = self.bot.get_guild(705374640658317322)
+        chanel = discord.utils.get(guild.channels, name = "audio-panel")
+        deleted = await chanel.purge()
+        await chanel.send(view = panel)
+
+        print("Comandos de barra sincronizados en el servidor:")
+
 
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
