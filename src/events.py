@@ -2,10 +2,9 @@ from discord.ext import commands
 import logging
 import discord
 
-from src.utils import AudioBot, JoinBot
+from src.utils import AudioBot, JoinBot, NiceNames
 import ast
 from src.audio_panel import AudioPanel2
-from src.creator import Creator
 
 
 logger = logging.getLogger(__name__)
@@ -34,7 +33,7 @@ class Events:
         chanel = discord.utils.get(guild.channels, name = "audio-panel")
         panel = AudioPanel2()
         deleted = await chanel.purge()
-        await chanel.send(view = panel.viewer, embed = panel.embed)
+        await chanel.send(view = panel.viewer, embed = panel.embed, file = panel.file)
 
         print("Comandos de barra sincronizados en el servidor:")
 

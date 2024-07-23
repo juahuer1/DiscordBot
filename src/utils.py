@@ -4,21 +4,9 @@ from discord import FFmpegPCMAudio
 
 # CLASES
 # Crear una vista personalizada con un menu de seleccion
-class AudioPlayer:
-    def __init__(self, voice_client):
-        self.voice_client = voice_client
-        
-        
-    async def play_audio(self, audio_selected):
-        if not self.voice_client or not self.voice_client.is_connected():
-            raise RuntimeError("El bot no esta conectado a ningun canal de voz.")
-
-        source = FFmpegPCMAudio(audio_selected)
-        self.voice_client.play(source)
-
 class AudioSelect(discord.ui.Select):
-    def __init__(self, audio_player, path):
-        self.audio_player = audio_player
+    def __init__(self, voice_client, path):
+        self.voice_client = voice_client
         self.path = path
         archivos = os.listdir(path)
         archivos_filtered = self.filter_directories(archivos, path)
@@ -26,13 +14,8 @@ class AudioSelect(discord.ui.Select):
         
         for archivo in archivos_filtered:
             nombre = NiceNames(archivo)
-
-            #Este if es necesario porque, por algun motivo, existe un primer nombre.name vacio
-            #investigar si el problema reside en la clase NiceNames o filter_directories
-            if nombre.name != "":
-                option = discord.SelectOption(label = nombre.name, value = archivo)
-                options.append(option)
-        # print(options)
+            option = discord.SelectOption(label = nombre.name, value = archivo)
+            options.append(option)
         
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
@@ -40,7 +23,12 @@ class AudioSelect(discord.ui.Select):
         audio_selected = self.values[0]
         audio_path = self.path+"/"+audio_selected
         await interaction.response.defer()
-        await self.audio_player.play_audio(audio_path)
+        source = FFmpegPCMAudio(audio_path)
+        self.voice_client.play(source)
+
+        #Aqui se puede hacer para que, si te cambias de canal el bot te pregunte si quieres que te siga o no
+        #seguramente sea usando voice_client para el canal original e interaction.user.voice.channel.connect()
+        #mas luego voice_client = interaction.guild.voice_client
 
     def filter_directories(self, files, path):
         output = []
@@ -63,44 +51,46 @@ class AudioView(discord.ui.View):
     def __init__(self, timeout = 180):
         super().__init__(timeout = timeout)
 
-    def select(self, audio_player, path):
-        self.add_item(AudioSelect(audio_player, path))
+    def select(self, voice_client, path):
+        self.add_item(AudioSelect(voice_client, path))
 
     def button(self, path):
         carpetas = os.listdir(path)
         for carpeta in carpetas:
-            self.add_item(AudioButton(label=f"{carpeta}"))
+            self.add_item(AudioButton(f"{carpeta}", path))
 
-class JoinBot:
-    async def join_audio_channel(interaction: discord.Interaction, bot):
+class JoinBot: #cambiar nombre a AudioBot (controla si el audio se conecta o no) y añadir leave
+    async def join_audio_channel(interaction: discord.Interaction): #cambiar a join solamente, aqui el bot ya no
+    #hace falta
         if interaction.user.voice:
             channel = interaction.user.voice.channel
             await channel.connect()
 
-            await bot.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))
+            await interaction.client.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))
             
             voice_client = interaction.guild.voice_client
-            audio_player = AudioPlayer(voice_client)
+            #audio_player = AudioPlayer(voice_client)
             audio_selected = "./Audios/Saludos/Saludos-Hola-Holita-Vecinito.mp3"
-            await audio_player.play_audio(audio_selected)
+            source = FFmpegPCMAudio(audio_selected)
+            voice_client.play(source)
+            #await audio_player.play_audio(audio_selected)
             return True
         else:
             await interaction.response.send_message("Bot no se puede unir, metete en un canal de audio!")
             return False
         
-class AudioBot:
-    async def display_select_audios(interaction: discord.Interaction, path, bot):
-        voice_client = interaction.guild.voice_client
-        if not voice_client:
-            connected = await JoinBot.join_audio_channel(interaction,bot)
-            if not connected:
-                return
-            voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
+class AudioBot: # devolverle esto al comando /Audios
+    async def display_select_audios(interaction: discord.Interaction, path):
+        #voice_client = interaction.guild.voice_client
+       #if not voice_client:
+        connected = await JoinBot.join_audio_channel(interaction)
+        if not connected:
+            return
+        voice_client = interaction.guild.voice_client  # Actualiza el cliente de voz
 
-        audio_player = AudioPlayer(voice_client) 
         view = AudioView() 
-        view.select(audio_player=audio_player, path=path)
-        await interaction.response.send_message("Elige una opcion del menu:", view=view)
+        view.select(voice_client, path) #Antes era audio_player = audio_player
+        await interaction.response.send_message("Elige una opcion del menu:", view=view) #Sacarlo al command
 
 
 #Esta funcion es lo mismo que hacer discord.utils.get(guild.channels, name = channel_name)
@@ -110,21 +100,24 @@ class AudioBot:
                 return channel
         return None
 
-
-
 class NiceNames:
     def __init__(self, file):
-        self.file = file
         os.path.basename(file)
-        file_name = file.removesuffix(".mp3")
-        nice_file = file_name.split("-")
-        self.folder = nice_file [0]
-        nice_file.pop(0)
-        self.name = ' '.join(nice_file)
+        file = file.removesuffix(".mp3")
+        file = list(file.split("-"))
+        self.folder = file [0]
+        file.pop(0)
+        self.name = ' '.join(file)
 
 class AudioButton(discord.ui.Button):
-    def __init__(self, label):
+    def __init__(self, label, path):
         super().__init__(label=label, style=discord.ButtonStyle.primary)
+        self.path = path
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f'Has presionado el botón: {self.label}', ephemeral=True)
+        if not interaction.guild.voice_client:
+            connected = await JoinBot.join_audio_channel(interaction)
+
+        view = AudioView()
+        view.select(interaction.guild.voice_client, self.path + "/" + self.label)
+        await interaction.response.send_message(view = view)
