@@ -1,5 +1,4 @@
 venv/
 .env
-Audios/
 error.log
 src/__pycache__/
