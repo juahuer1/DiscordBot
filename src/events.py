@@ -5,6 +5,8 @@ import discord
 from src.utils import AudioBot, JoinBot, NiceNames
 import ast
 from src.audio_panel import AudioPanel2
+from dotenv import load_dotenv
+import os
 
 
 logger = logging.getLogger(__name__)
@@ -29,7 +31,11 @@ class Events:
         # Sincronizar los comandos en el servidor
         await self.bot.tree.sync()   
         
-        guild = self.bot.get_guild(705374640658317322)
+        load_dotenv()
+        serverid = os.getenv('SERVERID')
+
+        guild = self.bot.get_guild(int(serverid))
+
         chanel = discord.utils.get(guild.channels, name = "audio-panel")
         panel = AudioPanel2()
         deleted = await chanel.purge()
