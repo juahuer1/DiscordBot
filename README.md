@@ -1,6 +1,10 @@
 # DiscordBot
 Bot temático de los Simpsons que permite reproducir audios almacenados en el servidor. Incluye comandos y un panel de audio.
 
+![moe_al_habla](https://github.com/user-attachments/assets/13b72689-fa5c-4173-85f3-1e0f5ffeabbc)
+
+
+Para la instalación sigue los pasos descritos a continuación.
 ## Creación del bot
 
 Para crear un bot, necesitas configurar una aplicación en el [Developer Portal de Discord](https://discord.com/developers/applications). Aquí tienes los pasos básicos:
@@ -17,6 +21,7 @@ Asegúrate de que el bot tenga los permisos necesarios Auth2:
 En scope:
 - applications.commands
 - bot
+
 En bot:
 - Administrator (No necesita muchos de los permisos, revisa que quieres hacer con el bot y marca los necesarios para tu caso)
 
