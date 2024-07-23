@@ -8,17 +8,17 @@ Para crear un bot, necesitas configurar una aplicación en el [Developer Portal 
 Ve al Developer Portal de Discord.
 Crea una nueva aplicación.
 Dirígete a la sección "Bot" y añade un bot a tu aplicación (normalmente se crea solo). Activa las siguientes opciones en Privileged Gateway Intents:
--Presence Intent
--Server Members Intent
--Message Content Intent
+- Presence Intent
+- Server Members Intent
+- Message Content Intent
 
 Asegúrate de que el bot tenga los permisos necesarios Auth2:
 
 En scope:
--applications.commands
--bot
+- applications.commands
+- bot
 En bot:
--Administrator (No necesita muchos de los permisos, revisa que quieres hacer con el bot y marca los necesarios para tu caso)
+- Administrator (No necesita muchos de los permisos, revisa que quieres hacer con el bot y marca los necesarios para tu caso)
 
 Con el bot creado integralo en tu servidor de discord, por alguna de las opciones de instalación, en caso de usar el link, asegurate de que lleve las opciones de configuración.
 
