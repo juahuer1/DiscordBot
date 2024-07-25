@@ -88,18 +88,6 @@ class SetupSlashCommands():
             await interaction.response.send_message(file=discord.File(path+"/"+result))
     
 
-        @bot.tree.command(name='audiopanel', description="Inserta el panel de audios (Ex: /audiopanel)")
-        async def audiopanel(interaction: discord.Interaction):
-            guild = interaction.guild
-            channel_name = "audio-panel"
-            channel = AudioBot.get_channel_by_name(guild, channel_name)
-
-            embed, view = await AudioPanel.send_fixed_message(channel)
-            await interaction.response.send_message(embed=embed,view=view)
-
-
-
-
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
             voice_client = interaction.guild.voice_client

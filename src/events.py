@@ -61,11 +61,3 @@ class Events:
 
         if len(member.guild.voice_client.channel.members) == 1:
             await member.guild.voice_client.disconnect()
-
-    # async def on_interaction(self, interaction):
-    #     if interaction.type == discord.InteractionType.component:
-    #         data = interaction.data['custom_id']
-    #         if "audio_panel_interaction" in data:
-    #             data_array = ast.literal_eval(data)
-    #             path = data_array[0] 
-    #             await AudioBot.play_audio(interaction, path, self.bot)
