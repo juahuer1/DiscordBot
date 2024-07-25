@@ -20,7 +20,7 @@ class Events:
         # Registrar los eventos en el bot
         self.bot.event(self.on_ready)
         self.bot.event(self.on_command_error)
-        #self.bot.event(self.on_interaction)
+        self.bot.event(self.on_voice_state_update)
 
     async def on_ready(self):
         print(f'Bot conectado como {self.bot.user}')
@@ -55,6 +55,12 @@ class Events:
             await ctx.send("Ha ocurrido un error al ejecutar el comando.")       
         logger.error(f'{error}')
 
+    async def  on_voice_state_update(self, member, before, after):
+        if not member.guild.voice_client:
+            return 
+
+        if len(member.guild.voice_client.channel.members) == 1:
+            await member.guild.voice_client.disconnect()
 
     # async def on_interaction(self, interaction):
     #     if interaction.type == discord.InteractionType.component:

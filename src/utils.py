@@ -68,12 +68,10 @@ class JoinBot: #cambiar nombre a AudioBot (controla si el audio se conecta o no)
 
             await interaction.client.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))
             
-            voice_client = interaction.guild.voice_client
-            #audio_player = AudioPlayer(voice_client)
-            audio_selected = "./Audios/Saludos/Saludos-Hola-Holita-Vecinito.mp3"
-            source = FFmpegPCMAudio(audio_selected)
-            voice_client.play(source)
-            #await audio_player.play_audio(audio_selected)
+            # voice_client = interaction.guild.voice_client
+            # audio_selected = "./Audios/Saludos/Saludos-Hola-Holita-Vecinito.mp3"
+            # source = FFmpegPCMAudio(audio_selected)
+            # voice_client.play(source)
             return True
         else:
             await interaction.response.send_message("Bot no se puede unir, metete en un canal de audio!")
