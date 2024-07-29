@@ -36,7 +36,7 @@ class Events:
 
         guild = self.bot.get_guild(int(serverid))
 
-        chanel = discord.utils.get(guild.channels, name = "audio-panel")
+        chanel = discord.utils.get(guild.channels, name = "audio-panel-prueba-juan")
         panel = AudioPanel2()
         deleted = await chanel.purge()
         await chanel.send(view = panel.viewer, embed = panel.embed, file = panel.file)

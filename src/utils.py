@@ -1,6 +1,10 @@
 import discord
 import os
 from discord import FFmpegPCMAudio
+import numpy as np
+import matplotlib.pyplot as plt
+import soundfile as sf
+
 
 # CLASES
 # Crear una vista personalizada con un menu de seleccion
@@ -119,3 +123,25 @@ class AudioButton(discord.ui.Button):
         view = AudioView()
         view.select(interaction.guild.voice_client, self.path + "/" + self.label)
         await interaction.response.send_message(view = view)
+
+class NormalizeAudios:
+    def __init__(self, directory) -> None:
+        self.process_directory(directory)
+
+    def process_directory(self, directory):
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                if file.lower().endswith('.mp3'):
+                    file_path = os.path.join(root, file)
+                    output_path = os.path.join(root, file)
+                    print(f"Normalizando {file_path}")
+                    self.normalice(file_path, output_path)
+
+
+
+    def normalice(self, file_path, output_path):
+        audio, sample_rate = sf.read(file_path)
+        datos_np = np.array(audio)
+        max_value = np.max(datos_np)
+        datos_np = datos_np/max_value
+        sf.write(output_path, datos_np, sample_rate)

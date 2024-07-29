@@ -86,7 +86,12 @@ class SetupSlashCommands():
             limit = len(archivos)
             result = archivos[random.randint(0, limit-1)]
             await interaction.response.send_message(file=discord.File(path+"/"+result))
-    
+
+        @bot.tree.command(name='normalizeaudios', description="Normalizamos el nivel de todos los audios del bot (Ex: /normalizeaudios)")
+        async def normalizeaudios(interaction: discord.Interaction):
+            await interaction.response.send_message("Iniciando la normalización de audios. Esto puede tardar unos momentos.")
+            NormalizeAudios("Audios")
+            await interaction.followup.send("Todos los audios han sido normalizados.")
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
