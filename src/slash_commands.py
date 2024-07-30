@@ -1,9 +1,8 @@
 import discord
 import random
 import os
-
 from src.utils import *
-from src.audio_panel import *
+# from src.audio_panel import *
 
 class SetupSlashCommands():
     def setup_commands(bot):
@@ -56,7 +55,7 @@ class SetupSlashCommands():
         @bot.tree.command(name="join", description="Agrega el bot al chat (Ex: /join)")
         async def join(interaction: discord.Interaction):
             if not interaction.guild.voice_client:
-                connected = await JoinBot.join_audio_channel(interaction)
+                connected = await AudioBot.join(interaction)
                 if(connected):
                     await interaction.response.send_message("Bot conectado al canal de voz.")
             else:
@@ -65,18 +64,21 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="leave", description="Elimina el bot del chat (Ex: /leave)")
         async def leave(interaction: discord.Interaction):
-            if interaction.guild.voice_client:
-                await interaction.guild.voice_client.disconnect()
-                await bot.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
+            disconnected = await AudioBot.leave(interaction)
+            if disconnected:
                 await interaction.response.send_message("Maria excluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
             else:
                 await interaction.response.send_message("Bot no esta en el canal")
 
-
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
-            path = "./Audios"
-            await AudioBot.display_select_audios(interaction, path)
+            connected = await AudioBot.join(interaction)
+            if not connected:
+                return
+            voice_client = interaction.guild.voice_client
+            view = AudioView()
+            view.select("./Audios")
+            await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
 
         @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
@@ -89,9 +91,9 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='normalizeaudios', description="Normalizamos el nivel de todos los audios del bot (Ex: /normalizeaudios)")
         async def normalizeaudios(interaction: discord.Interaction):
-            await interaction.response.send_message("Iniciando la normalización de audios. Esto puede tardar unos momentos.")
+            await interaction.response.defer(thinking=True)
             NormalizeAudios("Audios")
-            await interaction.followup.send("Todos los audios han sido normalizados.")
+            await interaction.followup.send("Todos los audios han sido normalizados")
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
