@@ -129,7 +129,7 @@ class LastButton(discord.ui.Button): #Ponerle límite para que en la última ite
 
 class StopButton(discord.ui.Button):
     def __init__(self):
-        super().__init__(label = "Calla Cara de Red", style = discord.ButtonStyle.red)
+        super().__init__(label = "Stop", style = discord.ButtonStyle.red)
 
     async def callback(self, interaction: discord.Interaction):
         await Clear.this_channel(interaction)
@@ -147,7 +147,7 @@ class AudioPanel():
         self.viewer.button(path="./Audios")
 
         #if n>len(files)/22 or len(files)<23
-        self.viewer.add_item(LastButton())
+        # self.viewer.add_item(LastButton())
 
         self.viewer.add_item(StopButton())
 
@@ -189,4 +189,5 @@ class NormalizeAudios:
         datos_np = np.array(audio)
         max_value = np.max(datos_np)
         datos_np = datos_np/max_value
+        datos_np = datos_np*0.5
         sf.write(output_path, datos_np, sample_rate)
