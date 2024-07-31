@@ -44,7 +44,6 @@ Crear un archivo .env en la raíz del proyecto que contenga los datos necesarios
 ```
 BOTTOKEN=XXXXXXXXXXXXXXXXXXXX
 APPLICATIONID=XXXXXXXXXXXXXXXXXXXX
-SERVERID=XXXXXXXXXXXXXXXXXXXX
 ```
 
 ## Correr el bot

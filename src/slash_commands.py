@@ -94,6 +94,15 @@ class SetupSlashCommands():
             await interaction.response.defer(thinking=True)
             NormalizeAudios("Audios")
             await interaction.followup.send("Todos los audios han sido normalizados")
+            
+
+        @bot.tree.command(name='upload',description="Subir audios al servidor (Ex: /upload No-Bueno-Si.mp3)")
+        async def upload(interaction: discord.Interaction, audio: discord.Attachment):
+            view = FolderView() 
+            path = 'Audios'
+            view.select(path,audio)
+            await interaction.response.send_message("Selecciona una carpeta:", view=view) #Sacarlo al command
+
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):

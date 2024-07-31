@@ -1,5 +1,6 @@
 import discord
 import os
+import asyncio
 from discord import FFmpegPCMAudio
 import random
 import numpy as np
@@ -65,7 +66,7 @@ class NiceNames:
         file = file.removesuffix(".mp3")
         file = list(file.split("-"))
         folder = file [0]
-        file.pop(0)
+        # file.pop(0)
         name = ' '.join(file)
         return [folder, name]
 
@@ -92,13 +93,14 @@ class AudioButton(discord.ui.Button):
         self.path = path
 
     async def callback(self, interaction: discord.Interaction):
+        await interaction.response.defer()
         await Clear.this_channel(interaction)
         if not interaction.guild.voice_client:
             connected = await AudioBot.join(interaction)
 
         view = AudioView()
         view.select(self.path+"/"+self.label)
-        await interaction.response.send_message(view = view)
+        await interaction.followup.send(view = view)
 
 class FirstButton(discord.ui.Button):
     def __init__(self, label):
@@ -109,15 +111,15 @@ class FirstButton(discord.ui.Button):
         super().__init__(label = label, style = colour)
 
     async def callback(self, interaction: discord.Interaction): #editar mensaje usando m_panel??
+        await interaction.response.defer()
         await Clear.this_channel(interaction)
         if self.label == "Aleatorio":
             files = os.listdir("./Audios")
             audios = NiceNames.directories(files = files, path = "./Audios")
             if not interaction.guild.voice_client:
                 await AudioBot.join(interaction)
-                await interaction.response.send_message("El siguiente prometo que será aleatorio")
+                await interaction.followup.send("El siguiente prometo que será aleatorio")
             else:
-                await interaction.response.defer()
                 interaction.guild.voice_client.play(FFmpegPCMAudio("./Audios/" + audios[random.randint(0,len(audios)-1)])) #dice que no hay voice_client
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
@@ -132,8 +134,8 @@ class StopButton(discord.ui.Button):
         super().__init__(label = "Stop", style = discord.ButtonStyle.red)
 
     async def callback(self, interaction: discord.Interaction):
-        await Clear.this_channel(interaction)
         await interaction.response.defer()
+        await Clear.this_channel(interaction)
         await AudioBot.leave(interaction)
 
 class AudioPanel():
@@ -191,3 +193,30 @@ class NormalizeAudios:
         datos_np = datos_np/max_value
         datos_np = datos_np*0.5
         sf.write(output_path, datos_np, sample_rate)
+
+
+class FolderSelect(discord.ui.Select):
+    def __init__(self, path, audio):
+        self.path = path
+        self.audio = audio
+        folders = os.listdir(path)
+        options = []
+
+        for folder in folders:
+            option = discord.SelectOption(label = folder, value = folder)
+            options.append(option)
+
+        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
+
+    async def callback(self, interaction: discord.Interaction):
+        folder_selected = self.values[0]
+        complete_path = os.path.join(self.path, folder_selected, self.audio.filename)
+        await self.audio.save(fp=complete_path)
+        await interaction.response.send_message(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.')
+         
+class FolderView(discord.ui.View):
+    def __init__(self, timeout = 180):
+        super().__init__(timeout = timeout)
+
+    def select(self, path, audio):
+        self.add_item(FolderSelect(path, audio))
