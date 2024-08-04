@@ -54,6 +54,10 @@ class AudioBot:
 
     async def leave (interaction: discord.Interaction):
         if interaction.guild.voice_client:
+            despediditas = os.listdir("./Audios/Despedidas")
+            AudioSound(despediditas, "./Audios/Despedidas", interaction)
+            while interaction.guild.voice_client.is_playing():
+                await asyncio.sleep(1)
             await interaction.guild.voice_client.disconnect()
             await interaction.client.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
             return True
