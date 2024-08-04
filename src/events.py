@@ -25,15 +25,15 @@ class Events:
         # Sincronizar los comandos en el servidor
         await self.bot.tree.sync()   
 
-        panel = AudioPanel()
+        # panel = AudioPanel()
 
-        for guild in self.bot.guilds:
-            if not discord.utils.get(guild.channels, name = "audio-panel"):
-                overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
-                await guild.create_text_channel(name = "audio-panel", overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
-            chanel = discord.utils.get(guild.channels, name = "audio-panel")
-            deleted = await chanel.purge()
-            await chanel.send(view = panel.viewer, embed = panel.embed, file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg"), silent = True)
+        # for guild in self.bot.guilds:
+        #     if not discord.utils.get(guild.channels, name = "audio-panel-prueba-juan"):
+        #         overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
+        #         await guild.create_text_channel(name = "audio-panel-prueba-juan", overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
+        #     chanel = discord.utils.get(guild.channels, name = "audio-panel-prueba-juan")
+        #     deleted = await chanel.purge()
+        #     await chanel.send(view = panel.viewer, embed = panel.embed, file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg"), silent = True)
 
         print("Comandos de barra sincronizados en el servidor:")
 

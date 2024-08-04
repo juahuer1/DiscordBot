@@ -2,7 +2,8 @@ import discord
 import random
 import os
 from src.utils import *
-# from src.audio_panel import *
+from dotenv import load_dotenv
+
 
 class SetupSlashCommands():
     def setup_commands(bot):
@@ -96,12 +97,44 @@ class SetupSlashCommands():
             await interaction.followup.send("Todos los audios han sido normalizados")
             
 
-        @bot.tree.command(name='upload',description="Subir audios al servidor (Ex: /upload No-Bueno-Si.mp3)")
+        @bot.tree.command(name='upload',description="Subir audios al servidor")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
             view = FolderView() 
             path = 'Audios'
             view.select(path,audio)
             await interaction.response.send_message("Selecciona una carpeta:", view=view) #Sacarlo al command
+
+        @bot.tree.command(name="mkdir", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
+        async def mkdir(interaction: discord.Interaction, folder: str):
+            load_dotenv()
+            simpsons_channel_name = os.getenv('SIMPSONSCHANNELNAME')
+            offtopic_channel_name = os.getenv('OFFTOPICCHANNELNAME')
+            simpsons_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
+            simpsons_base_path = os.getenv('SIMPSONSPATH')
+            offtopic_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
+            offtopic_base_path = os.getenv('SIMPSONSPATH')
+
+            if(interaction.channel.name == simpsons_channel_name):
+                # Creamos carpeta para audio original
+                path = os.path.join(simpsons_og_base_path, folder)
+                os.mkdir(path)
+
+                # Creamos carpeta para audio normalizado
+                path = os.path.join(simpsons_base_path, folder)
+                os.mkdir(path)
+            elif(interaction.channel.name == offtopic_channel_name):
+                # Creamos carpeta para audio original
+                path = os.path.join(offtopic_og_base_path, folder)
+                os.mkdir(path)
+
+                # Creamos carpeta para audio normalizado
+                path = os.path.join(offtopic_base_path, folder)
+                os.mkdir(path)
+            else:
+                await interaction.response.send_message("No estás en ningún audio panel")
+                return
+            
+            await interaction.response.send_message("Carpeta creada en el servidor")
 
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")

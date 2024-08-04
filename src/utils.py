@@ -45,19 +45,21 @@ class AudioBot:
             await channel.connect()
             await interaction.client.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))
             
-            saluditos = os.listdir("./Audios/Saludos")
-            AudioSound(saluditos, "./Audios/Saludos", interaction)
+
+
+            # saluditos = os.listdir("./AudiosProcessed/Saludos")
+            # AudioSound(saluditos, "./AudiosProcessed/Saludos", interaction)
+
+
             return True
         else:
-            await interaction.response.send_message("Bot no se puede unir, metete en un canal de audio!")
+            await interaction.followup.send("Bot no se puede unir, metete en un canal de audio!")
             return False
 
     async def leave (interaction: discord.Interaction):
         if interaction.guild.voice_client:
-            despediditas = os.listdir("./Audios/Despedidas")
-            AudioSound(despediditas, "./Audios/Despedidas", interaction)
-            while interaction.guild.voice_client.is_playing():
-                await asyncio.sleep(1)
+            # despediditas = os.listdir("./AudiosProcessed/Despedidas")
+            # AudioSound(despediditas, "./AudiosProcessed/Despedidas", interaction, after = await interaction.guild.voice_client.disconnect())
             await interaction.guild.voice_client.disconnect()
             await interaction.client.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
             return True
@@ -100,7 +102,9 @@ class AudioButton(discord.ui.Button):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
         if not interaction.guild.voice_client:
-            connected = await AudioBot.join(interaction)
+            connected = await AudioBot.join(interaction) 
+            if not connected:
+                return
 
         view = AudioView()
         view.select(self.path+"/"+self.label)
@@ -121,7 +125,10 @@ class FirstButton(discord.ui.Button):
             files = os.listdir("./Audios")
             audios = NiceNames.directories(files = files, path = "./Audios")
             if not interaction.guild.voice_client:
-                await AudioBot.join(interaction)
+                connected = await AudioBot.join(interaction)
+                if not connected:
+                    return
+
                 await interaction.followup.send("El siguiente prometo que será aleatorio")
             else:
                 interaction.guild.voice_client.play(FFmpegPCMAudio("./Audios/" + audios[random.randint(0,len(audios)-1)])) #dice que no hay voice_client
@@ -147,13 +154,10 @@ class AudioPanel():
                         #settear el de events en n = 0
         self.viewer = AudioView(timeout=None)
 
-        files = os.listdir("./Audios")
+        files = os.listdir("./AudiosProcessed")
         self.viewer.add_item(FirstButton("Aleatorio"))
 
-        self.viewer.button(path="./Audios")
-
-        #if n>len(files)/22 or len(files)<23
-        # self.viewer.add_item(LastButton())
+        self.viewer.button(path="./AudiosProcessed")
 
         self.viewer.add_item(StopButton())
 
@@ -172,7 +176,7 @@ class AudioSound():
 
 class Clear():
     async def this_channel(interaction):
-        this_channel = discord.utils.get(interaction.guild.channels, name = "audio-panel") 
+        this_channel = discord.utils.get(interaction.guild.channels, name = "audio-panel-prueba-juan") 
         messages = [message async for message in this_channel.history(oldest_first = True)]
         my_message = messages[0]
         await this_channel.purge(after = my_message)
@@ -198,7 +202,6 @@ class NormalizeAudios:
         datos_np = datos_np*0.5
         sf.write(output_path, datos_np, sample_rate)
 
-
 class FolderSelect(discord.ui.Select):
     def __init__(self, path, audio):
         self.path = path
@@ -214,8 +217,9 @@ class FolderSelect(discord.ui.Select):
 
     async def callback(self, interaction: discord.Interaction):
         folder_selected = self.values[0]
-        complete_path = os.path.join(self.path, folder_selected, self.audio.filename)
-        await self.audio.save(fp=complete_path)
+        # complete_path = os.path.join(self.path, folder_selected, self.audio.filename)
+        audios_path = os.path.join('Audios', self.audio.filename)
+        await self.audio.save(fp=audios_path)
         await interaction.response.send_message(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.')
          
 class FolderView(discord.ui.View):
