@@ -4,8 +4,8 @@ import asyncio
 from discord import FFmpegPCMAudio
 import random
 import numpy as np
-import soundfile as sf
 from dotenv import load_dotenv
+from pydub import AudioSegment, effects  
 
 
 class AudioSelect(discord.ui.Select):
@@ -45,14 +45,11 @@ class AudioBot:
         if interaction.user.voice:
             channel = interaction.user.voice.channel
             await channel.connect()
-            await interaction.client.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))
-            
-
-
-            # saluditos = os.listdir("./AudiosProcessed/Saludos")
-            # AudioSound(saluditos, "./AudiosProcessed/Saludos", interaction)
-
-
+            await interaction.client.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))           
+            data = InitEnv()
+            path = os.path.join(data.simpsons_base_path, 'Saludos')
+            saluditos = os.listdir(path)
+            AudioSound(saluditos, path, interaction)
             return True
         else:
             await interaction.followup.send("Bot no se puede unir, metete en un canal de audio!")
@@ -60,8 +57,10 @@ class AudioBot:
 
     async def leave (interaction: discord.Interaction):
         if interaction.guild.voice_client:
-            # despediditas = os.listdir("./AudiosProcessed/Despedidas")
-            # AudioSound(despediditas, "./AudiosProcessed/Despedidas", interaction, after = await interaction.guild.voice_client.disconnect())
+            data = InitEnv()
+            path = os.path.join(data.simpsons_base_path, 'Despedidas')
+            despediditas = os.listdir(path)
+            AudioSound(despediditas, path, interaction, after = await interaction.guild.voice_client.disconnect())
             await interaction.guild.voice_client.disconnect()
             await interaction.client.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
             return True
@@ -124,8 +123,10 @@ class FirstButton(discord.ui.Button):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
         if self.label == "Aleatorio":
-            files = os.listdir("./Audios")
-            audios = NiceNames.directories(files = files, path = "./Audios")
+            data = InitEnv()
+
+            files = os.listdir(data.simpsons_base_path)
+            audios = NiceNames.directories(files = files, path = data.simpsons_base_path)
             if not interaction.guild.voice_client:
                 connected = await AudioBot.join(interaction)
                 if not connected:
@@ -133,7 +134,7 @@ class FirstButton(discord.ui.Button):
 
                 await interaction.followup.send("El siguiente prometo que será aleatorio")
             else:
-                interaction.guild.voice_client.play(FFmpegPCMAudio("./Audios/" + audios[random.randint(0,len(audios)-1)])) #dice que no hay voice_client
+                interaction.guild.voice_client.play(FFmpegPCMAudio(data.simpsons_base_path + audios[random.randint(0,len(audios)-1)])) #dice que no hay voice_client
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
     def __init__(self):
@@ -156,10 +157,12 @@ class AudioPanel():
                         #settear el de events en n = 0
         self.viewer = AudioView(timeout=None)
 
-        files = os.listdir("./AudiosProcessed")
+        data = InitEnv()
+
+        files = os.listdir(data.simpsons_base_path)
         self.viewer.add_item(FirstButton("Aleatorio"))
 
-        self.viewer.button(path="./AudiosProcessed")
+        self.viewer.button(data.simpsons_base_path)
 
         self.viewer.add_item(StopButton())
 
@@ -183,32 +186,12 @@ class Clear():
         my_message = messages[0]
         await this_channel.purge(after = my_message)
 
-class NormalizeAudios:
-    def __init__(self, directory) -> None:
-        self.process_directory(directory)
-
-    def process_directory(self, directory):
-        for root, dirs, files in os.walk(directory):
-            for file in files:
-                if file.lower().endswith('.mp3'):
-                    file_path = os.path.join(root, file)
-                    output_path = os.path.join(root, file)
-                    print(f"Normalizando {file_path}")
-                    self.normalice(file_path, output_path)
-
-    def normalice(self, file_path, output_path):
-        audio, sample_rate = sf.read(file_path)
-        datos_np = np.array(audio)
-        max_value = np.max(datos_np)
-        datos_np = datos_np/max_value
-        datos_np = datos_np*0.5
-        sf.write(output_path, datos_np, sample_rate)
-
 class FolderSelect(discord.ui.Select):
-    def __init__(self, path, audio):
-        self.path = path
+    def __init__(self, original_path, base_path, audio):
+        self.original_path = original_path
+        self.base_path = base_path
         self.audio = audio
-        folders = os.listdir(path)
+        folders = os.listdir(original_path)
         options = []
 
         for folder in folders:
@@ -218,18 +201,24 @@ class FolderSelect(discord.ui.Select):
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
+        await interaction.response.defer()
         folder_selected = self.values[0]
-        # complete_path = os.path.join(self.path, folder_selected, self.audio.filename)
-        audios_path = os.path.join('Audios', self.audio.filename)
+        audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
         await self.audio.save(fp=audios_path)
-        await interaction.response.send_message(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.')
+
+        full_base_path = os.path.join(self.base_path, folder_selected, self.audio.filename)
+        rawsound = AudioSegment.from_file(audios_path, "mp3")  
+        normalizedsound = effects.normalize(rawsound)
+        normalizedsound.export(full_base_path, format="mp3")
+
+        await interaction.followup.send(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.')
          
 class FolderView(discord.ui.View):
     def __init__(self, timeout = 180):
         super().__init__(timeout = timeout)
 
-    def select(self, path, audio):
-        self.add_item(FolderSelect(path, audio))
+    def select(self, original_path, base_path, audio):
+        self.add_item(FolderSelect(original_path, base_path, audio))
 
 class InitEnv():
     def __init__(self):
@@ -259,4 +248,3 @@ class IdentifyPanel():
         else:
             await interaction.response.send_message("No estás en ningún audio panel")
             return False
-

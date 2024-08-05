@@ -16,6 +16,7 @@ class Events:
         # Registrar los eventos en el bot
         self.bot.event(self.on_ready)
         self.bot.event(self.on_command_error)
+        # self.bot.event(self.on_error)
         self.bot.event(self.on_voice_state_update)
 
     async def on_ready(self):
@@ -25,15 +26,18 @@ class Events:
         # Sincronizar los comandos en el servidor
         await self.bot.tree.sync()   
 
-        # panel = AudioPanel()
+        panel = AudioPanel()
 
-        # for guild in self.bot.guilds:
-        #     if not discord.utils.get(guild.channels, name = "audio-panel-prueba-juan"):
-        #         overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
-        #         await guild.create_text_channel(name = "audio-panel-prueba-juan", overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
-        #     chanel = discord.utils.get(guild.channels, name = "audio-panel-prueba-juan")
-        #     deleted = await chanel.purge()
-        #     await chanel.send(view = panel.viewer, embed = panel.embed, file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg"), silent = True)
+        load_dotenv()
+        channel_name = os.getenv('SIMPSONSCHANNELNAME') 
+
+        for guild in self.bot.guilds:
+            if not discord.utils.get(guild.channels, name = channel_name):
+                overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
+                await guild.create_text_channel(name = channel_name, overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
+            chanel = discord.utils.get(guild.channels, name = channel_name)
+            deleted = await chanel.purge()
+            await chanel.send(view = panel.viewer, embed = panel.embed, file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg"), silent = True)
 
         print("Comandos de barra sincronizados en el servidor:")
 
@@ -57,3 +61,12 @@ class Events:
         else:
             await ctx.send("Ha ocurrido un error al ejecutar el comando.")       
         logger.error(f'{error}')
+
+
+    # async def on_error(event, ctx, **kwargs):
+        
+    #     # Optionally, send a message to a specific channel in Discord
+    #     # channel = bot.get_channel(YOUR_CHANNEL_ID)  # Replace with your channel ID
+    #     # if channel:
+    #     #     await channel.send(f'An error occurred in {event}: {error}')
+    #     print('error.....')

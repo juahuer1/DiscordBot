@@ -71,6 +71,7 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("Bot no esta en el canal")
 
+
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
             connected = await AudioBot.join(interaction)
@@ -90,19 +91,22 @@ class SetupSlashCommands():
             result = archivos[random.randint(0, limit-1)]
             await interaction.response.send_message(file=discord.File(path+"/"+result))
 
-        @bot.tree.command(name='normalizeaudios', description="Normalizamos el nivel de todos los audios del bot (Ex: /normalizeaudios)")
-        async def normalizeaudios(interaction: discord.Interaction):
-            await interaction.response.defer(thinking=True)
-            NormalizeAudios("Audios")
-            await interaction.followup.send("Todos los audios han sido normalizados")
-            
 
         @bot.tree.command(name='upload',description="Subir audios al servidor")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
+
+            channel_obj = await IdentifyPanel.channel(interaction)
+
+            if not channel_obj:
+                return
+
+            original_path = channel_obj.get('OriginalPath')
+            base_path = channel_obj.get('BasePath')
+
             view = FolderView() 
-            path = 'Audios'
-            view.select(path,audio)
+            view.select(original_path, base_path, audio)
             await interaction.response.send_message("Selecciona una carpeta:", view=view) #Sacarlo al command
+
 
         @bot.tree.command(name="mkdir", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
         async def mkdir(interaction: discord.Interaction, folder: str):
@@ -120,13 +124,15 @@ class SetupSlashCommands():
 
             os.mkdir(og_full_path)
             os.mkdir(base_full_path)
+
             
             await interaction.response.send_message("Carpeta creada en el servidor")
 
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
-            voice_client = interaction.guild.voice_client
+            # os.listdir('afsdfasdfasdf')
+            voice_client = interaction.guild.voice_cliented
             if voice_client:
                 voice_client.stop()
                 await interaction.response.send_message("Audio interrumpido")
