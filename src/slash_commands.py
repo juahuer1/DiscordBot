@@ -132,7 +132,7 @@ class SetupSlashCommands():
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
             # os.listdir('afsdfasdfasdf')
-            voice_client = interaction.guild.voice_cliented
+            voice_client = interaction.guild.voice_client
             if voice_client:
                 voice_client.stop()
                 await interaction.response.send_message("Audio interrumpido")
