@@ -61,6 +61,8 @@ class AudioBot:
             path = os.path.join(data.simpsons_base_path, 'Despedidas')
             despediditas = os.listdir(path)
             AudioSound(despediditas, path, interaction)
+            while interaction.guild.voice_client.is_playing():
+                await asyncio.sleep(1)
             await interaction.guild.voice_client.disconnect()
             await interaction.client.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
             return True
