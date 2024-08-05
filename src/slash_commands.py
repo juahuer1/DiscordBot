@@ -106,33 +106,20 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="mkdir", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
         async def mkdir(interaction: discord.Interaction, folder: str):
-            load_dotenv()
-            simpsons_channel_name = os.getenv('SIMPSONSCHANNELNAME')
-            offtopic_channel_name = os.getenv('OFFTOPICCHANNELNAME')
-            simpsons_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
-            simpsons_base_path = os.getenv('SIMPSONSPATH')
-            offtopic_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
-            offtopic_base_path = os.getenv('SIMPSONSPATH')
+            
+            channel_obj = await IdentifyPanel.channel(interaction)
 
-            if(interaction.channel.name == simpsons_channel_name):
-                # Creamos carpeta para audio original
-                path = os.path.join(simpsons_og_base_path, folder)
-                os.mkdir(path)
-
-                # Creamos carpeta para audio normalizado
-                path = os.path.join(simpsons_base_path, folder)
-                os.mkdir(path)
-            elif(interaction.channel.name == offtopic_channel_name):
-                # Creamos carpeta para audio original
-                path = os.path.join(offtopic_og_base_path, folder)
-                os.mkdir(path)
-
-                # Creamos carpeta para audio normalizado
-                path = os.path.join(offtopic_base_path, folder)
-                os.mkdir(path)
-            else:
-                await interaction.response.send_message("No estás en ningún audio panel")
+            if not channel_obj:
                 return
+            
+            original_path = channel_obj.get('OriginalPath')
+            base_path = channel_obj.get('BasePath')
+
+            og_full_path = os.path.join(original_path,folder)
+            base_full_path = os.path.join(base_path,folder)
+
+            os.mkdir(og_full_path)
+            os.mkdir(base_full_path)
             
             await interaction.response.send_message("Carpeta creada en el servidor")
 

@@ -5,6 +5,8 @@ from discord import FFmpegPCMAudio
 import random
 import numpy as np
 import soundfile as sf
+from dotenv import load_dotenv
+
 
 class AudioSelect(discord.ui.Select):
     def __init__(self, path):
@@ -228,3 +230,33 @@ class FolderView(discord.ui.View):
 
     def select(self, path, audio):
         self.add_item(FolderSelect(path, audio))
+
+class InitEnv():
+    def __init__(self):
+        load_dotenv()
+        self.simpsons_channel_name = os.getenv('SIMPSONSCHANNELNAME')
+        self.offtopic_channel_name = os.getenv('OFFTOPICCHANNELNAME')
+        self.simpsons_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
+        self.simpsons_base_path = os.getenv('SIMPSONSPATH')
+        self.offtopic_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
+        self.offtopic_base_path = os.getenv('SIMPSONSPATH')
+
+class IdentifyPanel():
+    async def channel(interaction):
+        data = InitEnv()
+        result = {}
+
+        if(interaction.channel.name == data.simpsons_channel_name):
+            result['OriginalPath'] = data.simpsons_og_base_path
+            result['BasePath'] = data.simpsons_base_path
+            return result
+
+        elif(interaction.channel.name == data.offtopic_channel_name):
+            result['OriginalPath'] = data.offtopic_og_base_path
+            result['BasePath'] = data.offtopic_base_path
+            return result
+
+        else:
+            await interaction.response.send_message("No estás en ningún audio panel")
+            return False
+

@@ -2,6 +2,6 @@
 venv/
 .env
 error.log
-src/__pycache__
+**/__pycache__/
 Audios/
 AudiosOriginal/
