@@ -134,7 +134,7 @@ class FirstButton(discord.ui.Button):
 
                 await interaction.followup.send("El siguiente prometo que será aleatorio")
             else:
-                interaction.guild.voice_client.play(FFmpegPCMAudio(data.simpsons_base_path + audios[random.randint(0,len(audios)-1)])) #dice que no hay voice_client
+                AudioSound(audios, data.simpsons_base_path, interaction)
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
     def __init__(self):
