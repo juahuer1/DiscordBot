@@ -183,7 +183,8 @@ class AudioSound():
 
 class Clear():
     async def this_channel(interaction):
-        this_channel = discord.utils.get(interaction.guild.channels, name = "audio-panel-prueba-juan") 
+        data = InitEnv()
+        this_channel = discord.utils.get(interaction.guild.channels, name = data.simpsons_channel_name) 
         messages = [message async for message in this_channel.history(oldest_first = True)]
         my_message = messages[0]
         await this_channel.purge(after = my_message)
@@ -227,6 +228,7 @@ class InitEnv():
         load_dotenv()
         self.simpsons_channel_name = os.getenv('SIMPSONSCHANNELNAME')
         self.offtopic_channel_name = os.getenv('OFFTOPICCHANNELNAME')
+
         self.simpsons_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
         self.simpsons_base_path = os.getenv('SIMPSONSPATH')
         self.offtopic_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
