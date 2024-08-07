@@ -122,16 +122,16 @@ class SetupSlashCommands():
             og_full_path = os.path.join(original_path,folder)
             base_full_path = os.path.join(base_path,folder)
 
-            os.mkdir(og_full_path)
-            os.mkdir(base_full_path)
-
-            
-            await interaction.response.send_message("Carpeta creada en el servidor")
+            if(not Archive.same(folder, original_path) or not Archive.same(folder, base_path)):
+                os.mkdir(og_full_path)
+                os.mkdir(base_full_path)
+                await interaction.response.send_message("Carpeta creada en el servidor")
+            else:
+                await interaction.response.send_message("Esa carpeta ya existe!")       
 
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
-            # os.listdir('afsdfasdfasdf')
             voice_client = interaction.guild.voice_client
             if voice_client:
                 voice_client.stop()

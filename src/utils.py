@@ -101,20 +101,21 @@ class Archive:
         return output
 
     def same(file, path):
+        status = False
         if (file.rsplit('.', 1)[-1] == file):
             folders = Archive.directories(path)
             for my_folder in folders:
-                if (my_folder == file):
-                    return True
-                else:
-                    return False
+                if (os.path.basename(my_folder) == file):
+                    status = True
+            
+            return status
         elif (file.rsplit('.', 1)[-1] != file):
             files = Archive.files(path) #se hace así?
             for my_file in files:
-                if (my_file == file):
-                    return True
-                else:
-                    return False
+                if (os.path.basename(my_file) == file):
+                    status = True
+            
+            return status
 
 class AudioButton(discord.ui.Button):
     def __init__(self, label, path):
@@ -227,6 +228,11 @@ class FolderSelect(discord.ui.Select):
         await interaction.response.defer()
         folder_selected = self.values[0]
         audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
+
+        if(Archive.same(self.audio.filename, os.path.join(self.original_path, folder_selected)) or Archive.same(self.audio.filename, os.path.join(self.base_path, folder_selected))):
+            await interaction.followup.send('Ya existe un archivo con ese nombre!')
+            return
+
         await self.audio.save(fp=audios_path)
 
         full_base_path = os.path.join(self.base_path, folder_selected, self.audio.filename)
