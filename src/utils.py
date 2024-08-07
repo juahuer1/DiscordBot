@@ -17,7 +17,7 @@ class AudioSelect(discord.ui.Select):
         
         for archivo in archivos_filtered: #Aquí el límite también es 25 creo
             nombre = Archive.nice_name(archivo)
-            option = discord.SelectOption(label = nombre[1], value = archivo)
+            option = discord.SelectOption(label = nombre, value = archivo)
             options.append(option)
         
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
@@ -41,7 +41,7 @@ class AudioView(discord.ui.View):
             self.add_item(AudioButton(f"{carpeta}", path))
 
 class AudioBot:
-    async def join (interaction: discord.Interaction):
+    async def join (interaction: discord.Interaction, silent = False):
         if interaction.user.voice:
             channel = interaction.user.voice.channel
             await channel.connect()
@@ -49,20 +49,22 @@ class AudioBot:
             data = InitEnv()
             path = os.path.join(data.simpsons_base_path, 'Saludos')
             saluditos = os.listdir(path)
-            AudioSound(saluditos, path, interaction)
+            if(not silent):
+                AudioSound(saluditos, path, interaction)
             return True
         else:
             await interaction.followup.send("Bot no se puede unir, metete en un canal de audio!")
             return False
 
-    async def leave (interaction: discord.Interaction):
+    async def leave (interaction: discord.Interaction, silent = False):
         if interaction.guild.voice_client:
             data = InitEnv()
             path = os.path.join(data.simpsons_base_path, 'Despedidas')
             despediditas = os.listdir(path)
-            AudioSound(despediditas, path, interaction)
-            while interaction.guild.voice_client.is_playing():
-                await asyncio.sleep(1)
+            if(not silent):
+                AudioSound(despediditas, path, interaction)
+                while interaction.guild.voice_client.is_playing():
+                    await asyncio.sleep(1)
             await interaction.guild.voice_client.disconnect()
             await interaction.client.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Hateando las nuevas temporadas"))
             return True

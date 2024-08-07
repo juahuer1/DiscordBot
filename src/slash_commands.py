@@ -56,7 +56,7 @@ class SetupSlashCommands():
         @bot.tree.command(name="join", description="Agrega el bot al chat (Ex: /join)")
         async def join(interaction: discord.Interaction):
             if not interaction.guild.voice_client:
-                connected = await AudioBot.join(interaction)
+                connected = await AudioBot.join(interaction, silent = True)
                 if(connected):
                     await interaction.response.send_message("Bot conectado al canal de voz.")
             else:
@@ -65,7 +65,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="leave", description="Elimina el bot del chat (Ex: /leave)")
         async def leave(interaction: discord.Interaction):
-            disconnected = await AudioBot.leave(interaction)
+            disconnected = await AudioBot.leave(interaction, silent = True)
             if disconnected:
                 await interaction.response.send_message("Maria excluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
             else:
