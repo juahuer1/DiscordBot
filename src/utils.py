@@ -150,7 +150,6 @@ class FirstButton(discord.ui.Button):
         if self.label == "Aleatorio":
             data = InitEnv()
 
-            files = os.listdir(data.simpsons_base_path)
             audios = Archive.files(path = data.simpsons_base_path)
             if not interaction.guild.voice_client:
                 connected = await AudioBot.join(interaction)
@@ -184,7 +183,6 @@ class AudioPanel():
 
         data = InitEnv()
 
-        files = os.listdir(data.simpsons_base_path)
         self.viewer.add_item(FirstButton("Aleatorio"))
 
         self.viewer.button(data.simpsons_base_path)

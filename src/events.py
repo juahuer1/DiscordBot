@@ -16,7 +16,6 @@ class Events:
         # Registrar los eventos en el bot
         self.bot.event(self.on_ready)
         self.bot.event(self.on_command_error)
-        # self.bot.event(self.on_error)
         self.bot.event(self.on_voice_state_update)
 
     async def on_ready(self):
@@ -61,12 +60,3 @@ class Events:
         else:
             await ctx.send("Ha ocurrido un error al ejecutar el comando.")       
         logger.error(f'{error}')
-
-
-    # async def on_error(event, ctx, **kwargs):
-        
-    #     # Optionally, send a message to a specific channel in Discord
-    #     # channel = bot.get_channel(YOUR_CHANNEL_ID)  # Replace with your channel ID
-    #     # if channel:
-    #     #     await channel.send(f'An error occurred in {event}: {error}')
-    #     print('error.....')
