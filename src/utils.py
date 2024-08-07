@@ -11,12 +11,12 @@ from pydub import AudioSegment, effects
 class AudioSelect(discord.ui.Select):
     def __init__(self, path):
         self.path = path
-        archivos = os.listdir(path)
-        archivos_filtered = NiceNames.directories(archivos, path)
+        # archivos = os.listdir(path)
+        archivos_filtered = Archive.files(path)
         options = []
         
         for archivo in archivos_filtered: #Aquí el límite también es 25 creo
-            nombre = NiceNames.file(archivo)
+            nombre = Archive.nice_name(archivo)
             option = discord.SelectOption(label = nombre[1], value = archivo)
             options.append(option)
         
@@ -68,33 +68,53 @@ class AudioBot:
             return True
         else:
             return False
-
-class NiceNames:
-    def file(file):
-        os.path.basename(file)
+  
+class Archive:
+    def nice_name(file):
+        file = os.path.basename(file)
         file = file.removesuffix(".mp3")
         file = list(file.split("-"))
-        folder = file [0]
-        # file.pop(0)
         name = ' '.join(file)
-        return [folder, name]
+        return name
 
-    def directories(files, path):
-        output = []
+    def directories(path):
         folders = []
+        files = os.listdir(path)
+
+        for file in files:
+            if (file.rsplit('.', 1)[-1] == file):
+                folders.append(file)
+        return folders
+
+    def files(path):
+        output = []
+        files = os.listdir(path)
 
         for file in files:
             if (file.rsplit('.', 1)[-1] != file):
                 output.append(file)
-            else:
-                folders.append(file)
-        
-        for folder in folders:
-            files = os.listdir(path+"/"+folder)
-            for file in files:
-                if (file.rsplit('.', 1)[-1] != file):
-                    output.append(folder+"/"+file)
+            else:        
+                second_files = os.listdir(os.path.join(path,file))
+                for last_file in second_files:
+                    if (last_file.rsplit('.', 1)[-1] != last_file):
+                        output.append(os.path.join(file,last_file))
         return output
+
+    def same(file, path):
+        if (file.rsplit('.', 1)[-1] == file):
+            folders = Archive.directories(path)
+            for my_folder in folders:
+                if (my_folder == file):
+                    return True
+                else:
+                    return False
+        elif (file.rsplit('.', 1)[-1] != file):
+            files = Archive.files(path) #se hace así?
+            for my_file in files:
+                if (my_file == file):
+                    return True
+                else:
+                    return False
 
 class AudioButton(discord.ui.Button):
     def __init__(self, label, path):
@@ -128,7 +148,7 @@ class FirstButton(discord.ui.Button):
             data = InitEnv()
 
             files = os.listdir(data.simpsons_base_path)
-            audios = NiceNames.directories(files = files, path = data.simpsons_base_path)
+            audios = Archive.files(path = data.simpsons_base_path)
             if not interaction.guild.voice_client:
                 connected = await AudioBot.join(interaction)
                 if not connected:

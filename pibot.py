@@ -27,11 +27,9 @@ logging.basicConfig(filename='pibot.log', encoding='utf-8', level=logging.DEBUG)
 
 # EVENTOS y SLASH COMMANDS
 SetupSlashCommands.setup_commands(bot)
-
 Events(bot)
 
 # ? COMMANDS
 SetupCommands.setup_commands(bot)
-
 
 bot.run(bottoken)
