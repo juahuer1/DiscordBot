@@ -16,6 +16,7 @@ packaging
 pillow
 pip
 pycparser
+pydub
 PyNaCl
 pyparsing
 python-dateutil

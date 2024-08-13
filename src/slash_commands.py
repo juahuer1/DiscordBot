@@ -16,14 +16,14 @@ class SetupSlashCommands():
 
             
         @bot.tree.command(name="roll", description="Tira N dados de N caras en este orden NdN (dados, caras) (Ex: /roll 3d6)")
-        async def roll(interaction: discord.Interaction, dice: str):
-            try:
-                rolls, limit = map(int, dice.split('d'))
-            except Exception:
-                await interaction.response.send_message('Format has to be in NdN!')
-                return
+        async def roll(interaction: discord.Interaction, times: int, faces: int):
+            # try:
+            #     rolls, limit = map(int, dice.split('d'))
+            # except Exception:
+            #     await interaction.response.send_message('Format has to be in NdN!')
+            #     return
 
-            result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+            result = ', '.join(str(random.randint(1, faces)) for r in range(times))
             await interaction.response.send_message(result)
 
 

@@ -11,7 +11,6 @@ from pydub import AudioSegment, effects
 class AudioSelect(discord.ui.Select):
     def __init__(self, path):
         self.path = path
-        # archivos = os.listdir(path)
         archivos_filtered = Archive.files(path)
         options = []
         
@@ -112,7 +111,7 @@ class Archive:
             
             return status
         elif (file.rsplit('.', 1)[-1] != file):
-            files = Archive.files(path) #se hace así?
+            files = Archive.files(path)
             for my_file in files:
                 if (os.path.basename(my_file) == file):
                     status = True
@@ -127,13 +126,17 @@ class AudioButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
+        if not os.listdir(os.path.join(self.path, self.label)):
+            await interaction.followup.send("Esta carpeta está vacía, llénala!")
+            return
+
         if not interaction.guild.voice_client:
             connected = await AudioBot.join(interaction) 
             if not connected:
                 return
 
         view = AudioView()
-        view.select(self.path+"/"+self.label)
+        view.select(os.path.join(self.path, self.label))
         await interaction.followup.send(view = view)
 
 class FirstButton(discord.ui.Button):
@@ -177,22 +180,30 @@ class StopButton(discord.ui.Button):
         await AudioBot.leave(interaction)
 
 class AudioPanel():
-    def __init__(self): #voy a tener que añadir variable n para controlar cuántas iteraciones llevamos
+    async def start(bot, thematic): #voy a tener que añadir variable n para controlar cuántas iteraciones llevamos
                         #settear el de events en n = 0
-        self.viewer = AudioView(timeout=None)
+        if thematic == "simpsons":
+            data = InitEnv()
+            data = data.simpsons
 
-        data = InitEnv()
+        viewer = AudioView(timeout=None)
+        viewer.add_item(FirstButton("Aleatorio"))
+        viewer.button(data["path"])
+        viewer.add_item(StopButton())
 
-        self.viewer.add_item(FirstButton("Aleatorio"))
+        file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg")
 
-        self.viewer.button(data.simpsons_base_path)
+        embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*Señor Reves? de nombre Stal*, \n Un momento, A VEEER STAL REVES, alguno de ustedes Stal Reves?", color=0x00ff00)
+        embed.set_image(url="attachment://moe_al_habla.jpg")
 
-        self.viewer.add_item(StopButton())
+        for guild in bot.guilds:
+            if not discord.utils.get(guild.channels, name = data["channel"]):
+                overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
+                await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
+            chanel = discord.utils.get(guild.channels, name = data["channel"])
+            deleted = await chanel.purge()
+            await chanel.send(view = viewer, embed = embed, file = file, silent = True)
 
-        self.file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg")
-
-        self.embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*Señor Reves? de nombre Stal*, \n Un momento, A VEEER STAL REVES, alguno de ustedes Stal Reves?", color=0x00ff00)
-        self.embed.set_image(url="attachment://moe_al_habla.jpg")
 
 class AudioSound():
     def __init__(self, file, path, interaction: discord.Interaction):
@@ -200,15 +211,12 @@ class AudioSound():
             playing = file[random.randint(0,len(file)-1)]
         else:
             playing = file
-        interaction.guild.voice_client.play(FFmpegPCMAudio(path+"/"+playing))
+        interaction.guild.voice_client.play(FFmpegPCMAudio(os.path.join(path, playing)))
 
 class Clear():
     async def this_channel(interaction):
-        data = InitEnv()
-        this_channel = discord.utils.get(interaction.guild.channels, name = data.simpsons_channel_name) 
-        messages = [message async for message in this_channel.history(oldest_first = True)]
-        my_message = messages[0]
-        await this_channel.purge(after = my_message)
+        messages = [message async for message in interaction.channel.history(oldest_first = True)]
+        await interaction.channel.purge(after = messages[0])
 
 class FolderSelect(discord.ui.Select):
     def __init__(self, original_path, base_path, audio):
@@ -259,6 +267,8 @@ class InitEnv():
         self.simpsons_base_path = os.getenv('SIMPSONSPATH')
         self.offtopic_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
         self.offtopic_base_path = os.getenv('SIMPSONSPATH')
+
+        self.simpsons = {"channel": self.simpsons_channel_name, "path": self.simpsons_base_path, "og_path": self.simpsons_og_base_path, "silent": False}
 
 class IdentifyPanel():
     async def channel(interaction):
