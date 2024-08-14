@@ -169,6 +169,7 @@ class LastButton(discord.ui.Button): #Ponerle límite para que en la última ite
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_message("¡Marge, no quedan más audios!")
+        await AudioPanel.edit(interaction)
 
 class StopButton(discord.ui.Button):
     def __init__(self):
@@ -189,6 +190,7 @@ class AudioPanel():
         viewer = AudioView(timeout=None)
         viewer.add_item(FirstButton("Aleatorio"))
         viewer.button(data["path"])
+        viewer.add_item(LastButton())
         viewer.add_item(StopButton())
 
         file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg")
@@ -203,6 +205,14 @@ class AudioPanel():
             chanel = discord.utils.get(guild.channels, name = data["channel"])
             deleted = await chanel.purge()
             await chanel.send(view = viewer, embed = embed, file = file, silent = True)
+
+    async def edit(interaction):
+        messages = [message async for message in interaction.channel.history(oldest_first = True)]
+
+        embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*¿Está Topocho? De nombre Donpi* \n Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?", color=0x00ff00)
+        embed.set_image(url="attachment://moe_al_habla.jpg")
+
+        await messages[0].edit(embed = embed)
 
 
 class AudioSound():
@@ -269,6 +279,7 @@ class InitEnv():
         self.offtopic_base_path = os.getenv('SIMPSONSPATH')
 
         self.simpsons = {"channel": self.simpsons_channel_name, "path": self.simpsons_base_path, "og_path": self.simpsons_og_base_path, "silent": False}
+        self.off = {"channel": self.offtopic_channel_name, "path": self.offtopic_base_path, "og_path": self.offtopic_og_base_path, "silent": True}
 
 class IdentifyPanel():
     async def channel(interaction):
