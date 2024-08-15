@@ -34,10 +34,10 @@ class AudioView(discord.ui.View):
     def select(self, path):
         self.add_item(AudioSelect(path))
 
-    def button(self, path):
+    def button(self, path, silent):
         carpetas = os.listdir(path)
         for carpeta in carpetas:
-            self.add_item(AudioButton(f"{carpeta}", path))
+            self.add_item(AudioButton(f"{carpeta}", path, silent))
 
 class AudioBot:
     async def join (interaction: discord.Interaction, silent = False):
@@ -119,9 +119,10 @@ class Archive:
             return status
 
 class AudioButton(discord.ui.Button):
-    def __init__(self, label, path):
+    def __init__(self, label, path, silent):
         super().__init__(label=label, style=discord.ButtonStyle.blurple)
         self.path = path
+        self.silent = silent
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
@@ -131,7 +132,7 @@ class AudioButton(discord.ui.Button):
             return
 
         if not interaction.guild.voice_client:
-            connected = await AudioBot.join(interaction) 
+            connected = await AudioBot.join(interaction, self.silent) 
             if not connected:
                 return
 
@@ -140,7 +141,8 @@ class AudioButton(discord.ui.Button):
         await interaction.followup.send(view = view)
 
 class FirstButton(discord.ui.Button):
-    def __init__(self, label):
+    def __init__(self, label, silent):
+        self.silent = silent
         if label == "Aleatorio":
             colour = discord.ButtonStyle.green
         if label == "Anteriores":
@@ -155,13 +157,12 @@ class FirstButton(discord.ui.Button):
 
             audios = Archive.files(path = data.simpsons_base_path)
             if not interaction.guild.voice_client:
-                connected = await AudioBot.join(interaction)
+                connected = await AudioBot.join(interaction, self.silent)
+                while interaction.guild.voice_client.is_playing():
+                    await asyncio.sleep(1)
                 if not connected:
                     return
-
-                await interaction.followup.send("El siguiente prometo que será aleatorio")
-            else:
-                AudioSound(audios, data.simpsons_base_path, interaction)
+            AudioSound(audios, data.simpsons_base_path, interaction)
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
     def __init__(self):
@@ -172,26 +173,32 @@ class LastButton(discord.ui.Button): #Ponerle límite para que en la última ite
         await AudioPanel.edit(interaction)
 
 class StopButton(discord.ui.Button):
-    def __init__(self):
+    def __init__(self, silent):
         super().__init__(label = "Stop", style = discord.ButtonStyle.red)
+        self.silent = silent
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
-        await AudioBot.leave(interaction)
+        await AudioBot.leave(interaction, self.silent)
 
 class AudioPanel():
     async def start(bot, thematic): #voy a tener que añadir variable n para controlar cuántas iteraciones llevamos
                         #settear el de events en n = 0
+        data = InitEnv()
         if thematic == "simpsons":
-            data = InitEnv()
             data = data.simpsons
+        elif thematic == "offtopic":
+            data = data.offtopic
+        else:
+            raise
+
 
         viewer = AudioView(timeout=None)
-        viewer.add_item(FirstButton("Aleatorio"))
-        viewer.button(data["path"])
+        viewer.add_item(FirstButton("Aleatorio", data["silent"]))
+        viewer.button(data["path"], data["silent"])
         viewer.add_item(LastButton())
-        viewer.add_item(StopButton())
+        viewer.add_item(StopButton(data["silent"]))
 
         file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg")
 
@@ -275,11 +282,11 @@ class InitEnv():
 
         self.simpsons_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
         self.simpsons_base_path = os.getenv('SIMPSONSPATH')
-        self.offtopic_og_base_path = os.getenv('SIMPSONSORIGINALPATH')
-        self.offtopic_base_path = os.getenv('SIMPSONSPATH')
+        self.offtopic_og_base_path = os.getenv('OFFTOPICORIGINALPATH')
+        self.offtopic_base_path = os.getenv('OFFTOPICPATH')
 
         self.simpsons = {"channel": self.simpsons_channel_name, "path": self.simpsons_base_path, "og_path": self.simpsons_og_base_path, "silent": False}
-        self.off = {"channel": self.offtopic_channel_name, "path": self.offtopic_base_path, "og_path": self.offtopic_og_base_path, "silent": True}
+        self.offtopic = {"channel": self.offtopic_channel_name, "path": self.offtopic_base_path, "og_path": self.offtopic_og_base_path, "silent": True}
 
 class IdentifyPanel():
     async def channel(interaction):

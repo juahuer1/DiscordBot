@@ -26,6 +26,7 @@ class Events:
         await self.bot.tree.sync()   
 
         await AudioPanel.start(self.bot, "simpsons")
+        await AudioPanel.start(self.bot, "offtopic")
 
         # load_dotenv()
         # channel_name = os.getenv('SIMPSONSCHANNELNAME') 
