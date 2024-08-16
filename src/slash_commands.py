@@ -110,24 +110,21 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="mkdir", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
         async def mkdir(interaction: discord.Interaction, folder: str):
-            
-            channel_obj = await IdentifyPanel.channel(interaction)
+            data = InitEnv()
+            if interaction.channel.name == data.simpsons_channel_name:
+                data = data.simpsons
+            elif interaction.channel.name == data.offtopic_channel_name:
+                data = data.offtopic
+            else:
+                await interaction.response.send_message("No estás en ningún audio panel")
 
-            if not channel_obj:
-                return
-            
-            original_path = channel_obj.get('OriginalPath')
-            base_path = channel_obj.get('BasePath')
-
-            og_full_path = os.path.join(original_path,folder)
-            base_full_path = os.path.join(base_path,folder)
-
-            if(not Archive.same(folder, original_path) or not Archive.same(folder, base_path)):
-                os.mkdir(og_full_path)
-                os.mkdir(base_full_path)
+            if(not Archive.same(folder, data["og_path"]) or not Archive.same(folder, data["path"])):
+                os.mkdir(os.path.join(data["og_path"], folder))
+                os.mkdir(os.path.join(data["path"], folder))
                 await interaction.response.send_message("Carpeta creada en el servidor")
             else:
-                await interaction.response.send_message("Esa carpeta ya existe!")       
+                await interaction.response.send_message("Esa carpeta ya existe!")
+            await AudioPanel.edit(interaction, data, 0)     
 
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")

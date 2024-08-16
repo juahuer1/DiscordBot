@@ -221,10 +221,9 @@ class AudioPanel():
         view = AudioView(timeout=None)
         view.add_item(FirstButton("Aleatorio", data["silent"]))
         view.button(data["path"], data["silent"])
-        view.add_item(LastButton(data, n))
+        if n > 1 and len(os.listdir(data["path"])) > 25:
+            view.add_item(LastButton(data, n))
         view.add_item(StopButton(data))
-
-        view.add_item(discord.ui.Button(label = str(n)))
 
         embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*¿Está Topocho? De nombre Donpi* \n Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?", color=0x00ff00)
         embed.set_image(url="attachment://moe_al_habla.jpg")
@@ -302,7 +301,7 @@ class IdentifyPanel():
     async def channel(interaction):
         data = InitEnv()
         result = {}
-
+        print (interaction.channel.name)
         if(interaction.channel.name == data.simpsons_channel_name):
             result['OriginalPath'] = data.simpsons_og_base_path
             result['BasePath'] = data.simpsons_base_path
