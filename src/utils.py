@@ -165,26 +165,30 @@ class FirstButton(discord.ui.Button):
             AudioSound(audios, data.simpsons_base_path, interaction)
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
-    def __init__(self):
+    def __init__(self, data, n):
+        self.data = data
+        self.n = n
         super().__init__(label = "Siguientes", style = discord.ButtonStyle.grey)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_message("¡Marge, no quedan más audios!")
-        await AudioPanel.edit(interaction)
+        self.n = self.n + 1
+        await AudioPanel.edit(interaction, self.data, self.n)
 
 class StopButton(discord.ui.Button):
-    def __init__(self, silent):
+    def __init__(self, data):
         super().__init__(label = "Stop", style = discord.ButtonStyle.red)
-        self.silent = silent
+        self.data = data
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
-        await AudioBot.leave(interaction, self.silent)
+        await AudioPanel.edit(interaction, self.data, 0)
+        await AudioBot.leave(interaction, self.data["silent"])
 
 class AudioPanel():
-    async def start(bot, thematic): #voy a tener que añadir variable n para controlar cuántas iteraciones llevamos
-                        #settear el de events en n = 0
+    async def start(bot, thematic):
+        n = 0
         data = InitEnv()
         if thematic == "simpsons":
             data = data.simpsons
@@ -192,13 +196,11 @@ class AudioPanel():
             data = data.offtopic
         else:
             raise
-
-
         viewer = AudioView(timeout=None)
         viewer.add_item(FirstButton("Aleatorio", data["silent"]))
         viewer.button(data["path"], data["silent"])
-        viewer.add_item(LastButton())
-        viewer.add_item(StopButton(data["silent"]))
+        viewer.add_item(LastButton(data, n))
+        viewer.add_item(StopButton(data))
 
         file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg")
 
@@ -213,13 +215,21 @@ class AudioPanel():
             deleted = await chanel.purge()
             await chanel.send(view = viewer, embed = embed, file = file, silent = True)
 
-    async def edit(interaction):
+    async def edit(interaction, data, n):
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
+
+        view = AudioView(timeout=None)
+        view.add_item(FirstButton("Aleatorio", data["silent"]))
+        view.button(data["path"], data["silent"])
+        view.add_item(LastButton(data, n))
+        view.add_item(StopButton(data))
+
+        view.add_item(discord.ui.Button(label = str(n)))
 
         embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*¿Está Topocho? De nombre Donpi* \n Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?", color=0x00ff00)
         embed.set_image(url="attachment://moe_al_habla.jpg")
 
-        await messages[0].edit(embed = embed)
+        await messages[0].edit(view = view, embed = embed)
 
 
 class AudioSound():
