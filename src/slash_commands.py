@@ -79,7 +79,7 @@ class SetupSlashCommands():
                 return
             voice_client = interaction.guild.voice_client
             view = AudioView()
-            view.select("./Audios")
+            view.select("./Audios", 0)
             await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
 

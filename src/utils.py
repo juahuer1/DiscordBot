@@ -9,30 +9,45 @@ from pydub import AudioSegment, effects
 
 
 class AudioSelect(discord.ui.Select):
-    def __init__(self, path):
+    def __init__(self, path, m):
         self.path = path
+        self.m = m
         archivos_filtered = Archive.files(path)
         options = []
-        
-        for archivo in archivos_filtered: #Aquí el límite también es 25 creo
+
+        if len(archivos_filtered) > 25 and m >= 1:
+            self.m -=1
+            options.append(discord.SelectOption(label = "Anteriores", value = "Extra"))
+
+        for archivo in archivos_filtered[self.m*25:(self.m+1)*25-1]:
             nombre = Archive.nice_name(archivo)
             option = discord.SelectOption(label = nombre, value = archivo)
             options.append(option)
+        if len(archivos_filtered)>25 and m<(len(archivos_filtered)/25)-1:
+            self.m += 1
+            options.append(discord.SelectOption(label = "Más...", value = "Extra"))
         
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
-        audio_selected = self.values[0]
-
         await interaction.response.defer()
-        AudioSound(audio_selected, self.path, interaction)
+
+        if self.values[0] == "Extra":
+            view = AudioView()
+            view.select(self.path, self.m)
+            messages = [message async for message in interaction.channel.history()]
+            await messages[0].edit(view = view)
+        else:
+            audio_selected = self.values[0]
+
+            AudioSound(audio_selected, self.path, interaction)
          
 class AudioView(discord.ui.View):
     def __init__(self, timeout = 180):
         super().__init__(timeout = timeout)
 
-    def select(self, path):
-        self.add_item(AudioSelect(path))
+    def select(self, path, m):
+        self.add_item(AudioSelect(path, m))
 
     def button(self, path, silent):
         carpetas = os.listdir(path)
@@ -89,16 +104,21 @@ class Archive:
 
     def files(path):
         output = []
-        files = os.listdir(path)
 
-        for file in files:
-            if (file.rsplit('.', 1)[-1] != file):
-                output.append(file)
+        files = os.listdir(path)
+        for first in files: #Primera tanda de archivos/carpetas, Ej: Audios
+            if (first.rsplit('.', 1)[-1] != first):
+                output.append(first)
             else:        
-                second_files = os.listdir(os.path.join(path,file))
-                for last_file in second_files:
-                    if (last_file.rsplit('.', 1)[-1] != last_file):
-                        output.append(os.path.join(file,last_file))
+                second = os.listdir(os.path.join(path,first)) #Segunda tanda de archivos/subcarpetas, Ej: Audios/Simpsons
+                for third in second:
+                    if (third.rsplit('.', 1)[-1] != third):
+                        output.append(os.path.join(first,third))
+                    else:        
+                        fourth = os.listdir(os.path.join(path,first,third)) #Tercera tanda de archivos/subsubcarpetas, Ej: Audios/Simpsons/Homer
+                        for fifth in fourth:
+                            if (fifth.rsplit('.', 1)[-1] != fifth):
+                                output.append(os.path.join(first, third,fifth))
         return output
 
     def same(file, path):
@@ -128,7 +148,7 @@ class AudioButton(discord.ui.Button):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
         if not os.listdir(os.path.join(self.path, self.label)):
-            await interaction.followup.send("Esta carpeta está vacía, llénala!")
+            await interaction.followup.send("¡Marge, aquí tampoco hay audios!")
             return
 
         if not interaction.guild.voice_client:
@@ -137,7 +157,7 @@ class AudioButton(discord.ui.Button):
                 return
 
         view = AudioView()
-        view.select(os.path.join(self.path, self.label))
+        view.select(os.path.join(self.path, self.label), 0)
         await interaction.followup.send(view = view)
 
 class FirstButton(discord.ui.Button):
