@@ -54,8 +54,6 @@ class AudioPanel():
             view.add_item(LastButton(data, n))
         view.add_item(StopButton(data))
 
-        file = discord.File(data["audio_panel_image_path"], filename=data["audio_panel_image_name"])
-
         embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
         embed.set_image(url=data["audio_panel_image_url"])
 
@@ -65,6 +63,8 @@ class AudioPanel():
                 await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
             chanel = discord.utils.get(guild.channels, name = data["channel"])
             deleted = await chanel.purge()
+
+            file = discord.File(data["audio_panel_image_path"], filename=data["audio_panel_image_name"])
             await chanel.send(view = view, embed = embed, file = file, silent = True)
 
     async def edit(interaction, data, n):
