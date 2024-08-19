@@ -1,10 +1,7 @@
 from discord.ext import commands
 import logging
-import discord
-from src.utils import AudioBot, AudioPanel
-import ast
-from dotenv import load_dotenv
-import os
+from src.utils import *
+from src.audios import *
 import asyncio
 
 logger = logging.getLogger(__name__)
@@ -27,17 +24,6 @@ class Events:
 
         await AudioPanel.start(self.bot, "simpsons")
         await AudioPanel.start(self.bot, "offtopic")
-
-        # load_dotenv()
-        # channel_name = os.getenv('SIMPSONSCHANNELNAME') 
-
-        # for guild in self.bot.guilds:
-        #     if not discord.utils.get(guild.channels, name = channel_name):
-        #         overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
-        #         await guild.create_text_channel(name = channel_name, overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
-        #     chanel = discord.utils.get(guild.channels, name = channel_name)
-        #     deleted = await chanel.purge()
-        #     await chanel.send(view = panel.viewer, embed = panel.embed, file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg"), silent = True)
 
         print("Comandos de barra sincronizados en el servidor:")
 

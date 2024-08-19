@@ -2,8 +2,8 @@ import discord
 import random
 import os
 from src.utils import *
-from dotenv import load_dotenv
-
+from src.thematic import *
+from src.audios import *
 
 class SetupSlashCommands():
     def setup_commands(bot):
@@ -17,11 +17,6 @@ class SetupSlashCommands():
             
         @bot.tree.command(name="roll", description="Tira N dados de N caras en este orden NdN (dados, caras) (Ex: /roll 3d6)")
         async def roll(interaction: discord.Interaction, times: int, faces: int):
-            # try:
-            #     rolls, limit = map(int, dice.split('d'))
-            # except Exception:
-            #     await interaction.response.send_message('Format has to be in NdN!')
-            #     return
 
             result = ', '.join(str(random.randint(1, faces)) for r in range(times))
             await interaction.response.send_message(result)
@@ -118,12 +113,12 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("No estás en ningún audio panel")
 
-            if(not Archive.same(folder, data["og_path"]) or not Archive.same(folder, data["path"])):
+            if(Archive.same(folder, data["og_path"]) or Archive.same(folder, data["path"])):
+                await interaction.response.send_message("Esa carpeta ya existe!")
+            else:
                 os.mkdir(os.path.join(data["og_path"], folder))
                 os.mkdir(os.path.join(data["path"], folder))
                 await interaction.response.send_message("Carpeta creada en el servidor")
-            else:
-                await interaction.response.send_message("Esa carpeta ya existe!")
             await AudioPanel.edit(interaction, data, 0)     
 
 

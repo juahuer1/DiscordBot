@@ -1,8 +1,5 @@
 import discord
-from discord import FFmpegPCMAudio
-from discord.ui import Select, View
 from discord.ext import commands
-from collections import Counter
 import random
 import os
 
