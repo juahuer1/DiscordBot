@@ -5,7 +5,6 @@ from discord.ext import commands
 import logging
 from src.events import Events
 from src.utils import *
-from src.commands import SetupCommands  # Importa la función para cargar los comandos
 from src.slash_commands import SetupSlashCommands
 
 description = '''Bot de Juan (con ayuda esporadica de Sergio), pa poder meter audios y lo que nos salga de ahi.
@@ -28,8 +27,5 @@ logging.basicConfig(filename='pibot.log', encoding='utf-8', level=logging.DEBUG)
 # EVENTOS y SLASH COMMANDS
 SetupSlashCommands.setup_commands(bot)
 Events(bot)
-
-# ? COMMANDS
-SetupCommands.setup_commands(bot)
 
 bot.run(bottoken)
