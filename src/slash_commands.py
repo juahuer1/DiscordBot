@@ -80,7 +80,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
         async def cool(interaction: discord.Interaction, member: discord.Member):
-            path = "./Imagenes"
+            path = "./Imagenes/Simpsons"
             archivos = os.listdir(path=path)
             limit = len(archivos)
             result = archivos[random.randint(0, limit-1)]

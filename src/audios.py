@@ -47,16 +47,17 @@ class AudioPanel():
             data = data.offtopic
         else:
             raise
-        viewer = AudioView(timeout=None)
-        viewer.add_item(FirstButton("Aleatorio", data["silent"]))
-        viewer.button(data["path"], data["silent"])
-        viewer.add_item(LastButton(data, n))
-        viewer.add_item(StopButton(data))
+        view = AudioView(timeout=None)
+        view.add_item(FirstButton("Aleatorio", data["silent"]))
+        view.button(data["path"], data["silent"])
+        if n < 1 and len(os.listdir(data["path"])) > 25: #Boton de siguientes, bien hecho
+            view.add_item(LastButton(data, n))
+        view.add_item(StopButton(data))
 
-        file = discord.File("./Imagenes/moe_al_habla.jpg", filename="moe_al_habla.jpg")
+        file = discord.File(data["audio_panel_image_path"], filename=data["audio_panel_image_name"])
 
-        embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*Señor Reves? de nombre Stal*, \n Un momento, A VEEER STAL REVES, alguno de ustedes Stal Reves?", color=0x00ff00)
-        embed.set_image(url="attachment://moe_al_habla.jpg")
+        embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
+        embed.set_image(url=data["audio_panel_image_url"])
 
         for guild in bot.guilds:
             if not discord.utils.get(guild.channels, name = data["channel"]):
@@ -64,7 +65,7 @@ class AudioPanel():
                 await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
             chanel = discord.utils.get(guild.channels, name = data["channel"])
             deleted = await chanel.purge()
-            await chanel.send(view = viewer, embed = embed, file = file, silent = True)
+            await chanel.send(view = view, embed = embed, file = file, silent = True)
 
     async def edit(interaction, data, n):
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
@@ -72,12 +73,12 @@ class AudioPanel():
         view = AudioView(timeout=None)
         view.add_item(FirstButton("Aleatorio", data["silent"]))
         view.button(data["path"], data["silent"])
-        if n < 1 and len(os.listdir(data["path"])) > 25:
+        if n < 1 and len(os.listdir(data["path"])) > 25: #Boton de siguientes, bien hecho
             view.add_item(LastButton(data, n))
         view.add_item(StopButton(data))
 
-        embed = discord.Embed(title="Bar de Moe, Moe al habla", description="*¿Está Topocho? De nombre Donpi* \n Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?", color=0x00ff00)
-        embed.set_image(url="attachment://moe_al_habla.jpg")
+        embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
+        embed.set_image(url=data["audio_panel_image_url"])
 
         await messages[0].edit(view = view, embed = embed)
 
