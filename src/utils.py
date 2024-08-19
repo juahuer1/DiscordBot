@@ -16,23 +16,25 @@ class AudioSelect(discord.ui.Select):
         options = []
 
         if len(archivos_filtered) > 25 and m >= 1:
-            self.m -=1
-            options.append(discord.SelectOption(label = "Anteriores", value = "Extra"))
+            options.append(discord.SelectOption(label = "Anteriores", value = "Extra,-1"))
 
         for archivo in archivos_filtered[self.m*25:(self.m+1)*25-1]:
             nombre = Archive.nice_name(archivo)
             option = discord.SelectOption(label = nombre, value = archivo)
             options.append(option)
         if len(archivos_filtered)>25 and m<(len(archivos_filtered)/25)-1:
-            self.m += 1
-            options.append(discord.SelectOption(label = "Más...", value = "Extra"))
+            options.append(discord.SelectOption(label = "Más...", value = "Extra,1"))
         
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        if self.values[0] == "Extra":
+        my_values = list(self.values[0].split(","))
+        print(my_values)
+        if my_values[0] == "Extra":
+            print(my_values[1])
+            self.m = self.m + int(my_values[1])
             view = AudioView()
             view.select(self.path, self.m)
             messages = [message async for message in interaction.channel.history()]
@@ -175,14 +177,14 @@ class FirstButton(discord.ui.Button):
         if self.label == "Aleatorio":
             data = InitEnv()
 
-            audios = Archive.files(path = data.simpsons_base_path)
+            audios = Archive.files(path = data["path"])
             if not interaction.guild.voice_client:
                 connected = await AudioBot.join(interaction, self.silent)
                 while interaction.guild.voice_client.is_playing():
                     await asyncio.sleep(1)
                 if not connected:
                     return
-            AudioSound(audios, data.simpsons_base_path, interaction)
+            AudioSound(audios, data["path"], interaction)
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
     def __init__(self, data, n):
@@ -241,7 +243,7 @@ class AudioPanel():
         view = AudioView(timeout=None)
         view.add_item(FirstButton("Aleatorio", data["silent"]))
         view.button(data["path"], data["silent"])
-        if n > 1 and len(os.listdir(data["path"])) > 25:
+        if n < 1 and len(os.listdir(data["path"])) > 25:
             view.add_item(LastButton(data, n))
         view.add_item(StopButton(data))
 
