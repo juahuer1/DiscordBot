@@ -48,7 +48,7 @@ class AudioPanel():
         else:
             raise
         view = AudioView(timeout=None)
-        view.add_item(FirstButton("Aleatorio", data["silent"]))
+        view.add_item(FirstButton("Aleatorio", data))
         view.button(data["path"], data["silent"])
         if n < 1 and len(os.listdir(data["path"])) > 25: #Boton de siguientes, bien hecho
             view.add_item(LastButton(data, n))
@@ -71,7 +71,7 @@ class AudioPanel():
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
 
         view = AudioView(timeout=None)
-        view.add_item(FirstButton("Aleatorio", data["silent"]))
+        view.add_item(FirstButton("Aleatorio", data))
         view.button(data["path"], data["silent"])
         if n < 1 and len(os.listdir(data["path"])) > 25: #Boton de siguientes, bien hecho
             view.add_item(LastButton(data, n))
@@ -95,8 +95,8 @@ class AudioView(discord.ui.View):
             self.add_item(AudioButton(f"{carpeta}", path, silent))
 
 class FirstButton(discord.ui.Button):
-    def __init__(self, label, silent):
-        self.silent = silent
+    def __init__(self, label, data):
+        self.data = data
         if label == "Aleatorio":
             colour = discord.ButtonStyle.green
         if label == "Anteriores":
@@ -107,16 +107,15 @@ class FirstButton(discord.ui.Button):
         await interaction.response.defer()
         await Clear.this_channel(interaction)
         if self.label == "Aleatorio":
-            data = InitEnv()
-
-            audios = Archive.files(path = data["path"])
+            
+            audios = Archive.files(path = self.data["path"])
             if not interaction.guild.voice_client:
-                connected = await AudioBot.join(interaction, self.silent)
+                connected = await AudioBot.join(interaction, self.data["silent"])
                 while interaction.guild.voice_client.is_playing():
                     await asyncio.sleep(1)
                 if not connected:
                     return
-            AudioSound(audios, data["path"], interaction)
+            AudioSound(audios, self.data["path"], interaction)
 
 class AudioButton(discord.ui.Button):
     def __init__(self, label, path, silent):
