@@ -181,7 +181,7 @@ class AudioSelect(discord.ui.Select):
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(thinking=True)        
+        await interaction.response.defer()        
         my_values = list(self.values[0].split(","))
         if my_values[0] == "Extra":
             self.m = self.m + int(my_values[1])
@@ -192,7 +192,6 @@ class AudioSelect(discord.ui.Select):
         else:
             audio_selected = self.values[0]
             AudioSound(audio_selected, self.path, interaction)
-        self.view.stop()
 
 class AudioSound():
     def __init__(self, file, path, interaction: discord.Interaction):
