@@ -77,7 +77,7 @@ class FolderSelect(discord.ui.Select):
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()
+        await interaction.response.defer(thinking=True)
         folder_selected = self.values[0]
         audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
 
@@ -93,6 +93,7 @@ class FolderSelect(discord.ui.Select):
         normalizedsound.export(full_base_path, format="mp3")
 
         await interaction.followup.send(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.')
+        self.view.stop()
          
 class FolderView(discord.ui.View):
     def __init__(self, timeout = 180):

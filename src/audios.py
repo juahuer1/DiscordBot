@@ -104,7 +104,7 @@ class FirstButton(discord.ui.Button):
         super().__init__(label = label, style = colour)
 
     async def callback(self, interaction: discord.Interaction): #editar mensaje usando m_panel??
-        await interaction.response.defer()
+        await interaction.response.defer()        
         await Clear.this_channel(interaction)
         if self.label == "Aleatorio":
             
@@ -124,7 +124,7 @@ class AudioButton(discord.ui.Button):
         self.silent = silent
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()
+        await interaction.response.defer()        
         await Clear.this_channel(interaction)
         if not os.listdir(os.path.join(self.path, self.label)):
             await interaction.followup.send("¡Marge, aquí tampoco hay audios!")
@@ -156,7 +156,7 @@ class StopButton(discord.ui.Button):
         self.data = data
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()
+        await interaction.response.defer()        
         await Clear.this_channel(interaction)
         await AudioPanel.edit(interaction, self.data, 0)
         await AudioBot.leave(interaction, self.data["silent"])
@@ -181,8 +181,7 @@ class AudioSelect(discord.ui.Select):
         super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()
-
+        await interaction.response.defer(thinking=True)        
         my_values = list(self.values[0].split(","))
         if my_values[0] == "Extra":
             self.m = self.m + int(my_values[1])
@@ -192,8 +191,8 @@ class AudioSelect(discord.ui.Select):
             await messages[0].edit(view = view)
         else:
             audio_selected = self.values[0]
-
             AudioSound(audio_selected, self.path, interaction)
+        self.view.stop()
 
 class AudioSound():
     def __init__(self, file, path, interaction: discord.Interaction):

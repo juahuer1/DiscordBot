@@ -89,7 +89,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='upload',description="Subir audios al servidor")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
-
+            
             channel_obj = await IdentifyPanel.channel(interaction)
 
             if not channel_obj:
@@ -100,7 +100,7 @@ class SetupSlashCommands():
 
             view = FolderView() 
             view.select(original_path, base_path, audio)
-            await interaction.response.send_message("Selecciona una carpeta:", view=view) #Sacarlo al command
+            await interaction.response.send_message("Selecciona una carpeta:", view=view)
 
 
         @bot.tree.command(name="mkdir", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
