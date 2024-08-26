@@ -121,6 +121,17 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Carpeta creada en el servidor")
             await AudioPanel.edit(interaction, data, 0)     
 
+        @bot.tree.command(name="rmdir", description="Elimina una carpeta del servidor de Offtopic")
+        async def rmdir(interaction: discord.Interaction):
+            data = InitEnv()
+            data = data.offtopic
+
+            original_path = data["og_path"]
+            base_path = data["path"]
+
+            view = FolderView()
+            view.selectRemove(original_path, base_path)
+            await interaction.response.send_message("Selecciona una carpeta:", view=view)
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
