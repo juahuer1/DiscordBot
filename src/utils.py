@@ -1,7 +1,6 @@
 import discord
 import os
 import shutil
-from src.audios import *
 from src.thematic import *
 from pydub import AudioSegment, effects  
 
@@ -138,6 +137,7 @@ class RemoveButton(discord.ui.Button):
         self.folder_selected = folder_selected
 
     async def callback(self, interaction: discord.Interaction):
+        from src.audios import AudioPanel # Para evitar importación circular
         await interaction.response.defer()
         data = InitEnv()
         data = data.offtopic
