@@ -4,7 +4,6 @@ import shutil
 from src.thematic import *
 from pydub import AudioSegment, effects  
 
-
 class Archive:
     def nice_name(file):
         file = os.path.basename(file)

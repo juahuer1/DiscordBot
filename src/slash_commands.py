@@ -8,35 +8,11 @@ from src.audios import *
 class SetupSlashCommands():
     def setup_commands(bot):
 
-        # Define un comando de barra (slash command)
-        @bot.tree.command(name="add", description="Suma dos numeros (Ex: /add 5 11)")
-        async def add(interaction: discord.Interaction, left: int, right: int):
-            result = left + right
-            await interaction.response.send_message(str(result))
-
-            
         @bot.tree.command(name="roll", description="Tira N dados de N caras en este orden NdN (dados, caras) (Ex: /roll 3d6)")
         async def roll(interaction: discord.Interaction, times: int, faces: int):
 
             result = ', '.join(str(random.randint(1, faces)) for r in range(times))
             await interaction.response.send_message(result)
-
-
-        @bot.tree.command(name="choose",description='Elige al azar entre varias opciones (Ex: /choose Pizza Pasta Hamburguesa)')
-        async def choose(interaction: discord.Interaction, choices: str):
-            chosen = random.choice(choices.split())
-            await interaction.response.send_message(chosen)
-
-
-        @bot.tree.command(name="repeat", description="Repite lo mismo muchas veces (Ex: /repeat 5 Feo)")
-        async def repeat(interaction: discord.Interaction, times: int, content: str):
-            # Respondemos con la primera instancia del contenido para cumplir con las reglas de interacción
-            await interaction.response.send_message(content)
-            
-            # Luego usamos followup para enviar las repeticiones restantes
-            for _ in range(times - 1):  # Ya hemos enviado el primer mensaje, por lo que restamos 1
-                await interaction.followup.send(content)
-
 
         @bot.tree.command(name="joined", description="Fecha de inclusion de un miembro (Ex: /joined juanmingla)")
         async def joined(interaction: discord.Interaction, member: discord.Member):
@@ -103,8 +79,8 @@ class SetupSlashCommands():
             await interaction.response.send_message("Selecciona una carpeta:", view=view)
 
 
-        @bot.tree.command(name="mkdir", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
-        async def mkdir(interaction: discord.Interaction, folder: str):
+        @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
+        async def createfolder(interaction: discord.Interaction, folder: str):
             data = InitEnv()
             if interaction.channel.name == data.simpsons_channel_name:
                 data = data.simpsons
@@ -121,8 +97,8 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Carpeta creada en el servidor")
             await AudioPanel.edit(interaction, data, 0)     
 
-        @bot.tree.command(name="rmdir", description="Elimina una carpeta del servidor de Offtopic")
-        async def rmdir(interaction: discord.Interaction):
+        @bot.tree.command(name="deletefolder", description="Elimina una carpeta del servidor de Offtopic")
+        async def deletefolder(interaction: discord.Interaction):
             data = InitEnv()
             data = data.offtopic
 
