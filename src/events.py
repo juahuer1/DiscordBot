@@ -24,6 +24,7 @@ class Events:
 
         await AudioPanel.start(self.bot, "simpsons")
         await AudioPanel.start(self.bot, "offtopic")
+        await HelpPanel.start(self.bot)
 
         print("Comandos de barra sincronizados en el servidor:")
 

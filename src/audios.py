@@ -82,6 +82,24 @@ class AudioPanel():
 
         await messages[0].edit(view = view, embed = embed)
 
+class HelpPanel():
+    async def start(bot):
+        data = InitEnv()
+        data = data.help
+        embed1 = discord.Embed(title="Ayuda Comandos", description=data["comandos"], color=0x00ff00)
+        embed1.set_image(url=data["help_panel_command_url"])
+        embed2 = discord.Embed(title="Ayuda Paneles", description=data["paneles"], color=0x00ff00)
+        embed2.set_image(url=data["help_panel_panel_url"])
+        for guild in bot.guilds:
+            if not discord.utils.get(guild.channels, name = data["channel"]):
+                overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
+                await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
+            chanel = discord.utils.get(guild.channels, name = data["channel"])
+            deleted = await chanel.purge()
+
+        files = [discord.File(data["help_panel_command_path"], filename=data["help_panel_command_name"]), discord.File(data["help_panel_panel_path"], filename=data["help_panel_panel_name"])]
+        await chanel.send(embeds = [embed1,embed2], files= files, silent = True)
+
 class AudioView(discord.ui.View):
     def __init__(self, timeout = 180):
         super().__init__(timeout = timeout)

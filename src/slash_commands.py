@@ -19,12 +19,12 @@ class SetupSlashCommands():
             await interaction.response.send_message(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
 
 
-        @bot.tree.command(name='bot', description="Mola mi bot u que? (Ex: /bot)")
+        @bot.tree.command(name='bot', description="Dice si el bot mola (Ex: /bot)")
         async def _bot(interaction: discord.Interaction):
             await interaction.response.send_message('Es la peripocha.')
 
 
-        @bot.tree.command(name="join", description="Agrega el bot al chat (Ex: /join)")
+        @bot.tree.command(name="join", description="Agrega el bot al chat silenciosamente (Ex: /join)")
         async def join(interaction: discord.Interaction):
             if not interaction.guild.voice_client:
                 connected = await AudioBot.join(interaction, silent = True)
@@ -34,7 +34,7 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Bot ya en el canal")
 
 
-        @bot.tree.command(name="leave", description="Elimina el bot del chat (Ex: /leave)")
+        @bot.tree.command(name="leave", description="Elimina el bot del chat de audio (Ex: /leave)")
         async def leave(interaction: discord.Interaction):
             disconnected = await AudioBot.leave(interaction, silent = True)
             if disconnected:
@@ -54,7 +54,7 @@ class SetupSlashCommands():
             await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
 
-        @bot.tree.command(name='cool',description="Dice si alguien chola (Ex: /cool Khrisleo)")
+        @bot.tree.command(name='cool',description="Dice si alguien mola (Ex: /cool Khrisleo)")
         async def cool(interaction: discord.Interaction, member: discord.Member):
             path = "./Imagenes/Simpsons"
             archivos = os.listdir(path=path)
@@ -63,7 +63,7 @@ class SetupSlashCommands():
             await interaction.response.send_message(file=discord.File(path+"/"+result))
 
 
-        @bot.tree.command(name='upload',description="Subir audios al servidor")
+        @bot.tree.command(name='upload',description="Subir audios al servidor(Ex: /upload)")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
             
             channel_obj = await IdentifyPanel.channel(interaction)
@@ -79,7 +79,7 @@ class SetupSlashCommands():
             await interaction.response.send_message("Selecciona una carpeta:", view=view)
 
 
-        @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /mkdir)")
+        @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
         async def createfolder(interaction: discord.Interaction, folder: str):
             data = InitEnv()
             if interaction.channel.name == data.simpsons_channel_name:
@@ -97,7 +97,7 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Carpeta creada en el servidor")
             await AudioPanel.edit(interaction, data, 0)     
 
-        @bot.tree.command(name="deletefolder", description="Elimina una carpeta del servidor de Offtopic")
+        @bot.tree.command(name="deletefolder", description="Elimina una carpeta del servidor de Offtopic (Ex: /deletefolder)")
         async def deletefolder(interaction: discord.Interaction):
             data = InitEnv()
             data = data.offtopic
