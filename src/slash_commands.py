@@ -107,9 +107,21 @@ class SetupSlashCommands():
             base_path = data["path"]
 
             view = FolderView()
-            view.selectRemove(original_path, base_path)
+            view.selectRemoveFolder(original_path, base_path)
             await interaction.response.send_message("Selecciona una carpeta:", view=view)
 
+
+        @bot.tree.command(name="deleteaudio", description="Elimina un audio del servidor de Offtopic (Ex: /deleteaudio)")
+        async def deleteaudio(interaction: discord.Interaction):
+            data = InitEnv()
+            data = data.offtopic
+
+            original_path = data["og_path"]
+            base_path = data["path"]
+
+            view = FolderView()
+            view.selectRemoveFile(original_path, base_path)
+            await interaction.response.send_message("Elige una opcion del menu:", view=view)
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
