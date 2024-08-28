@@ -81,11 +81,10 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
         async def createfolder(interaction: discord.Interaction, folder: str):
-            data = InitEnv()
-            if interaction.channel.name == data.simpsons_channel_name:
-                data = data.simpsons
-            elif interaction.channel.name == data.offtopic_channel_name:
-                data = data.offtopic
+                if interaction.channel.name == InitEnv.simpsons_channel_name:
+                data = InitEnv.simpsons
+            elif interaction.channel.name == InitEnv.offtopic_channel_name:
+                data = InitEnv.offtopic
             else:
                 await interaction.response.send_message("No estás en ningún audio panel")
 
@@ -100,8 +99,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="deletefolder", description="Elimina una carpeta del servidor de Offtopic (Ex: /deletefolder)")
         async def deletefolder(interaction: discord.Interaction):
-            data = InitEnv()
-            data = data.offtopic
+            data = InitEnv.offtopic
 
             original_path = data["og_path"]
             base_path = data["path"]
@@ -113,8 +111,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name="deleteaudio", description="Elimina un audio del servidor de Offtopic (Ex: /deleteaudio)")
         async def deleteaudio(interaction: discord.Interaction):
-            data = InitEnv()
-            data = data.offtopic
+            data = InitEnv.offtopic
 
             original_path = data["og_path"]
             base_path = data["path"]

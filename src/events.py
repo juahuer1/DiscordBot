@@ -12,8 +12,9 @@ class Events:
         self.bot = bot
         # Registrar los eventos en el bot
         self.bot.event(self.on_ready)
-        self.bot.event(self.on_command_error)
+        self.bot.event(self.on_guild_join)
         self.bot.event(self.on_voice_state_update)
+        self.bot.event(self.on_command_error)
 
     async def on_ready(self):
         print(f'Bot conectado como {self.bot.user}')
@@ -27,6 +28,11 @@ class Events:
         await HelpPanel.start(self.bot)
 
         print("Comandos de barra sincronizados en el servidor:")
+
+    async def on_guild_join(guild):
+        await AudioPanel.start(self.bot, "simpsons")
+        await AudioPanel.start(self.bot, "offtopic")
+        await HelpPanel.start(self.bot)
 
     async def on_voice_state_update(self, member, before, after):
         if not member.guild.voice_client:

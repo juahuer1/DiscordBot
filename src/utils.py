@@ -56,7 +56,7 @@ class Archive:
                 if (os.path.basename(my_file) == file):
                     status = True
             
-            return statusç
+            return status
         
     def es_nombre_valido(nombre_archivo):
         # Expresión regular para permitir letras (a-z, A-Z), números (0-9), y guion normal (-)
@@ -180,8 +180,7 @@ class RemoveButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         from src.audios import AudioPanel # Para evitar importación circular
         await interaction.response.defer()
-        data = InitEnv()
-        data = data.offtopic
+        data = InitEnv.offtopic
 
         shutil.rmtree(os.path.join(self.base_path,self.folder_selected))
         shutil.rmtree(os.path.join(self.og_path,self.folder_selected))
@@ -204,7 +203,7 @@ class FolderView(discord.ui.View):
 
 class IdentifyPanel():
     async def channel(interaction):
-        data = InitEnv()
+        data = InitEnv
         result = {}
 
         if(interaction.channel.name == data.simpsons_channel_name):

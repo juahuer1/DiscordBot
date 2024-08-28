@@ -12,8 +12,7 @@ class AudioBot:
             channel = interaction.user.voice.channel
             await channel.connect()
             await interaction.client.change_presence(status = discord.Status.online, activity = discord.CustomActivity(name = "Cocinando memes"))           
-            data = InitEnv()
-            path = os.path.join(data.simpsons_base_path, 'Saludos')
+            path = os.path.join(InitEnv.simpsons_base_path, 'Saludos')
             saluditos = os.listdir(path)
             if(not silent):
                 AudioSound(saluditos, path, interaction)
@@ -24,8 +23,7 @@ class AudioBot:
 
     async def leave (interaction: discord.Interaction, silent = False):
         if interaction.guild.voice_client:
-            data = InitEnv()
-            path = os.path.join(data.simpsons_base_path, 'Despedidas')
+            path = os.path.join(InitEnv.simpsons_base_path, 'Despedidas')
             despediditas = os.listdir(path)
             if(not silent):
                 AudioSound(despediditas, path, interaction)
@@ -40,11 +38,10 @@ class AudioBot:
 class AudioPanel():
     async def start(bot, thematic):
         n = 0
-        data = InitEnv()
         if thematic == "simpsons":
-            data = data.simpsons
+            data = InitEnv.simpsons
         elif thematic == "offtopic":
-            data = data.offtopic
+            data = InitEnv.offtopic
         else:
             raise
         view = AudioView(timeout=None)
@@ -84,8 +81,7 @@ class AudioPanel():
 
 class HelpPanel():
     async def start(bot):
-        data = InitEnv()
-        data = data.help
+        data = InitEnv.helper
         embed1 = discord.Embed(title="Ayuda Comandos", description=data["comandos"], color=0x00ff00)
         embed1.set_image(url=data["help_panel_command_url"])
         embed2 = discord.Embed(title="Ayuda Paneles", description=data["paneles"], color=0x00ff00)
