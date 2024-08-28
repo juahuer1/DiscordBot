@@ -1,5 +1,6 @@
 import discord
 import os
+import re
 import shutil
 from src.thematic import *
 from pydub import AudioSegment, effects  
@@ -55,7 +56,17 @@ class Archive:
                 if (os.path.basename(my_file) == file):
                     status = True
             
-            return status
+            return statusç
+        
+    def es_nombre_valido(nombre_archivo):
+        # Expresión regular para permitir letras (a-z, A-Z), números (0-9), y guion normal (-)
+        patron = r'^[a-zA-Z0-9-]+$'
+        
+        # Verificar si el nombre coincide con el patrón
+        if re.match(patron, nombre_archivo):
+            return True
+        else:
+            return False
 
 class Clear():
     async def this_channel(interaction):
@@ -80,6 +91,10 @@ class FolderSelect(discord.ui.Select):
         await interaction.response.defer(thinking=True)
         folder_selected = self.values[0]
         audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
+
+        if(Archive.es_nombre_valido(self.audio.filename) == False):
+            await interaction.followup.send('Hay un problema con el nombre del archivo, recuerda que solo puede contener letras, números y guión alto (-), no introduzcas espacios!')
+            return
 
         if(Archive.same(self.audio.filename, os.path.join(self.original_path, folder_selected)) or Archive.same(self.audio.filename, os.path.join(self.base_path, folder_selected))):
             await interaction.followup.send('Ya existe un archivo con ese nombre!')
@@ -161,6 +176,7 @@ class IdentifyPanel():
     async def channel(interaction):
         data = InitEnv()
         result = {}
+
         if(interaction.channel.name == data.simpsons_channel_name):
             result['OriginalPath'] = data.simpsons_og_base_path
             result['BasePath'] = data.simpsons_base_path

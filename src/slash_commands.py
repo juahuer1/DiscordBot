@@ -14,6 +14,7 @@ class SetupSlashCommands():
             result = ', '.join(str(random.randint(1, faces)) for r in range(times))
             await interaction.response.send_message(result)
 
+
         @bot.tree.command(name="joined", description="Fecha de inclusion de un miembro (Ex: /joined juanmingla)")
         async def joined(interaction: discord.Interaction, member: discord.Member):
             await interaction.response.send_message(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
@@ -38,7 +39,7 @@ class SetupSlashCommands():
         async def leave(interaction: discord.Interaction):
             disconnected = await AudioBot.leave(interaction, silent = True)
             if disconnected:
-                await interaction.response.send_message("Maria excluida, Sergio excluido, PiBot, me gusta como juegas, por eso me cuesta tanto excluirte.")
+                await interaction.response.send_message("Me doy el piro!")
             else:
                 await interaction.response.send_message("Bot no esta en el canal")
 
@@ -65,7 +66,6 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='upload',description="Subir audios al servidor(Ex: /upload)")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
-            
             channel_obj = await IdentifyPanel.channel(interaction)
 
             if not channel_obj:
@@ -97,6 +97,7 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Carpeta creada en el servidor")
             await AudioPanel.edit(interaction, data, 0)     
 
+
         @bot.tree.command(name="deletefolder", description="Elimina una carpeta del servidor de Offtopic (Ex: /deletefolder)")
         async def deletefolder(interaction: discord.Interaction):
             data = InitEnv()
@@ -108,6 +109,7 @@ class SetupSlashCommands():
             view = FolderView()
             view.selectRemove(original_path, base_path)
             await interaction.response.send_message("Selecciona una carpeta:", view=view)
+
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):

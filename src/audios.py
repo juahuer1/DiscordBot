@@ -145,7 +145,7 @@ class AudioButton(discord.ui.Button):
         await interaction.response.defer()        
         await Clear.this_channel(interaction)
         if not os.listdir(os.path.join(self.path, self.label)):
-            await interaction.followup.send("¡Marge, aquí tampoco hay audios!")
+            await interaction.followup.send("La carpeta está vacía")
             return
 
         if not interaction.guild.voice_client:
@@ -164,7 +164,7 @@ class LastButton(discord.ui.Button): #Ponerle límite para que en la última ite
         super().__init__(label = "Siguientes", style = discord.ButtonStyle.grey)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.send_message("¡Marge, no quedan más audios!")
+        await interaction.response.send_message("La carpeta está vacía")
         self.n = self.n + 1
         await AudioPanel.edit(interaction, self.data, self.n)
 
