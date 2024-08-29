@@ -45,27 +45,28 @@ class InitEnv:
       "channel": help_channel_name,
       "title": "Panel de ayuda a la utilización de PiBot",
       "comandos": """
-      Los comandos del bot se utilizan escribiendo en cualquier canal de texto barra (/), aparece una lista de los comandos disponibles y al escribirlos aparece debajo su descripción junto a un pequeño ejemplo de uso. Aquí los volvemos a explicar algunos en más detalle:\n 
-         **• /audios** - Introuduce en el chat de texto un selector de audios que permite elegir uno y que el bot se una al canal de audio para reproducirlo (otra opción más interactiva es usar los paneles de audio) (Ex: /audios)\n
-         **• /bot** - Dice si el bot mola (Ex: /bot)\n
-         **• /clearaudio** - Interrumpimos audio que se esté reproduciendo (Ex: /clearaudio)\n
-         **• /cool** - Dice si alguien mola (Ex: /cool Khrisleo)\n
-         **• /createfolder** - Permite crear una carpeta para almacenar audios, la carpeta se creará en un panel u otro (Simpsons u Offtopic) en función del panel donde se lance el comando (Ex: /createfolder)\n
-         **• /delete** - SOLO elimina una carpeta o archivo del servidor de Offtopic independientemente de donde se lance, si quieres borrar un audio del canal de Los Simpsons contacta con Sergio o Juan (Ex: /deletefolder)\n
-         **• /join** - Agrega el bot al chat silenciosamente (Ex: /join)\n
+      Escribe barra (/) en cualquier canal de texto para ver una lista de comandos disponibles con una descripción y un ejemplo.\n 
+         **• /roll** - Tira *times* dados de *faces* caras (Ex: /roll 3d6)\n
          **• /joined** - Fecha de inclusion de un miembro (Ex: /joined juanmingla)\n
-         **• /leave** - Elimina el bot del chat de audio (Ex: /leave)\n
-         **• /links** - Links de ayuda para obtener y procesar los audios, etc (Ex: /links)\n
-         **• /roll** - Tira N dados de N caras en este orden NdN (dados, caras) (Ex: /roll 3d6)\n
-         **• /upload** - Permite subir y almacenar audios en el servidor, arrastra el audio que desees y un selector te audará a elegir en que carpeta quieres almacenar el audio, IMPORTANTE dependiendo de el panel de audio donde lances el comando, lo subirás a Simpsons o a Offtopic, preferiblemente utiliza nombres separados por guiones y sin acentos ni caracteres extraños (Ex: /upload)\n
+         **• /bot** - Dice si el bot mola (Ex: /bot)\n
+         **• /join** - Agrega el bot al chat silenciosamente (Ex: /join)\n
+         **• /leave** - Elimina el bot del chat silenciosamente (Ex: /leave)\n
+         **• /audios** - Elige y reproduce un audio [Se recomienda usar los Paneles] (Ex: /audios)\n
+         **• /cool** - Dice si alguien mola (Ex: /cool Khrisleo)\n
+         **• /upload** - Sube un audio al Panel en el que te encuentres. Separa las palabras con guiones y evita acentos u otros caracteres extraños (Ex: /upload)\n
+         **• /createfolder** - Crea una carpeta en el Panel en el que te encuentres (Ex: /createfolder)\n
+         **• /delete** - SOLO elimina una carpeta o audio de Offtopic. Si quieres que sea en Los Simpsons contacta con Sergio o Juan (Ex: /delete)\n
+         **• /clearaudio** - Interrumpimos audio que se esté reproduciendo (Ex: /clearaudio)\n
       """,
       "help_panel_command_path": "./Imagenes/Help/comandos.png",
-                   "help_panel_command_name": "comandos.png",
-                   "help_panel_command_url": "attachment://comandos.png",
+      "help_panel_command_name": "comandos.png",
+      "help_panel_command_url": "attachment://comandos.png",
       "paneles": """
-         Hay dos paneles de audio, uno correspondiente a audios relacionados con Los Simpsons y otro llamado Offtopic donde se pueden subir audios de cualquier índole. Los usuarios pueden crear carpetas con el comando /createfolder mencionado anteriormente y aparecera un nuevo botón en el panel que se haya creado la carpeta, al clicar en cada uno de estos botones aparecerá un selector de audios para reproducir. Estos audios se pueden subir a la carpeta con el comando /upload
+         **audio-panel** está dedicado a Los Simpsons exclusivamente \n
+         **audio-panel-offtopic** recoge audios de cualquier otra temática \n
+         Utiliza */createfolder* para añadir botones y llénalos de audios con */upload*
       """,
       "help_panel_panel_path": "./Imagenes/Help/paneles.png",
-                   "help_panel_panel_name": "paneles.png",
-                   "help_panel_panel_url": "attachment://paneles.png",
+      "help_panel_panel_name": "paneles.png",
+      "help_panel_panel_url": "attachment://paneles.png",
    }
