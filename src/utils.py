@@ -73,6 +73,14 @@ class Clear():
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
         await interaction.channel.purge(after = messages[0])
 
+class FolderView(discord.ui.View):
+    def init(self, timeout = 180):
+        super().init(timeout = timeout)
+
+    def select(self, original_path, base_path, audio):
+        self.add_item(FolderSelect(original_path, base_path, audio))
+
+
 class FolderSelect(discord.ui.Select):
     def __init__(self, original_path, base_path, audio):
         self.original_path = original_path
