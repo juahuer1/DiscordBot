@@ -18,7 +18,7 @@ class AudioBot:
                 AudioSound(saluditos, path, interaction)
             return True
         else:
-            await interaction.followup.send("Bot no se puede unir, metete en un canal de audio!")
+            await interaction.followup.send("Bot no se puede unir, metete en un canal de audio!", silent = True)
             return False
 
     async def leave (interaction: discord.Interaction, silent = False):
@@ -148,7 +148,7 @@ class AudioButton(discord.ui.Button):
         await interaction.response.defer()        
         await Clear.this_channel(interaction)
         if not os.listdir(os.path.join(self.path, self.label)):
-            await interaction.followup.send("La carpeta está vacía")
+            await interaction.followup.send("La carpeta está vacía", silent = True)
             return
 
         if not interaction.guild.voice_client:
@@ -158,7 +158,7 @@ class AudioButton(discord.ui.Button):
 
         view = AudioView()
         view.select(os.path.join(self.path, self.label), 0)
-        await interaction.followup.send(view = view)
+        await interaction.followup.send(view = view, silent = True)
 
 class LastButton(discord.ui.Button): #Ponerle límite para que en la última iteración no salga
     def __init__(self, data, n):
@@ -167,7 +167,7 @@ class LastButton(discord.ui.Button): #Ponerle límite para que en la última ite
         super().__init__(label = "Siguientes", style = discord.ButtonStyle.grey)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.send_message("La carpeta está vacía")
+        await interaction.response.send_message("La carpeta está vacía", silent = True)
         self.n = self.n + 1
         await AudioPanel.edit(interaction, self.data, self.n)
 
@@ -190,7 +190,7 @@ class AudioSelect(discord.ui.Select):
         options = []
 
         if len(archivos_filtered) > 25 and m >= 1:
-            options.append(discord.SelectOption(label = "Anteriores", value = "Extra,-1"))
+            options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
 
         for archivo in archivos_filtered[self.m*25:(self.m+1)*25-1]:
             nombre = Archive.nice_name(archivo)
@@ -223,7 +223,7 @@ class AudioSelectRemove(discord.ui.Select):
         options = []
 
         if len(archivos_filtered) > 25 and m >= 1:
-            options.append(discord.SelectOption(label = "Anteriores", value = "Extra,-1"))
+            options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
 
         for archivo in archivos_filtered[self.m*25:(self.m+1)*25-1]:
             nombre = Archive.nice_name(archivo)

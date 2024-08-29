@@ -12,17 +12,17 @@ class SetupSlashCommands():
         async def roll(interaction: discord.Interaction, times: int, faces: int):
 
             result = ', '.join(str(random.randint(1, faces)) for r in range(times))
-            await interaction.response.send_message(result)
+            await interaction.response.send_message(result, silent = True)
 
 
         @bot.tree.command(name="joined", description="Fecha de inclusion de un miembro (Ex: /joined juanmingla)")
         async def joined(interaction: discord.Interaction, member: discord.Member):
-            await interaction.response.send_message(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
+            await interaction.response.send_message(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}', silent = True)
 
 
         @bot.tree.command(name='bot', description="Dice si el bot mola (Ex: /bot)")
         async def _bot(interaction: discord.Interaction):
-            await interaction.response.send_message('Es la peripocha.')
+            await interaction.response.send_message('Es la peripocha.', silent = True)
 
 
         @bot.tree.command(name="join", description="Agrega el bot al chat silenciosamente (Ex: /join)")
@@ -30,18 +30,18 @@ class SetupSlashCommands():
             if not interaction.guild.voice_client:
                 connected = await AudioBot.join(interaction, silent = True)
                 if(connected):
-                    await interaction.response.send_message("Bot conectado al canal de voz.")
+                    await interaction.response.send_message("Bot conectado al canal de voz.", silent = True)
             else:
-                await interaction.response.send_message("Bot ya en el canal")
+                await interaction.response.send_message("Bot ya en el canal", silent = True)
 
 
         @bot.tree.command(name="leave", description="Elimina el bot del chat de audio (Ex: /leave)")
         async def leave(interaction: discord.Interaction):
             disconnected = await AudioBot.leave(interaction, silent = True)
             if disconnected:
-                await interaction.response.send_message("Me doy el piro!")
+                await interaction.response.send_message("Me doy el piro!", silent = True)
             else:
-                await interaction.response.send_message("Bot no esta en el canal")
+                await interaction.response.send_message("Bot no esta en el canal", silent = True)
 
 
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
@@ -52,7 +52,7 @@ class SetupSlashCommands():
             voice_client = interaction.guild.voice_client
             view = AudioView()
             view.select("./Audios", 0)
-            await interaction.response.send_message("Elige una opcion del menu:", view=view)
+            await interaction.response.send_message("Elige una opcion del menu:", view=view, silent = True)
 
 
         @bot.tree.command(name='cool',description="Dice si alguien mola (Ex: /cool Khrisleo)")
@@ -61,7 +61,7 @@ class SetupSlashCommands():
             archivos = os.listdir(path=path)
             limit = len(archivos)
             result = archivos[random.randint(0, limit-1)]
-            await interaction.response.send_message(file=discord.File(path+"/"+result))
+            await interaction.response.send_message(file=discord.File(path+"/"+result), silent = True)
 
 
         @bot.tree.command(name='upload',description="Subir audios al servidor(Ex: /upload)")
@@ -76,24 +76,24 @@ class SetupSlashCommands():
 
             view = FolderView() 
             view.select(original_path, base_path, audio)
-            await interaction.response.send_message("Selecciona una carpeta:", view=view)
+            await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
 
         @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
         async def createfolder(interaction: discord.Interaction, folder: str):
-                if interaction.channel.name == InitEnv.simpsons_channel_name:
+            if interaction.channel.name == InitEnv.simpsons_channel_name:
                 data = InitEnv.simpsons
             elif interaction.channel.name == InitEnv.offtopic_channel_name:
                 data = InitEnv.offtopic
             else:
-                await interaction.response.send_message("No estás en ningún audio panel")
+                await interaction.response.send_message("No estás en ningún audio panel", silent = True)
 
             if(Archive.same(folder, data["og_path"]) or Archive.same(folder, data["path"])):
-                await interaction.response.send_message("Esa carpeta ya existe!")
+                await interaction.response.send_message("Esa carpeta ya existe!", silent = True)
             else:
                 os.mkdir(os.path.join(data["og_path"], folder))
                 os.mkdir(os.path.join(data["path"], folder))
-                await interaction.response.send_message("Carpeta creada en el servidor")
+                await interaction.response.send_message("Carpeta creada en el servidor", silent = True)
             await AudioPanel.edit(interaction, data, 0)     
 
 
@@ -104,9 +104,9 @@ class SetupSlashCommands():
             original_path = data["og_path"]
             base_path = data["path"]
 
-            view = FolderView()
-            view.selectRemoveFolder(original_path, base_path)
-            await interaction.response.send_message("Selecciona una carpeta:", view=view)
+            view = AuxView()
+            view.select(base_path, original_path, 0)
+            await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
 
         @bot.tree.command(name="deleteaudio", description="Elimina un audio del servidor de Offtopic (Ex: /deleteaudio)")
@@ -118,14 +118,14 @@ class SetupSlashCommands():
 
             view = FolderView()
             view.selectRemoveFile(original_path, base_path)
-            await interaction.response.send_message("Elige una opcion del menu:", view=view)
+            await interaction.response.send_message("Elige una opcion del menu:", view=view, silent = True)
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
             voice_client = interaction.guild.voice_client
             if voice_client:
                 voice_client.stop()
-                await interaction.response.send_message("Audio interrumpido")
+                await interaction.response.send_message("Audio interrumpido", silent = True)
             else:
-                await interaction.response.send_message("No hay audio reproduciendose") 
+                await interaction.response.send_message("No hay audio reproduciendose", silent = True)
         return bot
