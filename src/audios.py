@@ -93,8 +93,8 @@ class HelpPanel():
             chanel = discord.utils.get(guild.channels, name = data["channel"])
             deleted = await chanel.purge()
 
-        files = [discord.File(data["help_panel_command_path"], filename=data["help_panel_command_name"]), discord.File(data["help_panel_panel_path"], filename=data["help_panel_panel_name"])]
-        await chanel.send(embeds = [embed1,embed2], files= files, silent = True)
+            files = [discord.File(data["help_panel_command_path"], filename=data["help_panel_command_name"]), discord.File(data["help_panel_panel_path"], filename=data["help_panel_panel_name"])]
+            await chanel.send(embeds = [embed1,embed2], files= files, silent = True)
 
 class AudioView(discord.ui.View):
     def __init__(self, timeout = 180):
