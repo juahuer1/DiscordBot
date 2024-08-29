@@ -107,12 +107,6 @@ class AudioView(discord.ui.View):
         carpetas = os.listdir(path)
         for carpeta in carpetas:
             self.add_item(AudioButton(f"{carpeta}", path, silent))
-
-    def selectRemoveAudio(self, original_path, audios_path, m):
-        self.add_item(AudioSelectRemove(original_path, audios_path, m))
-
-    def buttonRemoveAudio(self, original_path, audios_path, audio_selected):
-        self.add_item(RemoveFileButton(original_path, audios_path, audio_selected))
         
 
 class FirstButton(discord.ui.Button):
@@ -214,61 +208,6 @@ class AudioSelect(discord.ui.Select):
             audio_selected = self.values[0]
             AudioSound(audio_selected, self.path, interaction)
 
-class AudioSelectRemove(discord.ui.Select):
-    def __init__(self, original_path, audios_path, m):
-        self.original_path = original_path
-        self.audios_path = audios_path
-        self.m = m
-        archivos_filtered = Archive.files(audios_path)
-        options = []
-
-        if len(archivos_filtered) > 25 and m >= 1:
-            options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
-
-        for archivo in archivos_filtered[self.m*25:(self.m+1)*25-1]:
-            nombre = Archive.nice_name(archivo)
-            option = discord.SelectOption(label = nombre, value = archivo)
-            options.append(option)
-        if len(archivos_filtered)>25 and m<(len(archivos_filtered)/25)-1:
-            options.append(discord.SelectOption(label = "Más...", value = "Extra,1"))
-        
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
-
-    async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()        
-        my_values = list(self.values[0].split(","))
-        if my_values[0] == "Extra":
-            self.m = self.m + int(my_values[1])
-            view = AudioView()
-            view.selectRemoveAudio(self.original_path, self.audios_path, self.m)
-            messages = [message async for message in interaction.channel.history()]
-            await messages[0].edit(view = view)
-        else:
-            audio_selected = self.values[0]
-            original_path = os.path.join(self.original_path, audio_selected)
-            audio_path = os.path.join(self.audios_path, audio_selected)
-            
-            view = AudioView()
-            view.buttonRemoveAudio(original_path, audio_path, audio_selected)
-
-            await interaction.followup.send(content=f'Has seleccionado borrar {audio_selected}, ¿estás seguro?', view = view)
-            self.view.stop()
-
-class RemoveFileButton(discord.ui.Button):
-    def __init__(self, original_path, audios_path, audio_selected):
-        self.audios_path = audios_path
-        self.original_path = original_path
-        self.audio_selected = audio_selected
-        super().__init__(label="Borrar", style=discord.ButtonStyle.red)
-
-    async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()
-
-        os.remove(self.original_path) 
-        os.remove(self.audios_path) 
-
-        await interaction.followup.send(f'Audio {self.audio_selected} eliminado correctamente')
-        self.view.stop()
 
 class AudioSound():
     def __init__(self, file, path, interaction: discord.Interaction):

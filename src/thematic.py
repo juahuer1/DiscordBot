@@ -55,7 +55,7 @@ class InitEnv:
          **• /cool** - Dice si alguien mola (Ex: /cool Khrisleo)\n
          **• /upload** - Permite subir y almacenar audios en el servidor, arrastra el audio que desees y un selector te audará a elegir en que carpeta quieres almacenar el audio, IMPORTANTE dependiendo de el panel de audio donde lances el comando, lo subirás a Simpsons o a Offtopic, preferiblemente utiliza nombres separados por guiones y sin acentos ni caracteres extraños (Ex: /upload)\n
          **• /createfolder** - Permite crear una carpeta para almacenar audios, la carpeta se creará en un panel u otro (Simpsons u Offtopic) en función del panel donde se lance el comando (Ex: /createfolder)"\n
-         **• /deletefolder** - SOLO elimina una carpeta del servidor de Offtopic independientemente de donde se lance, si quieres borrar un audio del canal de Los Simpsons contacta con Sergio o Juan (Ex: /deletefolder)\n
+         **• /delete** - SOLO elimina una carpeta o archivo del servidor de Offtopic independientemente de donde se lance, si quieres borrar un audio del canal de Los Simpsons contacta con Sergio o Juan (Ex: /deletefolder)\n
          **• /clearaudio** - Interrumpimos audio que se esté reproduciendo (Ex: /clearaudio)\n
       """,
       "help_panel_command_path": "./Imagenes/Help/comandos.png",
