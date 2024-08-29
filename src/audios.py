@@ -207,7 +207,6 @@ class AudioSelect(discord.ui.Select):
             audio_selected = self.values[0]
             AudioSound(audio_selected, self.path, interaction)
 
-
 class AudioSound():
     def __init__(self, file, path, interaction: discord.Interaction):
         if type(file) is list:

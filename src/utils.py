@@ -80,7 +80,6 @@ class FolderView(discord.ui.View):
     def select(self, original_path, base_path, audio):
         self.add_item(FolderSelect(original_path, base_path, audio))
 
-
 class FolderSelect(discord.ui.Select):
     def __init__(self, original_path, base_path, audio):
         self.original_path = original_path

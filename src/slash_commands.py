@@ -14,16 +14,13 @@ class SetupSlashCommands():
             result = ', '.join(str(random.randint(1, faces)) for r in range(times))
             await interaction.response.send_message(result, silent = True)
 
-
         @bot.tree.command(name="joined", description="Fecha de inclusion de un miembro (Ex: /joined juanmingla)")
         async def joined(interaction: discord.Interaction, member: discord.Member):
             await interaction.response.send_message(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}', silent = True)
 
-
         @bot.tree.command(name='bot', description="Dice si el bot mola (Ex: /bot)")
         async def _bot(interaction: discord.Interaction):
             await interaction.response.send_message('Es la peripocha.', silent = True)
-
 
         @bot.tree.command(name="join", description="Agrega el bot al chat silenciosamente (Ex: /join)")
         async def join(interaction: discord.Interaction):
@@ -34,7 +31,6 @@ class SetupSlashCommands():
             else:
                 await interaction.response.send_message("Bot ya en el canal", silent = True)
 
-
         @bot.tree.command(name="leave", description="Elimina el bot del chat de audio (Ex: /leave)")
         async def leave(interaction: discord.Interaction):
             disconnected = await AudioBot.leave(interaction, silent = True)
@@ -42,7 +38,6 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Me doy el piro!", silent = True)
             else:
                 await interaction.response.send_message("Bot no esta en el canal", silent = True)
-
 
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
@@ -54,7 +49,6 @@ class SetupSlashCommands():
             view.select("./Audios", 0)
             await interaction.response.send_message("Elige una opcion del menu:", view=view, silent = True)
 
-
         @bot.tree.command(name='cool',description="Dice si alguien mola (Ex: /cool Khrisleo)")
         async def cool(interaction: discord.Interaction, member: discord.Member):
             path = "./Imagenes/Simpsons"
@@ -62,7 +56,6 @@ class SetupSlashCommands():
             limit = len(archivos)
             result = archivos[random.randint(0, limit-1)]
             await interaction.response.send_message(file=discord.File(path+"/"+result), silent = True)
-
 
         @bot.tree.command(name='upload',description="Subir audios al servidor(Ex: /upload)")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
@@ -77,7 +70,6 @@ class SetupSlashCommands():
             view = FolderView() 
             view.select(original_path, base_path, audio)
             await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
-
 
         @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
         async def createfolder(interaction: discord.Interaction, folder: str):
@@ -96,7 +88,6 @@ class SetupSlashCommands():
                 await interaction.response.send_message("Carpeta creada en el servidor", silent = True)
             await AudioPanel.edit(interaction, data, 0)     
 
-
         @bot.tree.command(name="delete", description="Elimina una carpeta o archivo del servidor de Offtopic (Ex: /delete)")
         async def delete(interaction: discord.Interaction):
             data = InitEnv.offtopic
@@ -108,6 +99,15 @@ class SetupSlashCommands():
             view.select(base_path, original_path, 0)
             await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
+        @bot.tree.command(name="links", description="Links de ayuda para obtener y procesar los audios, etc (Ex: /links)")
+        async def links(interaction: discord.Interaction):
+            embed = discord.Embed(title="Links relacionados: ", description="""
+                Convertidor youtube: https://yt1s.de/youtube-to-mp3?l=en \n
+                Recortar audio online: https://clideo.com/es/cut-audio \n
+                Recortar audio en local (permite ser mas preciso seleccionando el fragmento): https://www.audacityteam.org/download/ \n
+                Enlace GitHub bot: https://github.com/juahuer1/DiscordBot
+            """, color=0x00ff00)
+            await interaction.response.send_message(embed=embed)
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
