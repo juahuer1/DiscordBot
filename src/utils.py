@@ -110,97 +110,6 @@ class FolderSelect(discord.ui.Select):
         await interaction.followup.send(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.', silent = True)
         self.view.stop()
 
-class SelectRemoveFile(discord.ui.Select):
-    def __init__(self, original_path, base_path):
-        self.original_path = original_path
-        self.base_path = base_path
-        folders = os.listdir(original_path)
-        options = []
-
-        for folder in folders:
-            option = discord.SelectOption(label = folder, value = folder)
-            options.append(option)
-
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
-
-    async def callback(self, interaction: discord.Interaction):
-        from src.audios import AudioView
-        await interaction.response.defer(thinking=True)
-        folder_selected = self.values[0]
-
-        audios_original_path = os.path.join(self.original_path, folder_selected)
-        audios_path = os.path.join(self.base_path, folder_selected)
-
-        view = AudioView()
-        view.selectRemoveAudio(audios_original_path, audios_path, 0)
-        await interaction.followup.send(content="Elige una opcion del menu:", view=view)
-
-        self.view.stop()
-
-class SelectRemoveFolder(discord.ui.Select):
-    def __init__(self, original_path, base_path):
-        self.original_path = original_path
-        self.base_path = base_path
-        folders = os.listdir(original_path)
-        options = []
-
-        for folder in folders:
-            option = discord.SelectOption(label = folder, value = folder)
-            options.append(option)
-
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
-
-    async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(thinking=True)
-        folder_selected = self.values[0]
-        path = os.path.join(self.original_path ,folder_selected)
-        archives = [item for item in os.listdir(path) if os.path.isfile(os.path.join(path, item))]
-        cantidad_archivos = len(archives)
-
-        view = FolderRemoveView() 
-        view.button(self.base_path, self.original_path, folder_selected)
-
-        await interaction.followup.send(content=f'Has seleccionado borrar {folder_selected}, ¿estás seguro?, la carpeta continene {cantidad_archivos} archivos',view = view)
-        self.view.stop()
-        
-class FolderRemoveView(discord.ui.View):
-    def __init__(self, timeout = 180):
-        super().__init__(timeout = timeout)
-
-    def button(self, base_path, og_path, folder_selected):
-        self.add_item(RemoveButton(base_path,og_path,folder_selected))
-
-class RemoveButton(discord.ui.Button):
-    def __init__(self, base_path, og_path, folder_selected):
-        self.base_path = base_path
-        self.og_path = og_path
-        self.folder_selected = folder_selected
-        super().__init__(label="Borrar", style=discord.ButtonStyle.red)
-
-    async def callback(self, interaction: discord.Interaction):
-        from src.audios import AudioPanel # Para evitar importación circular
-        await interaction.response.defer()
-        data = InitEnv.offtopic
-
-        shutil.rmtree(os.path.join(self.base_path,self.folder_selected))
-        shutil.rmtree(os.path.join(self.og_path,self.folder_selected))
-        await interaction.followup.send(f'Carpeta {self.folder_selected} eliminada correctamente')
-        await AudioPanel.edit(interaction, data, 0)
-        self.view.stop()
-
-class FolderView(discord.ui.View):
-    def __init__(self, timeout = 180):
-        super().__init__(timeout = timeout)
-
-    def select(self, original_path, base_path, audio):
-        self.add_item(FolderSelect(original_path, base_path, audio))
-
-    def selectRemoveFolder(self, original_path, base_path):
-        self.add_item(SelectRemoveFolder(original_path, base_path))
-
-    def selectRemoveFile(self, original_path, base_path):
-        self.add_item(SelectRemoveFile(original_path, base_path))
-
 class IdentifyPanel():
     async def channel(interaction):
         data = InitEnv
@@ -295,7 +204,7 @@ class ConfirmButton(discord.ui.Button):
     def __init__(self, base_path, original_path, file):
         self.base_path = os.path.join(base_path, file)
         self.original_path = os.path.join(original_path, file)
-        self.file = Archive.nice_name(file)
+        self.file = file
         super().__init__(label="Borrar", style=discord.ButtonStyle.red)
 
     async def callback(self, interaction: discord.Interaction):
