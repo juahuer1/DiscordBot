@@ -114,7 +114,6 @@ class AudioView(discord.ui.View):
     def buttonRemoveAudio(self, original_path, audios_path, audio_selected):
         self.add_item(RemoveFileButton(original_path, audios_path, audio_selected))
         
-
 class FirstButton(discord.ui.Button):
     def __init__(self, label, data):
         self.data = data

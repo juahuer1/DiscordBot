@@ -60,7 +60,7 @@ class Archive:
         
     def es_nombre_valido(nombre_archivo):
         # Expresión regular para permitir letras (a-z, A-Z), números (0-9), y guion normal (-)
-        patron = r'^[a-zA-Z0-9-]+$'
+        patron = r'^[a-zA-Z0-9-.]+$'
         
         # Verificar si el nombre coincide con el patrón
         if re.match(patron, nombre_archivo):
