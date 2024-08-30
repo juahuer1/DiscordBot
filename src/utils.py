@@ -18,7 +18,7 @@ class Archive:
         files = os.listdir(path)
 
         for file in files:
-            if (file.rsplit('.', 1)[-1] == file):
+            if os.path.isdir(file):
                 folders.append(file)
         return folders
 
@@ -27,30 +27,30 @@ class Archive:
 
         files = os.listdir(path)
         for first in files: #Primera tanda de archivos/carpetas, Ej: Audios
-            if (first.rsplit('.', 1)[-1] != first):
+            if os.path.isfile(os.path.join(path,first)):
                 output.append(first)
-            else:        
+            else:       
                 second = os.listdir(os.path.join(path,first)) #Segunda tanda de archivos/subcarpetas, Ej: Audios/Simpsons
                 for third in second:
-                    if (third.rsplit('.', 1)[-1] != third):
+                    if os.path.isfile(os.path.join(path,first,third)):
                         output.append(os.path.join(first,third))
                     else:        
                         fourth = os.listdir(os.path.join(path,first,third)) #Tercera tanda de archivos/subsubcarpetas, Ej: Audios/Simpsons/Homer
                         for fifth in fourth:
-                            if (fifth.rsplit('.', 1)[-1] != fifth):
+                            if os.path.isfile(os.path.join(path,first,third,fifth)):
                                 output.append(os.path.join(first, third,fifth))
         return output
 
     def same(file, path):
         status = False
-        if (file.rsplit('.', 1)[-1] == file):
+        if os.path.isdir(file):
             folders = Archive.directories(path)
             for my_folder in folders:
                 if (os.path.basename(my_folder) == file):
                     status = True
             
             return status
-        elif (file.rsplit('.', 1)[-1] != file):
+        elif os.path.isfile(file):
             files = Archive.files(path)
             for my_file in files:
                 if (os.path.basename(my_file) == file):

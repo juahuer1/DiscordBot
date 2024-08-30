@@ -36,23 +36,26 @@ class AudioBot:
             return False
         
 class AudioPanel():
+    def __init__(self, data, n):
+        self.view = AudioView(timeout=None)
+        self.view.add_item(FirstButton("Aleatorio", data))
+        self.view.button(data["path"], data["silent"])
+        if n < 1 and len(os.listdir(data["path"])) > 25:
+            self.view.add_item(LastButton(data, n))
+        self.view.add_item(StopButton(data))
+
+        self.embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
+        self.embed.set_image(url=data["audio_panel_image_url"])
+
     async def start(bot, thematic):
-        n = 0
         if thematic == "simpsons":
             data = InitEnv.simpsons
         elif thematic == "offtopic":
             data = InitEnv.offtopic
         else:
             raise
-        view = AudioView(timeout=None)
-        view.add_item(FirstButton("Aleatorio", data))
-        view.button(data["path"], data["silent"])
-        if n < 1 and len(os.listdir(data["path"])) > 25: #Boton de siguientes, bien hecho
-            view.add_item(LastButton(data, n))
-        view.add_item(StopButton(data))
 
-        embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
-        embed.set_image(url=data["audio_panel_image_url"])
+        panel = AudioPanel(data, 0)
 
         for guild in bot.guilds:
             if not discord.utils.get(guild.channels, name = data["channel"]):
@@ -62,22 +65,14 @@ class AudioPanel():
             deleted = await chanel.purge()
 
             file = discord.File(data["audio_panel_image_path"], filename=data["audio_panel_image_name"])
-            await chanel.send(view = view, embed = embed, file = file, silent = True)
+            await chanel.send(view = panel.view, embed = panel.embed, file = file, silent = True)
 
     async def edit(interaction, data, n):
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
 
-        view = AudioView(timeout=None)
-        view.add_item(FirstButton("Aleatorio", data))
-        view.button(data["path"], data["silent"])
-        if n < 1 and len(os.listdir(data["path"])) > 25: #Boton de siguientes, bien hecho
-            view.add_item(LastButton(data, n))
-        view.add_item(StopButton(data))
+        panel = AudioPanel(data, n)
 
-        embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
-        embed.set_image(url=data["audio_panel_image_url"])
-
-        await messages[0].edit(view = view, embed = embed)
+        await messages[0].edit(view = panel.view, embed = panel.embed)
 
 class HelpPanel():
     async def start(bot):
@@ -105,6 +100,7 @@ class AudioView(discord.ui.View):
 
     def button(self, path, silent):
         carpetas = os.listdir(path)
+        carpetas.sort()
         for carpeta in carpetas:
             self.add_item(AudioButton(f"{carpeta}", path, silent))
         
@@ -180,6 +176,7 @@ class AudioSelect(discord.ui.Select):
         self.path = path
         self.m = m
         archivos_filtered = Archive.files(path)
+        archivos_filtered.sort()
         options = []
 
         if len(archivos_filtered) > 25 and m >= 1:

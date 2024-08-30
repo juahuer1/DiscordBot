@@ -107,7 +107,7 @@ class SetupSlashCommands():
                 Recortar audio en local (permite ser mas preciso seleccionando el fragmento): https://www.audacityteam.org/download/ \n
                 Enlace GitHub bot: https://github.com/juahuer1/DiscordBot
             """, color=0x00ff00)
-            await interaction.response.send_message(embed=embed)
+            await interaction.response.send_message(embed=embed, silent = True)
 
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
