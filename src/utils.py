@@ -74,8 +74,8 @@ class Clear():
         await interaction.channel.purge(after = messages[0])
 
 class FolderView(discord.ui.View):
-    def init(self, timeout = 180):
-        super().init(timeout = timeout)
+    def init(self):
+        super().init(timeout = None)
 
     def select(self, original_path, base_path, audio):
         self.add_item(FolderSelect(original_path, base_path, audio))
@@ -137,8 +137,11 @@ class IdentifyPanel():
             return False
 
 class AuxView(discord.ui.View):
-    def __init__(self, timeout = 180):
-        super().__init__(timeout = timeout)
+    def __init__(self):
+        super().__init__(timeout = None)
+
+    def startup(self, interaction:discord.Interaction):
+        self.interaction = interaction
 
     def select(self, base_path, original_path, m):
         self.add_item(SelectToRemove(base_path, original_path, m))
@@ -148,6 +151,7 @@ class AuxView(discord.ui.View):
 
     def confirmbutton(self, base_path, original_path, file):
         self.add_item(ConfirmButton(base_path, original_path, file))
+
 
 class SelectToRemove(discord.ui.Select):
     def __init__(self, base_path, original_path, m):
@@ -184,7 +188,7 @@ class SelectToRemove(discord.ui.Select):
 
             reply = f"Has seleccionado borrar {file_selected}, ¿estás seguro?"
 
-            view = AuxView() 
+            view = AuxView()
             view.confirmbutton(self.base_path, self.original_path, file_selected)
             if os.path.isdir(path):
                 archives = [item for item in os.listdir(path) if os.path.isfile(os.path.join(path, item))]

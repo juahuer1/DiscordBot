@@ -37,7 +37,7 @@ class AudioBot:
         
 class AudioPanel():
     def __init__(self, data, n):
-        self.view = AudioView(timeout=None)
+        self.view = AudioView()
         self.view.add_item(FirstButton("Aleatorio", data))
         self.view.button(data["path"], data["silent"])
         if n < 1 and len(os.listdir(data["path"])) > 25:
@@ -92,8 +92,8 @@ class HelpPanel():
             await chanel.send(embeds = [embed1,embed2], files= files, silent = True)
 
 class AudioView(discord.ui.View):
-    def __init__(self, timeout = 180):
-        super().__init__(timeout = timeout)
+    def __init__(self):
+        super().__init__(timeout = None)
 
     def select(self, path, m):
         self.add_item(AudioSelect(path, m))
