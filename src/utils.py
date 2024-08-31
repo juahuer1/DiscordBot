@@ -80,6 +80,10 @@ class FolderView(discord.ui.View):
     def select(self, original_path, base_path, audio):
         self.add_item(FolderSelect(original_path, base_path, audio))
 
+    async def on_timeout(self, interaction):
+        if(interaction):
+            await Clear.this_channel(interaction)
+
 class FolderSelect(discord.ui.Select):
     def __init__(self, original_path, base_path, audio):
         self.original_path = original_path
@@ -149,6 +153,10 @@ class AuxView(discord.ui.View):
     def confirmbutton(self, base_path, original_path, file):
         self.add_item(ConfirmButton(base_path, original_path, file))
 
+    async def on_timeout(self, interaction):
+        if(interaction):
+            await Clear.this_channel(interaction)
+
 class SelectToRemove(discord.ui.Select):
     def __init__(self, base_path, original_path, m):
         self.original_path = original_path
@@ -175,6 +183,7 @@ class SelectToRemove(discord.ui.Select):
         if my_values[0] == "Extra":
             self.m = self.m + int(my_values[1])
             view = AuxView()
+            await view.on_timeout(interaction)
             view.select(self.base_path, self.original_path, self.m)
             messages = [message async for message in interaction.channel.history()]
             await messages[0].edit(view = view)
@@ -185,6 +194,7 @@ class SelectToRemove(discord.ui.Select):
             reply = f"Has seleccionado borrar {file_selected}, ¿estás seguro?"
 
             view = AuxView() 
+            await view.on_timeout(interaction)
             view.confirmbutton(self.base_path, self.original_path, file_selected)
             if os.path.isdir(path):
                 archives = [item for item in os.listdir(path) if os.path.isfile(os.path.join(path, item))]
@@ -203,6 +213,7 @@ class FileButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking = True)
         view = AuxView()
+        await view.on_timeout(interaction)
         view.select(self.base_path, self.original_path, 0)
         await interaction.followup.send(content = "Elige audio a borrar", view = view, silent = True)
         self.view.stop()

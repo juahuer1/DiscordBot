@@ -46,6 +46,7 @@ class SetupSlashCommands():
                 return
             voice_client = interaction.guild.voice_client
             view = AudioView()
+            view.startup(interaction)
             view.select("./Audios", 0)
             await interaction.response.send_message("Elige una opcion del menu:", view=view, silent = True)
 
@@ -68,6 +69,7 @@ class SetupSlashCommands():
             base_path = channel_obj.get('BasePath')
 
             view = FolderView() 
+            await view.on_timeout(interaction)
             view.select(original_path, base_path, audio)
             await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 

@@ -103,6 +103,11 @@ class AudioView(discord.ui.View):
         carpetas.sort()
         for carpeta in carpetas:
             self.add_item(AudioButton(f"{carpeta}", path, silent))
+
+    async def on_timeout(self, interaction):
+        if(interaction):
+            await Clear.this_channel(interaction)
+
         
 class FirstButton(discord.ui.Button):
     def __init__(self, label, data):
@@ -146,6 +151,7 @@ class AudioButton(discord.ui.Button):
                 return
 
         view = AudioView()
+        await view.on_timeout(interaction)
         view.select(os.path.join(self.path, self.label), 0)
         await interaction.followup.send(view = view, silent = True)
 
@@ -197,6 +203,7 @@ class AudioSelect(discord.ui.Select):
         if my_values[0] == "Extra":
             self.m = self.m + int(my_values[1])
             view = AudioView()
+            await view.on_timeout(interaction)
             view.select(self.path, self.m)
             messages = [message async for message in interaction.channel.history()]
             await messages[0].edit(view = view)
