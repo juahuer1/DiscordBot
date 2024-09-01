@@ -67,6 +67,23 @@ class Archive:
             return True
         else:
             return False
+        
+    def info_audios(folder_paths):
+        response =[]
+
+        for path in folder_paths:
+            folders = 0
+            files = 0
+            for ruta_actual, subdirectorios, archivos in os.walk(path):
+                for subdirectorio in subdirectorios:
+                    folders +=1
+                for archivo in archivos:
+                    files +=1
+            value = {"folders": folders, "files": files}
+            response.append(value)
+
+        return response
+
 
 class Clear():
     async def this_channel(interaction):

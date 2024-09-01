@@ -109,6 +109,15 @@ class SetupSlashCommands():
             """, color=0x00ff00)
             await interaction.response.send_message(embed=embed, silent = True)
 
+        @bot.tree.command(name="infoaudios", description="Proporciona algo de información acerca de los audios subidos (Ex: /infoaudios)")
+        async def infoaudios(interaction: discord.Interaction):
+            folder_paths = [InitEnv.simpsons_base_path, InitEnv.offtopic_base_path]
+            data = Archive.info_audios(folder_paths)
+            simpsons_data = data[0]
+            offtopic_data = data[1]
+
+            await interaction.response.send_message(f"Panel de Los Simpsons cuenta con {simpsons_data['folders']} carpetas y {simpsons_data['files']} archivos, Panel de Offtopic cuenta con {offtopic_data['folders']} carpetas y {offtopic_data['files']} archivos.", silent=True)
+
         @bot.tree.command(name='clearaudio', description="Interrumpimos audio en reproduccion (Ex: /clearaudio)")
         async def clearaudio(interaction: discord.Interaction):
             voice_client = interaction.guild.voice_client
