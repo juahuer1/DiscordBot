@@ -42,6 +42,7 @@ class Events:
             await asyncio.sleep(20)
             if len(member.guild.voice_client.channel.members) == 1:
                 await member.guild.voice_client.disconnect()
+                await self.bot.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Viendo Los Simpson"))
             return
 
     async def on_command_error(self, ctx, error):

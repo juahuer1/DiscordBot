@@ -176,20 +176,8 @@ class AudioSelect(discord.ui.Select):
         self.path = path
         self.m = m
         archivos_filtered = Archive.files(path)
-        archivos_filtered.sort()
-        options = []
-
-        if len(archivos_filtered) > 25 and m >= 1:
-            options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
-
-        for archivo in archivos_filtered[self.m*25:(self.m+1)*25-1]:
-            nombre = Archive.nice_name(archivo)
-            option = discord.SelectOption(label = nombre, value = archivo)
-            options.append(option)
-        if len(archivos_filtered)>25 and m<(len(archivos_filtered)/25)-1:
-            options.append(discord.SelectOption(label = "Más...", value = "Extra,1"))
-        
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
+        extended = SelectExtended(archivos_filtered, self.m)
+        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=extended.options)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()        

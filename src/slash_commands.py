@@ -41,9 +41,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
-            connected = await AudioBot.join(interaction)
-            if not connected:
-                return
+            await AudioBot.join(interaction)
             voice_client = interaction.guild.voice_client
             view = AudioView()
             view.select("./Audios", 0)
@@ -71,8 +69,8 @@ class SetupSlashCommands():
             view.select(original_path, base_path, audio)
             await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
-        @bot.tree.command(name="createfolder", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
-        async def createfolder(interaction: discord.Interaction, folder: str):
+        @bot.tree.command(name="create", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
+        async def create(interaction: discord.Interaction, folder: str):
             if interaction.channel.name == InitEnv.simpsons_channel_name:
                 data = InitEnv.simpsons
             elif interaction.channel.name == InitEnv.offtopic_channel_name:

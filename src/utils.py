@@ -102,7 +102,7 @@ class FolderSelect(discord.ui.Select):
         self.original_path = original_path
         self.base_path = base_path
         self.audio = audio
-        folders = os.listdir(original_path)
+        folders = os.listdir(base_path)
         options = []
 
         for folder in folders:
@@ -176,19 +176,8 @@ class SelectToRemove(discord.ui.Select):
         self.base_path = base_path
         self.m = m
         files = os.listdir(self.base_path)
-        options = []
-
-        if len(files) > 25 and m >= 1:
-            options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
-
-        for archivo in files[self.m*25:(self.m+1)*25-1]:
-            nombre = Archive.nice_name(archivo)
-            option = discord.SelectOption(label = nombre, value = archivo)
-            options.append(option)
-        if len(files)>25 and m<(len(files)/25)-1:
-            options.append(discord.SelectOption(label = "Más...", value = "Extra,1"))
-
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
+        extended = SelectExtended(files, self.m)
+        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=extended.options)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking = True)        
@@ -223,6 +212,9 @@ class FileButton(discord.ui.Button):
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking = True)
+        if not os.listdir(self.base_path):
+            await interaction.followup.send("La carpeta está vacía", silent = True)
+            return
         view = AuxView()
         view.select(self.base_path, self.original_path, 0)
         await interaction.followup.send(content = "Elige audio a borrar", view = view, silent = True)
@@ -255,3 +247,18 @@ class ConfirmButton(discord.ui.Button):
             await interaction.followup.send("???", silent = True)
 
         self.view.stop()
+
+class SelectExtended():
+    def __init__(self, files, m):
+        files.sort()
+        self.options = []
+
+        if len(files) > 25 and m >= 1:
+            self.options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
+
+        for archivo in files[m*25:(m+1)*25-1]:
+            nombre = Archive.nice_name(archivo)
+            option = discord.SelectOption(label = nombre, value = archivo)
+            self.options.append(option)
+        if len(files)>25 and m<(len(files)/25)-1:
+            self.options.append(discord.SelectOption(label = "Más...", value = "Extra,1"))
