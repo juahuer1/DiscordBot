@@ -41,11 +41,14 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
-            await AudioBot.join(interaction)
-            voice_client = interaction.guild.voice_client
-            view = AudioView()
-            view.select("./Audios", 0)
-            await interaction.response.send_message("Elige una opcion del menu:", view=view, silent = True)
+            data = await IdentifyPanel.channel(interaction)
+            if not not data:
+                await interaction.response.defer(thinking = True)
+                await AudioBot.join(interaction)
+                voice_client = interaction.guild.voice_client
+                view = AudioView()
+                view.select(data["path"], 0)
+                await interaction.followup.send("Elige una opcion del menu:", view=view, silent = True)
 
         @bot.tree.command(name='cool',description="Dice si alguien mola (Ex: /cool Khrisleo)")
         async def cool(interaction: discord.Interaction, member: discord.Member):
@@ -57,45 +60,34 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='upload',description="Subir audios al servidor(Ex: /upload)")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
-            channel_obj = await IdentifyPanel.channel(interaction)
-
-            if not channel_obj:
-                return
-
-            original_path = channel_obj.get('OriginalPath')
-            base_path = channel_obj.get('BasePath')
-
-            view = FolderView() 
-            view.select(original_path, base_path, audio)
-            await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
+            data = await IdentifyPanel.channel(interaction)
+            if not not data:
+                view = FolderView() 
+                view.select(data["og_path"], data["path"], audio)
+                await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
         @bot.tree.command(name="create", description="Crear una carpeta para almacenar audios, Simpsons u Offtopic (Ex: /createfolder)")
         async def create(interaction: discord.Interaction, folder: str):
-            if interaction.channel.name == InitEnv.simpsons_channel_name:
-                data = InitEnv.simpsons
-            elif interaction.channel.name == InitEnv.offtopic_channel_name:
-                data = InitEnv.offtopic
-            else:
-                await interaction.response.send_message("No estás en ningún audio panel", silent = True)
-
-            if(Archive.same(folder, data["og_path"]) or Archive.same(folder, data["path"])):
-                await interaction.response.send_message("Esa carpeta ya existe!", silent = True)
-            else:
-                os.mkdir(os.path.join(data["og_path"], folder))
-                os.mkdir(os.path.join(data["path"], folder))
-                await interaction.response.send_message("Carpeta creada en el servidor", silent = True)
-            await AudioPanel.edit(interaction, data, 0)     
+            data = await IdentifyPanel.channel(interaction)
+            if not not data:
+                if(Archive.same(folder, data["og_path"]) or Archive.same(folder, data["path"])):
+                    await interaction.response.send_message("Esa carpeta ya existe!", silent = True)
+                else:
+                    os.mkdir(os.path.join(data["og_path"], folder))
+                    os.mkdir(os.path.join(data["path"], folder))
+                    await interaction.response.send_message("Carpeta creada en el servidor", silent = True)
+                await AudioPanel.edit(interaction, data, 0)     
 
         @bot.tree.command(name="delete", description="Elimina una carpeta o archivo del servidor de Offtopic (Ex: /delete)")
         async def delete(interaction: discord.Interaction):
-            data = InitEnv.offtopic
-
-            original_path = data["og_path"]
-            base_path = data["path"]
-
-            view = AuxView()
-            view.select(base_path, original_path, 0)
-            await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
+            data = await IdentifyPanel.channel(interaction)
+            if not not data:
+                if data == InitEnv.simpsons and interaction.user.id != InitEnv.devs[0]:
+                    await interaction.response.send_message("Contacta con Sergio o Juan ^^", silent = True)
+                else:
+                    view = AuxView()
+                    view.select(data["path"], data["og_path"], 0)
+                    await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
         @bot.tree.command(name="links", description="Links de ayuda para obtener y procesar los audios, etc (Ex: /links)")
         async def links(interaction: discord.Interaction):

@@ -21,18 +21,19 @@ class Events:
         # Obtener el objeto del servidor usando su ID
 
         # Sincronizar los comandos en el servidor
-        await self.bot.tree.sync()   
+        commands = await self.bot.tree.sync()   
 
-        await AudioPanel.start(self.bot, "simpsons")
-        await AudioPanel.start(self.bot, "offtopic")
-        await HelpPanel.start(self.bot)
+        for guild in self.bot.guilds:
+            await AudioPanel.start(guild, "simpsons")
+            await AudioPanel.start(guild, "offtopic")
+            await HelpPanel.start(guild)
 
         print("Comandos de barra sincronizados en el servidor:")
 
     async def on_guild_join(guild):
-        await AudioPanel.start(self.bot, "simpsons")
-        await AudioPanel.start(self.bot, "offtopic")
-        await HelpPanel.start(self.bot)
+        await AudioPanel.start(guild, "simpsons")
+        await AudioPanel.start(guild, "offtopic")
+        await HelpPanel.start(guild)
 
     async def on_voice_state_update(self, member, before, after):
         if not member.guild.voice_client:

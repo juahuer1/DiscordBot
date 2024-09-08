@@ -12,18 +12,25 @@ class InitEnv:
    offtopic_og_base_path = os.getenv('OFFTOPICORIGINALPATH')
    offtopic_base_path = os.getenv('OFFTOPICPATH')
 
+   bart = os.getenv("BART")
+   moe = os.getenv("MOE")
+   barney = os.getenv("BARNEY")
+   laura = os.getenv("LAURA")
+
+   devs = [int(dev) for dev in os.getenv("DEVS").split(",")]
+
    simpsons = {"channel": simpsons_channel_name, 
                    "path": simpsons_base_path, 
                    "og_path": simpsons_og_base_path, 
                    "silent": False,
                    "audio_panel_title": "Bar de Moe, Moe al habla",
                    "audio_panel_description": [
-                     " <:Bart:1281721472401932441> *¿Señor Reves? de nombre Stal*, \n <:Moe:1281721429427093584>Un momento, A VEEER STAL REVES, alguno de ustedes Stal Reves?",
-                     " <:Bart:1281721472401932441> *¿Está Topocho? De nombre Donpi* \n <:Moe:1281721429427093584>Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?",
-                     " <:Bart:1281721472401932441> *¿Está el señor Riau? De nombre Smith* \n <:Moe:1281721429427093584>Un momento, voy a ver. ¿Hay aquí algún Smith Riau? ¿NO ME OÍS? ¿¡ALGUNO SOIS SMITH RIAU!?",
-                     " <:Bart:1281721472401932441> *¿Está Empel? De nombre Otas* \n <:Moe:1281721429427093584>Voy a ver. ¡QUE SE PONGA AL TELÉFONO EMPEL OTAS!",
-                     " <:Bart:1281721472401932441> *Pregunto por el señor Ollas, de nombre Philip* \n <:Moe:1281721429427093584>Sí, un minuto, voy a ver. PHILIP OLLAS, PHILIP OLLAS. Venga, chicos, ¿no hay ningún Philip Ollas por aquí?",
-                     " <:Bart:1281721472401932441> *Quisiera hablar con la señora Chondo. ¿De nombre? Stoika* \n <:Moe:1281721429427093584>Un segundo. STOIKA CHONDO, STOIKA CHONDO. Vamos, señora, creo que esto va por usted ¡STOIKA CHONDO!"
+                     f"{bart} *¿Señor Reves? de nombre Stal*,\n{moe} Un momento, A VEEER STAL REVES, alguno de ustedes Stal Reves?",
+                     f"{bart} *¿Está Topocho? De nombre Donpi*\n{moe} Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?",
+                     f"{bart} *¿Está el señor Riau? De nombre Smith*\n{moe} Un momento, voy a ver. ¿Hay aquí algún Smith Riau? ¿NO ME OÍS? ¿¡ALGUNO SOIS SMITH RIAU!?",
+                     f"{bart} *¿Está Empel? De nombre Otas*\n{moe} Voy a ver. ¡QUE SE PONGA AL TELÉFONO EMPEL OTAS!",
+                     f"{bart} *Pregunto por el señor Ollas, de nombre Philip*\n{moe} Sí, un minuto, voy a ver. PHILIP OLLAS, PHILIP OLLAS. Venga, chicos, ¿no hay ningún Philip Ollas por aquí?\n{barney} Que yo sepa uno",
+                     f"{laura} *Quisiera hablar con la señora Chondo. ¿De nombre? Stoika*\n{moe} Un segundo. STOIKA CHONDO, STOIKA CHONDO. Vamos, señora, creo que esto va por usted ¡STOIKA CHONDO!"
                    ],
                    "audio_panel_image_path": "./Imagenes/Simpsons/moe_al_habla.jpg",
                    "audio_panel_image_name": "moe_al_habla.jpg",
@@ -35,7 +42,7 @@ class InitEnv:
                    "silent": True,
                    "audio_panel_title": "Panel de audios y ya", 
                    "audio_panel_description": [
-                      "Panel de audios donde puedes crear y subir audios para reproducirlos durante las llamadas de discord (Comandos mkdir y upload respectivamente)."
+                     "Panel de audios donde puedes crear y subir audios para reproducirlos durante las llamadas de discord (Comandos mkdir y upload respectivamente)."
                    ],
                    "audio_panel_image_path": "./Imagenes/Offtopic/offtopic.jpg",
                    "audio_panel_image_name": "offtopic.jpg",
@@ -45,7 +52,7 @@ class InitEnv:
       "channel": help_channel_name,
       "title": "Panel de ayuda a la utilización de PiBot",
       "comandos": """
-      Escribe barra (/) en cualquier canal de texto para ver una lista de comandos disponibles con una descripción y un ejemplo.\n 
+      Escribe barra (/) en cualquier canal de texto para ver una lista de comandos disponibles con una descripción y un ejemplo.\n
          **• /audios** - Elige y reproduce un audio [Se recomienda usar los Paneles] (Ex: /audios)\n
          **• /bot** - Dice si el bot mola (Ex: /bot)\n
          **• /clearaudio** - Interrumpimos audio que se esté reproduciendo (Ex: /clearaudio)\n
@@ -54,7 +61,7 @@ class InitEnv:
          **• /delete** - Elimina una carpeta o audio de Offtopic. Si quieres que sea en Los Simpsons contacta con Sergio o Juan (Ex: /delete)\n
          **• /infoaudios** - Información sobre los audios subidos (Ex: /infoaudios)\n
          **• /join** - Agrega el bot al chat silenciosamente (Ex: /join)\n
-         **• /joined** - Fecha de inclusion de un miembro (Ex: /joined juanmingla)\n      
+         **• /joined** - Fecha de inclusion de un miembro (Ex: /joined juanmingla)\n
          **• /leave** - Elimina el bot del chat silenciosamente (Ex: /leave)\n
          **• /links** - Links de ayuda para obtener y procesar los audios (Ex: /links)\n
          **• /roll** - Tira *times* dados de *faces* caras (Ex: /roll 3d6)\n

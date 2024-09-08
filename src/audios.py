@@ -47,7 +47,7 @@ class AudioPanel():
         self.embed = discord.Embed(title=data["audio_panel_title"], description=data["audio_panel_description"][random.randint(0,len(data["audio_panel_description"])-1)], color=0x00ff00)
         self.embed.set_image(url=data["audio_panel_image_url"])
 
-    async def start(bot, thematic):
+    async def start(guild, thematic):
         if thematic == "simpsons":
             data = InitEnv.simpsons
         elif thematic == "offtopic":
@@ -57,15 +57,15 @@ class AudioPanel():
 
         panel = AudioPanel(data, 0)
 
-        for guild in bot.guilds:
-            if not discord.utils.get(guild.channels, name = data["channel"]):
-                overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
-                await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
-            chanel = discord.utils.get(guild.channels, name = data["channel"])
-            deleted = await chanel.purge()
+        
+        if not discord.utils.get(guild.channels, name = data["channel"]):
+            overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
+            await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
+        chanel = discord.utils.get(guild.channels, name = data["channel"])
+        deleted = await chanel.purge()
 
-            file = discord.File(data["audio_panel_image_path"], filename=data["audio_panel_image_name"])
-            await chanel.send(view = panel.view, embed = panel.embed, file = file, silent = True)
+        file = discord.File(data["audio_panel_image_path"], filename=data["audio_panel_image_name"])
+        await chanel.send(view = panel.view, embed = panel.embed, file = file, silent = True)
 
     async def edit(interaction, data, n):
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
@@ -75,21 +75,20 @@ class AudioPanel():
         await messages[0].edit(view = panel.view, embed = panel.embed)
 
 class HelpPanel():
-    async def start(bot):
+    async def start(guild):
         data = InitEnv.helper
         embed1 = discord.Embed(title="Ayuda Comandos", description=data["comandos"], color=0x00ff00)
         embed1.set_image(url=data["help_panel_command_url"])
         embed2 = discord.Embed(title="Ayuda Paneles", description=data["paneles"], color=0x00ff00)
         embed2.set_image(url=data["help_panel_panel_url"])
-        for guild in bot.guilds:
-            if not discord.utils.get(guild.channels, name = data["channel"]):
-                overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
-                await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
-            chanel = discord.utils.get(guild.channels, name = data["channel"])
-            deleted = await chanel.purge()
+        if not discord.utils.get(guild.channels, name = data["channel"]):
+            overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
+            await guild.create_text_channel(name = data["channel"], overwrites = overwrites, category = discord.utils.get(guild.categories, name = "Canales de texto"))
+        chanel = discord.utils.get(guild.channels, name = data["channel"])
+        deleted = await chanel.purge()
 
-            files = [discord.File(data["help_panel_command_path"], filename=data["help_panel_command_name"]), discord.File(data["help_panel_panel_path"], filename=data["help_panel_panel_name"])]
-            await chanel.send(embeds = [embed1,embed2], files= files, silent = True)
+        files = [discord.File(data["help_panel_command_path"], filename=data["help_panel_command_name"]), discord.File(data["help_panel_panel_path"], filename=data["help_panel_panel_name"])]
+        await chanel.send(embeds = [embed1,embed2], files= files, silent = True)
 
 class AudioView(discord.ui.View):
     def __init__(self):

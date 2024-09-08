@@ -18,7 +18,7 @@ class Archive:
         files = os.listdir(path)
 
         for file in files:
-            if os.path.isdir(file):
+            if os.path.isdir(os.path.join(path,file)):
                 folders.append(file)
         return folders
 
@@ -43,14 +43,14 @@ class Archive:
 
     def same(file, path):
         status = False
-        if os.path.isdir(file):
+        if os.path.isdir(os.path.join(path,file)):
             folders = Archive.directories(path)
             for my_folder in folders:
                 if (os.path.basename(my_folder) == file):
                     status = True
             
             return status
-        elif os.path.isfile(file):
+        elif os.path.isfile(os.path.join(path,file)):
             files = Archive.files(path)
             for my_file in files:
                 if (os.path.basename(my_file) == file):
@@ -136,29 +136,17 @@ class FolderSelect(discord.ui.Select):
 
 class IdentifyPanel():
     async def channel(interaction):
-        data = InitEnv
-        result = {}
-
-        if(interaction.channel.name == data.simpsons_channel_name):
-            result['OriginalPath'] = data.simpsons_og_base_path
-            result['BasePath'] = data.simpsons_base_path
-            return result
-
-        elif(interaction.channel.name == data.offtopic_channel_name):
-            result['OriginalPath'] = data.offtopic_og_base_path
-            result['BasePath'] = data.offtopic_base_path
-            return result
-
+        if interaction.channel.name == InitEnv.simpsons_channel_name:
+            return InitEnv.simpsons
+        elif interaction.channel.name == InitEnv.offtopic_channel_name:
+            return InitEnv.offtopic
         else:
             await interaction.response.send_message("No estás en ningún audio panel", silent = True)
-            return False
+
 
 class AuxView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout = None)
-
-    def startup(self, interaction:discord.Interaction):
-        self.interaction = interaction
 
     def select(self, base_path, original_path, m):
         self.add_item(SelectToRemove(base_path, original_path, m))
@@ -235,8 +223,10 @@ class ConfirmButton(discord.ui.Button):
             shutil.rmtree(self.original_path)
             await interaction.followup.send(f'Carpeta {self.file} eliminada correctamente', silent = True)
             
+            data = await IdentifyPanel.channel(interaction)
+
             from src.audios import AudioPanel
-            await AudioPanel.edit(interaction, InitEnv.offtopic, 0)
+            await AudioPanel.edit(interaction, data, 0)
 
         elif os.path.isfile(self.base_path):
             os.remove(self.base_path) 
