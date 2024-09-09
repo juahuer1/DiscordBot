@@ -82,8 +82,11 @@ class SetupSlashCommands():
         async def delete(interaction: discord.Interaction):
             data = await IdentifyPanel.channel(interaction)
             if not not data:
-                if data == InitEnv.simpsons and interaction.user.id != InitEnv.devs[0]:
-                    await interaction.response.send_message("Contacta con Sergio o Juan ^^", silent = True)
+                if data == InitEnv.simpsons and interaction.user.id not in InitEnv.devs:
+                    for dev in InitEnv.devs:
+                        devs = interaction.guild.get_member(dev)
+                    print(devs)
+                    await interaction.response.send_message(f"Contacta con: {devs}", silent = True) #' '.join(devs) si no salen separados
                 else:
                     view = AuxView()
                     view.select(data["path"], data["og_path"], 0)
