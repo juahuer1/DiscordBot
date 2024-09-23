@@ -57,7 +57,7 @@ class SetupSlashCommands():
 
         @bot.tree.command(name='cool',description="Dice si alguien mola (Ex: /cool Khrisleo)")
         async def cool(interaction: discord.Interaction, member: discord.Member):
-            path = "./Imagenes/Simpsons"
+            path = "./Imagenes/Simpsons/Cool"
             archivos = os.listdir(path)
             limit = len(archivos)
             result = archivos[random.randint(0, limit-1)]
@@ -87,8 +87,8 @@ class SetupSlashCommands():
         async def delete(interaction: discord.Interaction):
             data = await IdentifyPanel.channel(interaction)
             if data:
-                can = await Admin.developers(interaction, data)
-                if can:
+                admin = await Admin.developers(interaction, data)
+                if admin:
                     view = AuxView()
                     view.remove_select(data["path"], data["og_path"], 0)
                     await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
@@ -96,7 +96,7 @@ class SetupSlashCommands():
         @bot.tree.command(name="links", description="Colección de links de interés (Ex: /links)")
         async def links(interaction: discord.Interaction):
             embed = discord.Embed(title="Links relacionados:", description="""
-                Convertidor youtube: https://yt1s.de/youtube-to-mp3?l=en\n
+                Convertidor youtube: https://y2mate.nu\n
                 Recortar audio online: https://clideo.com/es/cut-audio\n
                 Recortar audio en local (permite ser mas preciso seleccionando el fragmento): https://www.audacityteam.org/download/\n
                 Enlace GitHub bot: https://github.com/juahuer1/DiscordBot
