@@ -179,8 +179,8 @@ class AudioSelect(discord.ui.Select):
         super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options = self.extended.options)
 
     async def callback(self, interaction: discord.Interaction):
-        await self.extended.go_next(interaction, self.values, self.path)
-        if not self.extended.go_next:
+        go_next = await self.extended.go_next(interaction, self.values, self.path)
+        if not go_next:
             audio_selected = self.values[0]
             AudioSound(audio_selected, self.path, interaction)
 

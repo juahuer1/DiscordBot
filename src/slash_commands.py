@@ -67,8 +67,8 @@ class SetupSlashCommands():
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
             data = await IdentifyPanel.channel(interaction)
             if not not data:
-                view = FolderView() 
-                view.select(data["og_path"], data["path"], audio)
+                view = AuxView() 
+                view.folder_select(data["og_path"], data["path"], audio, 0)
                 await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
         @bot.tree.command(name="create", description="Crea una carpeta en Simpsons u Offtopic (Ex: /create)")
@@ -95,7 +95,7 @@ class SetupSlashCommands():
                     await interaction.response.send_message(f"Contacta con: {disp_devs}", silent = True)
                 else:
                     view = AuxView()
-                    view.select(data["path"], data["og_path"], 0)
+                    view.remove_select(data["path"], data["og_path"], 0)
                     await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
 
         @bot.tree.command(name="links", description="Colección de links de interés (Ex: /links)")

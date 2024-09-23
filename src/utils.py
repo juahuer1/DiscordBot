@@ -90,49 +90,39 @@ class Clear():
         messages = [message async for message in interaction.channel.history(oldest_first = True)]
         await interaction.channel.purge(after = messages[0])
 
-class FolderView(discord.ui.View):
-    def init(self):
-        super().init(timeout = None)
-
-    def select(self, original_path, base_path, audio):
-        self.add_item(FolderSelect(original_path, base_path, audio))
-
-class FolderSelect(discord.ui.Select):
-    def __init__(self, original_path, base_path, audio):
+class SelectFolder(discord.ui.Select):
+    def __init__(self, original_path, base_path, audio, m):
         self.original_path = original_path
         self.base_path = base_path
         self.audio = audio
-        folders = os.listdir(base_path)
-        options = []
-
-        for folder in folders:
-            option = discord.SelectOption(label = folder, value = folder)
-            options.append(option)
-
-        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options=options)
+        self.m = m
+        files = os.listdir(self.base_path)
+        self.extended = SelectExtended(files, self.m)
+        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options = self.extended.options)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(thinking=True)
-        folder_selected = self.values[0]
-        audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
+        go_next = await self.extended.go_next(interaction, self.values, self.base_path)
+        if not go_next:
+            folder_selected = self.values[0]
+            audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
 
-        if(Archive.es_nombre_valido(self.audio.filename) == False):
-            await interaction.followup.send('Hay un problema con el nombre del audio, recuerda que solo puede contener letras, números y guión alto (-), no introduzcas espacios!', silent = True)
-            return
+            if(Archive.es_nombre_valido(self.audio.filename) == False):
+                await interaction.followup.send('Hay un problema con el nombre del audio, recuerda que solo puede contener letras, números y guión alto (-), no introduzcas espacios!', silent = True)
+                return
 
-        if(Archive.same(self.audio.filename, os.path.join(self.original_path, folder_selected)) or Archive.same(self.audio.filename, os.path.join(self.base_path, folder_selected))):
-            await interaction.followup.send('Ya existe un audio con ese nombre!', silent = True)
-            return
+            if(Archive.same(self.audio.filename, os.path.join(self.original_path, folder_selected)) or Archive.same(self.audio.filename, os.path.join(self.base_path, folder_selected))):
+                await interaction.followup.send('Ya existe un audio con ese nombre!', silent = True)
+                return
 
-        await self.audio.save(fp=audios_path)
+            await self.audio.save(fp=audios_path)
 
-        full_base_path = os.path.join(self.base_path, folder_selected, self.audio.filename)
-        rawsound = AudioSegment.from_file(audios_path, "mp3")  
-        normalizedsound = effects.normalize(rawsound)
-        normalizedsound.export(full_base_path, format="mp3")
+            full_base_path = os.path.join(self.base_path, folder_selected, self.audio.filename)
+            rawsound = AudioSegment.from_file(audios_path, "mp3")  
+            normalizedsound = effects.normalize(rawsound)
+            normalizedsound.export(full_base_path, format="mp3")
 
-        await interaction.followup.send(f'Audio {self.audio.filename} ha sido guardado exitosamente.', silent = True)
-        self.view.stop()
+            await interaction.followup.send(f'Audio {self.audio.filename} ha sido guardado exitosamente.', silent = True)
+            self.view.stop()
 
 class IdentifyPanel():
     async def channel(interaction):
@@ -150,8 +140,11 @@ class AuxView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout = None)
 
-    def select(self, base_path, original_path, m):
+    def remove_select(self, base_path, original_path, m):
         self.add_item(SelectToRemove(base_path, original_path, m))
+
+    def folder_select(self, original_path, base_path, audio, m):
+        self.add_item(SelectFolder(original_path, base_path, audio, m))
 
     def filebutton(self, base_path, original_path, folder):
         self.add_item(FileButton(base_path, original_path, folder))
@@ -166,19 +159,12 @@ class SelectToRemove(discord.ui.Select):
         self.base_path = base_path
         self.m = m
         files = os.listdir(self.base_path)
-        extended = SelectExtended(files, self.m)
-        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options=extended.options)
+        self.extended = SelectExtended(files, self.m)
+        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options = self.extended.options)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(thinking = True)        
-        my_values = list(self.values[0].split(","))
-        if my_values[0] == "Extra":
-            self.m = self.m + int(my_values[1])
-            view = AuxView()
-            view.select(self.base_path, self.original_path, self.m)
-            messages = [message async for message in interaction.channel.history()]
-            await messages[0].edit(view = view)
-        else:
+        go_next = await self.extended.go_next(interaction, self.values, self.base_path)
+        if not go_next:
             file_selected = self.values[0]
             path = os.path.join(self.base_path ,file_selected)
 
@@ -206,7 +192,7 @@ class FileButton(discord.ui.Button):
             await interaction.followup.send("La carpeta está vacía", silent = True)
             return
         view = AuxView()
-        view.select(self.base_path, self.original_path, 0)
+        view.remove_select(self.base_path, self.original_path, 0)
         await interaction.followup.send(content = "Elige audio a borrar", view = view, silent = True)
         self.view.stop()
 
@@ -265,7 +251,7 @@ class SelectExtended():
             from src.audios import AudioView
             view = AudioView()
             view.select(path, self.m)
-            
+
             messages = [message async for message in interaction.channel.history()]
             await messages[0].edit(view = view)
             return True
