@@ -109,7 +109,7 @@ class FolderSelect(discord.ui.Select):
             option = discord.SelectOption(label = folder, value = folder)
             options.append(option)
 
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=options)
+        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking=True)
@@ -117,11 +117,11 @@ class FolderSelect(discord.ui.Select):
         audios_path = os.path.join(self.original_path, folder_selected, self.audio.filename)
 
         if(Archive.es_nombre_valido(self.audio.filename) == False):
-            await interaction.followup.send('Hay un problema con el nombre del archivo, recuerda que solo puede contener letras, números y guión alto (-), no introduzcas espacios!', silent = True)
+            await interaction.followup.send('Hay un problema con el nombre del audio, recuerda que solo puede contener letras, números y guión alto (-), no introduzcas espacios!', silent = True)
             return
 
         if(Archive.same(self.audio.filename, os.path.join(self.original_path, folder_selected)) or Archive.same(self.audio.filename, os.path.join(self.base_path, folder_selected))):
-            await interaction.followup.send('Ya existe un archivo con ese nombre!', silent = True)
+            await interaction.followup.send('Ya existe un audio con ese nombre!', silent = True)
             return
 
         await self.audio.save(fp=audios_path)
@@ -131,7 +131,7 @@ class FolderSelect(discord.ui.Select):
         normalizedsound = effects.normalize(rawsound)
         normalizedsound.export(full_base_path, format="mp3")
 
-        await interaction.followup.send(f'Archivo de audio {self.audio.filename} ha sido guardado exitosamente.', silent = True)
+        await interaction.followup.send(f'Audio {self.audio.filename} ha sido guardado exitosamente.', silent = True)
         self.view.stop()
 
 class IdentifyPanel():
@@ -140,6 +140,8 @@ class IdentifyPanel():
             return InitEnv.simpsons
         elif interaction.channel.name == InitEnv.offtopic_channel_name:
             return InitEnv.offtopic
+        elif interaction.channel.name == InitEnv.help_channel_name:
+            return InitEnv.helper
         else:
             await interaction.response.send_message("No estás en ningún audio panel", silent = True)
 
@@ -165,7 +167,7 @@ class SelectToRemove(discord.ui.Select):
         self.m = m
         files = os.listdir(self.base_path)
         extended = SelectExtended(files, self.m)
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=extended.options)
+        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options=extended.options)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking = True)        
@@ -186,7 +188,7 @@ class SelectToRemove(discord.ui.Select):
             view.confirmbutton(self.base_path, self.original_path, file_selected)
             if os.path.isdir(path):
                 archives = [item for item in os.listdir(path) if os.path.isfile(os.path.join(path, item))]
-                reply = reply + f", la carpeta continene {len(archives)} archivos"
+                reply = reply + f", la carpeta continene {len(archives)} audios"
                 view.filebutton(self.base_path, self.original_path, file_selected)
 
             await interaction.followup.send(content = reply,view = view, silent = True)
@@ -196,7 +198,7 @@ class FileButton(discord.ui.Button):
     def __init__(self, base_path, original_path, folder):
         self.base_path = os.path.join(base_path, folder)
         self.original_path = os.path.join(original_path, folder)
-        super().__init__(label="Elegir archivo", style=discord.ButtonStyle.grey)
+        super().__init__(label="Elegir audio", style=discord.ButtonStyle.grey)
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking = True)
@@ -240,15 +242,32 @@ class ConfirmButton(discord.ui.Button):
 
 class SelectExtended():
     def __init__(self, files, m):
+        self.m = m
         files.sort()
         self.options = []
 
-        if len(files) > 25 and m >= 1:
+        if len(files) > 25 and self.m >= 1:
             self.options.append(discord.SelectOption(label = "Menos...", value = "Extra,-1"))
 
-        for archivo in files[m*25:(m+1)*25-1]:
+        for archivo in files[self.m*25:(self.m+1)*25-1]:
             nombre = Archive.nice_name(archivo)
             option = discord.SelectOption(label = nombre, value = archivo)
             self.options.append(option)
-        if len(files)>25 and m<(len(files)/25)-1:
+        if len(files)>25 and self.m<(len(files)/25)-1:
             self.options.append(discord.SelectOption(label = "Más...", value = "Extra,1"))
+
+    async def go_next(self, interaction, values, path):
+        await interaction.response.defer()        
+        my_values = list(values[0].split(","))
+        if my_values[0] == "Extra":
+            self.m = self.m + int(my_values[1])
+
+            from src.audios import AudioView
+            view = AudioView()
+            view.select(path, self.m)
+            
+            messages = [message async for message in interaction.channel.history()]
+            await messages[0].edit(view = view)
+            return True
+        else:
+            return

@@ -18,7 +18,7 @@ class AudioBot:
                 AudioSound(saluditos, path, interaction)
             return True
         else:
-            await interaction.followup.send("Bot no se puede unir, metete en un canal de audio!", silent = True)
+            await interaction.followup.send("¡Métete en un canal de audio!", silent = True)
             return False
 
     async def leave (interaction: discord.Interaction, silent = False):
@@ -77,9 +77,9 @@ class AudioPanel():
 class HelpPanel():
     async def start(guild):
         data = InitEnv.helper
-        embed1 = discord.Embed(title="Ayuda Comandos", description=data["comandos"], color=0x00ff00)
+        embed1 = discord.Embed(title = data["title1"], description=data["comandos"], color=0x00ff00)
         embed1.set_image(url=data["help_panel_command_url"])
-        embed2 = discord.Embed(title="Ayuda Paneles", description=data["paneles"], color=0x00ff00)
+        embed2 = discord.Embed(title = data["title2"], description=data["paneles"], color=0x00ff00)
         embed2.set_image(url=data["help_panel_panel_url"])
         if not discord.utils.get(guild.channels, name = data["channel"]):
             overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=True), guild.me: discord.PermissionOverwrite(read_messages=True)}
@@ -175,19 +175,12 @@ class AudioSelect(discord.ui.Select):
         self.path = path
         self.m = m
         archivos_filtered = Archive.files(path)
-        extended = SelectExtended(archivos_filtered, self.m)
-        super().__init__(placeholder="Elige una opcion...", max_values=1, min_values=1, options=extended.options)
+        self.extended = SelectExtended(archivos_filtered, self.m)
+        super().__init__(placeholder="Elige una opción...", max_values=1, min_values=1, options = self.extended.options)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer()        
-        my_values = list(self.values[0].split(","))
-        if my_values[0] == "Extra":
-            self.m = self.m + int(my_values[1])
-            view = AudioView()
-            view.select(self.path, self.m)
-            messages = [message async for message in interaction.channel.history()]
-            await messages[0].edit(view = view)
-        else:
+        await self.extended.go_next(interaction, self.values, self.path)
+        if not self.extended.go_next:
             audio_selected = self.values[0]
             AudioSound(audio_selected, self.path, interaction)
 

@@ -3,6 +3,7 @@ import logging
 from src.utils import *
 from src.audios import *
 import asyncio
+import datetime
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='error.log', encoding='utf-8', level=logging.DEBUG)
@@ -45,6 +46,13 @@ class Events:
                 await member.guild.voice_client.disconnect()
                 await self.bot.change_presence(status = discord.Status.idle, activity = discord.CustomActivity(name = "Viendo Los Simpson"))
             return
+
+    async def on_presence_update(before, after):
+        this_guild = before.guild
+        channel = discord.utils.get(this_guild.channels, name = "general")
+        await channel.send(content = before.joined_at + " y fecha" + datetime.today())
+        print(channel)
+        
 
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):

@@ -11,7 +11,7 @@ description = '''Bot de Juan (con ayuda esporadica de Sergio), pa poder meter au
 
 SE ACEPTAN SUGERENCIAS, SI ALGUIEN QUIERE METER SU AUDIO QUE ME LO PASE'''
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.members = True
 intents.message_content = True
 

@@ -25,12 +25,12 @@ class InitEnv:
                    "silent": False,
                    "audio_panel_title": "Bar de Moe, Moe al habla",
                    "audio_panel_description": [
-                     f"{bart} *¿Señor Reves? de nombre Stal*,\n{moe} Un momento, A VEEER STAL REVES, alguno de ustedes Stal Reves?",
+                     f"{bart} *¿Señor Reves? De nombre Stal*\n{moe} Un momento. A ver, STAL REVES. ¿Alguno de ustedes Stal Reves?",
                      f"{bart} *¿Está Topocho? De nombre Donpi*\n{moe} Deja que pregunte. Donpi Topocho, ¿ES QUE NADIE AQUÍ ES UN DONPI TOPOCHO?",
                      f"{bart} *¿Está el señor Riau? De nombre Smith*\n{moe} Un momento, voy a ver. ¿Hay aquí algún Smith Riau? ¿NO ME OÍS? ¿¡ALGUNO SOIS SMITH RIAU!?",
                      f"{bart} *¿Está Empel? De nombre Otas*\n{moe} Voy a ver. ¡QUE SE PONGA AL TELÉFONO EMPEL OTAS!",
-                     f"{bart} *Pregunto por el señor Ollas, de nombre Philip*\n{moe} Sí, un minuto, voy a ver. PHILIP OLLAS, PHILIP OLLAS. Venga, chicos, ¿no hay ningún Philip Ollas por aquí?\n{barney} Que yo sepa uno",
-                     f"{laura} *Quisiera hablar con la señora Chondo. ¿De nombre? Stoika*\n{moe} Un segundo. STOIKA CHONDO, STOIKA CHONDO. Vamos, señora, creo que esto va por usted ¡STOIKA CHONDO!"
+                     f"{bart} *Pregunto por el señor Ollas, de nombre Philip*\n{moe} Sí, un minuto, voy a ver. PHILIP OLLAS, PHILIP OLLAS. Venga, chicos, ¿no hay ningún Philip Ollas por aquí?\n{barney} *Que yo sepa uno*",
+                     f"{laura} *Quisiera hablar con la señora Chondo. ¿De nombre? Stoika*\n{moe} Un segundo. STOIKA CHONDO, STOIKA CHONDO. Vamos, señora, creo que esto va por usted. ¡STOIKA CHONDO!"
                    ],
                    "audio_panel_image_path": "./Imagenes/Simpsons/moe_al_habla.jpg",
                    "audio_panel_image_name": "moe_al_habla.jpg",
@@ -42,7 +42,7 @@ class InitEnv:
                    "silent": True,
                    "audio_panel_title": "Panel de audios y ya", 
                    "audio_panel_description": [
-                     "Panel de audios donde puedes crear y subir audios para reproducirlos durante las llamadas de discord (Comandos mkdir y upload respectivamente)."
+                     "Panel de audios donde puedes crear y subir audios para reproducirlos durante las llamadas de discord (Comandos */create* y */upload* respectivamente)."
                    ],
                    "audio_panel_image_path": "./Imagenes/Offtopic/offtopic.jpg",
                    "audio_panel_image_name": "offtopic.jpg",
@@ -50,7 +50,8 @@ class InitEnv:
                   }
    helper = {
       "channel": help_channel_name,
-      "title": "Panel de ayuda a la utilización de PiBot",
+      "title1": "Ayuda Comandos",
+      "title2": "Ayuda Paneles",
       "comandos": """
       Escribe barra (/) en cualquier canal de texto para ver una lista de comandos disponibles con una descripción y un ejemplo.\n
          **• /audios** - Elige y reproduce un audio [Se recomienda usar los Paneles] (Ex: /audios)\n
@@ -64,7 +65,7 @@ class InitEnv:
          **• /joined** - Fecha de inclusion de un miembro (Ex: /joined juanmingla)\n
          **• /leave** - Elimina el bot del chat silenciosamente (Ex: /leave)\n
          **• /links** - Links de ayuda para obtener y procesar los audios (Ex: /links)\n
-         **• /roll** - Tira *times* dados de *faces* caras (Ex: /roll 3d6)\n
+         **• /roll** - Tira *times* dados de *faces* caras (Ex: /roll 3 6)\n
          **• /upload** - Sube un audio al Panel en el que te encuentres. Separa las palabras con guiones y evita acentos u otros caracteres extraños (Ex: /upload)\n
       """,
       "help_panel_command_path": "./Imagenes/Help/comandos.png",
@@ -73,7 +74,7 @@ class InitEnv:
       "paneles": """
          **audio-panel** está dedicado a Los Simpsons exclusivamente \n
          **audio-panel-offtopic** recoge audios de cualquier otra temática \n
-         Utiliza */createfolder* para añadir botones y llénalos de audios con */upload*
+         Utiliza */create* para añadir botones y llénalos de audios con */upload*
       """,
       "help_panel_panel_path": "./Imagenes/Help/paneles.png",
       "help_panel_panel_name": "paneles.png",
