@@ -42,7 +42,7 @@ class SetupSlashCommands():
         @bot.tree.command(name='audios', description="Reproduce audios en el canal en uso (Ex: /audios)")
         async def audios(interaction: discord.Interaction):
             data = await IdentifyPanel.channel(interaction)
-            if not not data:
+            if data:
                 await interaction.response.defer(thinking = True)
 
                 if not interaction.guild.voice_client:
@@ -66,15 +66,15 @@ class SetupSlashCommands():
         @bot.tree.command(name='upload',description="Sube audios a Simpsons u Offtopic (Ex: /upload)")
         async def upload(interaction: discord.Interaction, audio: discord.Attachment):
             data = await IdentifyPanel.channel(interaction)
-            if not not data:
+            if data:
                 view = AuxView() 
                 view.folder_select(data["og_path"], data["path"], audio, 0)
-                await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
+                await interaction.response.send_message(f"Selecciona una carpeta para subir {audio}:", view=view, silent = True)
 
         @bot.tree.command(name="create", description="Crea una carpeta en Simpsons u Offtopic (Ex: /create)")
         async def create(interaction: discord.Interaction, folder: str):
             data = await IdentifyPanel.channel(interaction)
-            if not not data:
+            if data:
                 if(Archive.same(folder, data["og_path"]) or Archive.same(folder, data["path"])):
                     await interaction.response.send_message("¡Esa carpeta ya existe!", silent = True)
                 else:
@@ -86,14 +86,9 @@ class SetupSlashCommands():
         @bot.tree.command(name="delete", description="Elimina una carpeta o audio (Ex: /delete)")
         async def delete(interaction: discord.Interaction):
             data = await IdentifyPanel.channel(interaction)
-            if not not data:
-                if data == InitEnv.simpsons and interaction.user.id not in InitEnv.devs:
-                    devs = []
-                    for dev in InitEnv.devs:
-                        devs.append(interaction.guild.get_member(dev).mention)
-                    disp_devs = " ".join(devs)
-                    await interaction.response.send_message(f"Contacta con: {disp_devs}", silent = True)
-                else:
+            if data:
+                can = await Admin.developers(interaction, data)
+                if can:
                     view = AuxView()
                     view.remove_select(data["path"], data["og_path"], 0)
                     await interaction.response.send_message("Selecciona una carpeta:", view=view, silent = True)
@@ -129,7 +124,7 @@ class SetupSlashCommands():
         @bot.tree.command(name = "clear", description = "Limpia el canal (Ex: /clear)")
         async def clear(interaction: discord.Interaction):
             data = await IdentifyPanel.channel(interaction)
-            if not not data:
+            if data:
                 await interaction.response.defer(thinking = True)
                 await Clear.this_channel(interaction)
 

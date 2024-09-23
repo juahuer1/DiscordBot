@@ -111,7 +111,7 @@ class SelectFolder(discord.ui.Select):
                 return
 
             if(Archive.same(self.audio.filename, os.path.join(self.original_path, folder_selected)) or Archive.same(self.audio.filename, os.path.join(self.base_path, folder_selected))):
-                await interaction.followup.send('Ya existe un audio con ese nombre!', silent = True)
+                await interaction.followup.send('¡Ya existe un audio con ese nombre!', silent = True)
                 return
 
             await self.audio.save(fp=audios_path)
@@ -130,8 +130,6 @@ class IdentifyPanel():
             return InitEnv.simpsons
         elif interaction.channel.name == InitEnv.offtopic_channel_name:
             return InitEnv.offtopic
-        elif interaction.channel.name == InitEnv.help_channel_name:
-            return InitEnv.helper
         else:
             await interaction.response.send_message("No estás en ningún audio panel", silent = True)
 
@@ -256,4 +254,16 @@ class SelectExtended():
             await messages[0].edit(view = view)
             return True
         else:
-            return
+            return False
+
+class Admin():
+    async def developers(interaction, data):
+        if data == InitEnv.simpsons and interaction.user.id not in InitEnv.devs:
+            devs = []
+            for dev in InitEnv.devs:
+                devs.append(interaction.guild.get_member(dev).mention)
+            disp_devs = " ".join(devs)
+            await interaction.response.send_message(f"Contacta con: {disp_devs}", silent = True)
+            return False
+        else:
+            return True

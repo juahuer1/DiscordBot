@@ -56,6 +56,7 @@ class InitEnv:
       Escribe barra (/) en cualquier canal de texto para ver una lista de comandos disponibles con una descripción y un ejemplo.\n
          **• /audios** - Elige y reproduce un audio [Se recomienda usar los Paneles] (Ex: /audios)\n
          **• /bot** - Dice si el bot mola (Ex: /bot)\n
+         **• /clear** - Limpia el canal de texto en el que te encuentres (Ex: /clear)\n
          **• /clearaudio** - Interrumpimos audio que se esté reproduciendo (Ex: /clearaudio)\n
          **• /cool** - Dice si alguien mola (Ex: /cool Khrisleo)\n
          **• /create** - Crea una carpeta en el Panel en el que te encuentres (Ex: /createfolder)\n
@@ -72,8 +73,8 @@ class InitEnv:
       "help_panel_command_name": "comandos.png",
       "help_panel_command_url": "attachment://comandos.png",
       "paneles": """
-         **audio-panel** está dedicado a Los Simpsons exclusivamente \n
-         **audio-panel-offtopic** recoge audios de cualquier otra temática \n
+         **audio-panel** está dedicado a Los Simpsons exclusivamente\n
+         **audio-panel-offtopic** recoge audios de cualquier otra temática\n
          Utiliza */create* para añadir botones y llénalos de audios con */upload*
       """,
       "help_panel_panel_path": "./Imagenes/Help/paneles.png",
